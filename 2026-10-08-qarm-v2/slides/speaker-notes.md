@@ -221,19 +221,22 @@ Bridge: Both kinds of data train one LLM with the three-segment trick.
 
 Terms: decoder-only LLM = a GPT-style model that predicts the next token. Attention mask = which tokens may look at which. <EMB> tokens = special tokens whose hidden states become the item embedding. Hidden state (h) = the LLM's output vector at one token position. Contrastive loss, next-token (generative) loss.
 
-Say: The cleverest idea in the paper. Follow the yellow numbers 1 to 4 on the slide.
+Say: The cleverest idea in the paper.
 
-1. One sequence goes into the LLM in one pass. It has three parts:
+One sequence goes into the LLM in one pass. It has three parts:
    • the item itself (title, OCR, attributes, image tokens),
    • three special <EMB> tokens,
    • a question and its answer about the item ("Q: What is this? A: Cartoon quilt.").
-   The attention mask on the left controls who can see what: <EMB> sees the item, and QA sees only <EMB>, never the item.
 
-2. The LLM gives one output vector (hidden state) per token. Average the three vectors at the <EMB> positions, and that average is the item embedding m.
+The attention mask on the left controls who can see what: <EMB> sees the item, and QA sees only <EMB>, never the item.
 
-3. At the QA positions, the LLM must predict the answer word by word (the normal next-token loss). QA can't see the item, so the only way to answer "cartoon quilt" is through the <EMB> tokens. That forces m to contain the item's information.
+1. The LLM gives one output vector (hidden state) per token. Average the three vectors at the <EMB> positions, and that average is the item embedding m.
 
-4. The paired item from the filtered data goes through the same LLM and gets its own m. A contrastive loss pulls the two embeddings together and pushes the other items in the batch away. This teaches "business similarity".
+2. At the QA positions, the LLM must predict the answer word by word (the normal next-token loss). QA can't see the item, so the only way to answer "cartoon quilt" is through the <EMB> tokens. That forces m to contain the item's information.
+
+3. The paired item from the filtered data goes through the same LLM and gets its own m. A contrastive loss pulls the two embeddings together and pushes the other items in the batch away. This teaches "business similarity".
+
+(On the slide, these three steps are the yellow circles 2, 3 and 4; circle 1 is the input sequence.)
 
 Point to the yellow box: both losses are added and trained together. After training, <EMB> never looks at QA, so to get an embedding you only run the input plus the <EMB> tokens and read m.
 
