@@ -209,8 +209,23 @@ The semantic ID is (c1, c2, c3). The first two levels adapt to the data; the las
 
 Point to the orange box: the codebook sizes are inconsistent: 8,192 in the method section, "3 × 4096" in the experiments, and the FSQ formula as written gives three values per dimension. Mention it briefly.
 
-Bridge: How do the LLM embedding and the semantic IDs enter the ranker?""",
+Bridge: The next slide walks through the three rounds one by one.""",
 
+    "sid-rounds": """Terms: centroid = the centre of a K-means cluster. Residual = embedding minus its nearest centroid. FSQ = Finite Scalar Quantization. c1, c2, c3 = the three parts of the semantic ID.
+
+Say: The previous slide in slow motion. Three rounds, each one describes what the earlier rounds missed.
+
+Round 1, coarse: offline, K-means on the LLM embeddings of more than 10 million items gives K centroids. For an item, c1 is the number of its nearest centroid. Items with the same c1 are broadly similar, roughly the same category.
+
+Round 2, finer: subtract that centroid. The residual is how this item differs from its cluster's centre. A second K-means on all residuals gives c2. Now (c1, c2) is a finer group, like category plus usage.
+
+Round 3, item detail: subtract the second centroid and use FSQ instead of a third K-means. Multiply by a learned matrix W down to 13 numbers, squash each into 0 to 1 with a sigmoid, scale by L = 2 and round. The 13 small integers together are the code c3, like a 13-digit number.
+
+Point to the yellow line: FSQ ignores where items are dense, so rare items spread over many codes. That is why round 3 is FSQ.
+
+If asked: the paper does not say how W is trained, and with L = 2 the rounding gives three values per dimension, not two.
+
+Bridge: How do the LLM embedding and the semantic IDs enter the ranker?""",
     "usage": """Terms: inner product = similarity score between two embeddings. PCA = shrinks the embeddings for storage. Lookup embedding table = one trainable vector per code. Multi-task BCE = the usual click/purchase loss.
 
 Say: Left, the GSU uses the LLM embedding. Every item's embedding is stored, PCA-reduced. For a target item, keep the top-k history items with the highest inner product with the target's embedding. Plain vector search, nothing trained.

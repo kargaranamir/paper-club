@@ -515,6 +515,38 @@ def s_reskmeansfsq(n):
     return s
 
 
+def s_sid_rounds(n):
+    s = Slide("16-sid-rounds", n)
+    s.title("Building a semantic ID in three rounds", "Each round describes what the previous rounds missed", part=PART3, pc="purple")
+    cols = [(70, 445, "Round 1 · coarse", "K-means", "purple",
+             "Offline: K-means on the LLM\nembeddings of 10M+ items\n→ K centroids.\n\n"
+             "K = 8,192 in the method section,\n4,096 in the experiments.\n\n"
+             "c¹ = number of the item's\nnearest centroid.\n\n"
+             "Same c¹ → broadly similar,\nroughly the same category."),
+            (545, 445, "Round 2 · finer", "K-means on the residual", "purple",
+             "Subtract that centroid. What\nremains is the residual: how this\nitem differs from its cluster's\ncentre.\n\n"
+             "Second K-means on all items'\nresiduals → c² = the nearest\ncentroid there.\n\n"
+             "(c¹, c²) = a finer group,\ne.g. category + usage."),
+            (1020, 510, "Round 3 · item detail", "FSQ instead of K-means", "blue",
+             "Subtract the second centroid →\nsecond residual. Then FSQ:\n\n"
+             "1. multiply by a learned matrix W:\n    3,000+ numbers → 13\n"
+             "2. squash each into 0–1 (sigmoid),\n    scale by L = 2, round\n"
+             "3. 13 small integers, read together\n    as one code c³, like a\n    13-digit number")]
+    for i, (x, w, head, sub, c, body) in enumerate(cols):
+        s.box(x, 160, w, 580, None, c, fill=P[c]["soft"])
+        s.text(x + 22, 176, head, 27, P[c]["text"])
+        s.text(x + 22, 216, sub, 21, P["muted"])
+        s.text(x + 22, 262, body, 23, P["ink"])
+        if i < 2:
+            nx = cols[i + 1][0]
+            harrow(s, x + w + 3, nx - 3, 200)
+    s.text(1042, 672, "SID = (c¹, c², c³)", 28, P["green"]["text"])
+    s.takeaway("FSQ ignores where items are dense, so it spreads rare items over many different codes. That is the point of round 3.",
+               y=765, h=70, fs=23)
+    s.footer(V2 + ", §3.2 (Eq. 2–3) and §4.5")
+    return s
+
+
 def s_usage(n):
     s = Slide("15-usage", n)
     s.title("How the two outputs enter the ranker", part=PART3, pc="purple")
@@ -752,6 +784,6 @@ def s_takeaways(n):
 
 SLIDES = [s_title, s_tldr, s_gloss1, s_gloss2, s_setting, s_gsu_esu, s_ids_vs_llm, s_naive_llm, s_qarm_v1, s_qarm_v1_results, s_diff,
           s_noisy_pairs, s_pipeline, s_three_segment,
-          s_collision, s_reskmeansfsq, s_usage,
+          s_collision, s_reskmeansfsq, s_sid_rounds, s_usage,
           s_amazon, s_offline, s_online, s_online_live, s_hr, s_codes, s_gsu_case,
           s_critique, s_questions, s_takeaways]

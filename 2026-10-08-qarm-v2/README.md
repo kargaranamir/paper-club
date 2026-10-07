@@ -10,22 +10,22 @@ Recommendation at Kuaishou.* [arXiv:2411.11739](https://arxiv.org/abs/2411.11739
 | What | Where |
 |---|---|
 | Clickable deck (arrow keys, `N` notes, `O` overview, `F` full screen) | [`slides/index.html`](slides/index.html) |
-| PDF (27 slides, 16:9) | [`slides/qarm-v2.pdf`](slides/qarm-v2.pdf) |
+| PDF (28 slides, 16:9) | [`slides/qarm-v2.pdf`](slides/qarm-v2.pdf) |
 | Speaker notes | [`slides/speaker-notes.md`](slides/speaker-notes.md) |
 | Editable Excalidraw file per slide | [`slides/excalidraw/`](slides/excalidraw), open on excalidraw.com (menu → Open) |
 | Every number used, with its table or section | [`references/digest.md`](references/digest.md) |
 
-## Outline (27 slides)
+## Outline (28 slides)
 
 1 Title · 2 The paper in one slide · 3–4 glossary (models; quantization, metrics, business terms)
 - **Part I, background:** 5 Kuaishou setting · 6 GSU/ESU two-stage sequence modelling · 7 IDs vs LLM tokens ·
   8 why naive LLM embeddings give little · 9 QARM (2024) · 10 QARM results · 11 what V2 changes
 - **Part II, GSU side:** 12 noisy alignment pairs · 13 reasoning data pipeline · 14 three-segment attention mask
-- **Part III, ESU side:** 15 why semantic IDs collide (K-means vs FSQ) · 16 Res-KmeansFSQ · 17 how embedding and
+- **Part III, ESU side:** 15 why semantic IDs collide (K-means vs FSQ) · 16 Res-KmeansFSQ · 17 building a semantic ID in three rounds · 18 how embedding and
   SIDs enter the ranker
-- **Part IV, results:** 18 Amazon Book · 19 offline GAUC gains · 20 online ads and shopping · 21 online live
-  streaming · 22 retrieval hit rate · 23 code collisions · 24 GSU exclusive retrieval
-- **Part V, discussion:** 25 strengths and weaknesses · 26 discussion questions · 27 takeaways
+- **Part IV, results:** 19 Amazon Book · 20 offline GAUC gains · 21 online ads and shopping · 22 online live
+  streaming · 23 retrieval hit rate · 24 code collisions · 25 GSU exclusive retrieval
+- **Part V, discussion:** 26 strengths and weaknesses · 27 discussion questions · 28 takeaways
 
 ## Editing
 

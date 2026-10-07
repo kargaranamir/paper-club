@@ -271,11 +271,31 @@ The semantic ID is (c1, c2, c3). The first two levels adapt to the data; the las
 
 Point to the orange box: the codebook sizes are inconsistent: 8,192 in the method section, "3 × 4096" in the experiments, and the FSQ formula as written gives three values per dimension. Mention it briefly.
 
+Bridge: The next slide walks through the three rounds one by one.
+
+## 17. sid rounds
+
+![slide 17](svg/17-sid-rounds.svg)
+
+Terms: centroid = the centre of a K-means cluster. Residual = embedding minus its nearest centroid. FSQ = Finite Scalar Quantization. c1, c2, c3 = the three parts of the semantic ID.
+
+Say: The previous slide in slow motion. Three rounds, each one describes what the earlier rounds missed.
+
+Round 1, coarse: offline, K-means on the LLM embeddings of more than 10 million items gives K centroids. For an item, c1 is the number of its nearest centroid. Items with the same c1 are broadly similar, roughly the same category.
+
+Round 2, finer: subtract that centroid. The residual is how this item differs from its cluster's centre. A second K-means on all residuals gives c2. Now (c1, c2) is a finer group, like category plus usage.
+
+Round 3, item detail: subtract the second centroid and use FSQ instead of a third K-means. Multiply by a learned matrix W down to 13 numbers, squash each into 0 to 1 with a sigmoid, scale by L = 2 and round. The 13 small integers together are the code c3, like a 13-digit number.
+
+Point to the yellow line: FSQ ignores where items are dense, so rare items spread over many codes. That is why round 3 is FSQ.
+
+If asked: the paper does not say how W is trained, and with L = 2 the rounding gives three values per dimension, not two.
+
 Bridge: How do the LLM embedding and the semantic IDs enter the ranker?
 
-## 17. usage
+## 18. usage
 
-![slide 17](svg/17-usage.svg)
+![slide 18](svg/18-usage.svg)
 
 Terms: inner product = similarity score between two embeddings. PCA = shrinks the embeddings for storage. Lookup embedding table = one trainable vector per code. Multi-task BCE = the usual click/purchase loss.
 
@@ -287,9 +307,9 @@ The point: the LLM embedding stays frozen in the GSU, but the semantic ID embedd
 
 Bridge: Part IV, results. First, the only public dataset.
 
-## 18. amazon
+## 19. amazon
 
-![slide 18](svg/18-amazon.svg)
+![slide 19](svg/19-amazon.svg)
 
 Terms: AUC. DIN, SIM-hard, SIM-soft = baselines (glossary slide). ESU retrieval of top-50.
 
@@ -301,9 +321,9 @@ Point to the setup box: the baselines are from 2018 and 2020. No TWIN, and no se
 
 Bridge: Kuaishou's own data, where the big claims are.
 
-## 19. offline
+## 20. offline
 
-![slide 19](svg/19-offline.svg)
+![slide 20](svg/20-offline.svg)
 
 Terms: GAUC gain in points over the production model. CTR, CVR, CTCVR (click and buy). WUAUC for Shopping#2 CTR.
 
@@ -317,9 +337,9 @@ Caveat: no error bars, so we cannot tell how stable the small gains are.
 
 Bridge: Offline is one thing. What happened with real users?
 
-## 20. online ads shop
+## 21. online ads shop
 
-![slide 20](svg/20-online-ads-shop.svg)
+![slide 21](svg/21-online-ads-shop.svg)
 
 Terms: online A/B test, exposure, cost (ad spend), revenue, GMV, order.
 
@@ -333,9 +353,9 @@ For a platform this size that is a lot of money, but there are no confidence int
 
 Bridge: Live streaming shows where the gains come from.
 
-## 21. online live
+## 22. online live
 
-![slide 21](svg/21-online-live.svg)
+![slide 22](svg/22-online-live.svg)
 
 Terms: cold-start streams vs others. Core metrics (click, watch time, gift count) vs interaction metrics (like, comment, follow).
 
@@ -347,9 +367,9 @@ Curiosity: gift count is exactly +2.917% in both "others" rows; a coincidence or
 
 Bridge: Did reasoning item alignment really improve the LLM embedding? The paper tests that directly.
 
-## 22. alignment hr
+## 23. alignment hr
 
-![slide 22](svg/22-alignment-hr.svg)
+![slide 23](svg/23-alignment-hr.svg)
 
 Terms: item-to-item retrieval with the LLM embedding. Trigger items = the user's last 10 clicks. HR@200 / HR@500 = hit rate in the top 200 / 500 retrieved.
 
@@ -361,9 +381,9 @@ Point to the orange text: an inconsistency. The text says order HR@500 rose from
 
 Bridge: And did the semantic IDs stop colliding?
 
-## 23. code conflict
+## 24. code conflict
 
-![slide 23](svg/23-code-conflict.svg)
+![slide 24](svg/24-code-conflict.svg)
 
 Terms: Collision = share of items whose semantic ID is shared. EdgeNum = items returned per semantic-ID lookup. HR@1 = the item itself comes back first. KGNN = Kuaishou's graph store used for the lookup.
 
@@ -379,9 +399,9 @@ Point to the two boxes: most of the improvement comes from better embeddings, no
 
 Bridge: One qualitative check of the GSU.
 
-## 24. gsu case
+## 25. gsu case
 
-![slide 24](svg/24-gsu-case.svg)
+![slide 25](svg/25-gsu-case.svg)
 
 Terms: exclusive rate = share of history items the QARM V2 GSU retrieves that the ID-based SIM GSU does not. Hard negatives = retrieved items that are actually unrelated. Deduplication = removing repeated items from the sequence.
 
@@ -393,9 +413,9 @@ Point to the bottom: they do not deduplicate sequences. In live streaming the to
 
 Bridge: Part V. Time to be critical.
 
-## 25. critique
+## 26. critique
 
-![slide 25](svg/25-critique.svg)
+![slide 26](svg/26-critique.svg)
 
 Terms: ablation = removing one component to measure its effect.
 
@@ -405,9 +425,9 @@ Weak: four changes at once and no ablation on ranking metrics; old public baseli
 
 Bridge: That leads to the discussion questions.
 
-## 26. questions
+## 27. questions
 
-![slide 26](svg/26-questions.svg)
+![slide 27](svg/27-questions.svg)
 
 Terms: as on earlier slides.
 
@@ -419,9 +439,9 @@ Good second, question 1: the reasoning filter replaces exposure bias with the LL
 
 Ask the room before giving your own view.
 
-## 27. takeaways
+## 28. takeaways
 
-![slide 27](svg/27-takeaways.svg)
+![slide 28](svg/28-takeaways.svg)
 
 Terms: as on earlier slides.
 
