@@ -80,6 +80,53 @@ def s_tldr(n):
 
 
 # ======================================================================= background
+def _glossary(s, rows, y=150):
+    s.table(70, y, [300, 1160], rows, header=["term", "meaning"], fs=20, rh=52, hc="gray", aligns=["l", "l"],
+            colors=[[P["blue"]["text"], P["ink"]]] * len(rows))
+
+
+def s_gloss1(n):
+    s = Slide("03-glossary-models", n)
+    s.title("Glossary 1 · models and building blocks")
+    _glossary(s, [
+        ["GSU", "General Search Unit: a cheap first step that picks the K history items most related to the target"],
+        ["ESU", "Exact Search Unit: an expensive, trained step that attends over those K items"],
+        ["SIM", "Search-based Interest Model (Alibaba, 2020): introduced the GSU → ESU split for long histories"],
+        ["SIM-hard / -soft", "GSU by same category tag (hard) or by similar learned ID embeddings (soft)"],
+        ["TWIN, TWIN V2", "Kuaishou's lifelong models (2023, 2024): the GSU reuses the ESU's attention scores"],
+        ["DIN", "Deep Interest Network (Alibaba, 2018): attention over the user's most recent items"],
+        ["target attention", "attention where the candidate (target) item is the query and history items are keys"],
+        ["MoE", "Mixture of Experts: shared experts with per-task gates, one output per task (CTR, CVR, …)"],
+        ["Item2Item · Swing", "item–item similarity from co-clicks (Swing: users who clicked both items)"],
+        ["User2Item · two-tower", "a user encoder and an item encoder whose dot product scores user–item pairs"],
+        ["semantic ID (SID)", "a short tuple of discrete codes (c¹, c², c³) for an item, derived from its embedding"],
+        ["TIGER, OneRec", "generative recommenders that predict semantic IDs (Google 2023, Kuaishou 2025)"],
+    ])
+    s.footer("Definitions in plain words; see the speaker notes for the papers behind each term")
+    return s
+
+
+def s_gloss2(n):
+    s = Slide("04-glossary-metrics", n)
+    s.title("Glossary 2 · quantization, metrics and business terms")
+    _glossary(s, [
+        ["Res-Kmeans (RQ)", "residual K-means: cluster, subtract the centroid, cluster the remainder again, per level"],
+        ["VQ code (QARM)", "an item described by the IDs of its K nearest items in embedding space"],
+        ["FSQ", "Finite Scalar Quantization: project to a few dims, round each to fixed levels (no codebook)"],
+        ["collision · EdgeNum", "share of items sharing their SID with another item · items per SID on average"],
+        ["CTR · CVR · CTCVR", "P(click | shown) · P(buy | clicked) · P(click and buy | shown)"],
+        ["AUC", "probability that a random positive is scored above a random negative (50 = chance)"],
+        ["UAUC · GAUC", "AUC computed per user, then averaged (UAUC) or weighted by the user's samples (GAUC)"],
+        ["HR@K", "hit rate: the share of cases where a true item is among the top K retrieved"],
+        ["exposure · GMV", "how often items are shown · gross merchandise value, the money spent on orders"],
+        ["cold-start item", "a new item with (almost) no interactions yet, so its ID embedding is untrained"],
+        ["A/B test", "live traffic split: part of the users get the new model, the rest the production model"],
+        ["OCR · ASR · ViT", "text read from images · speech-to-text · Vision Transformer image encoder"],
+    ])
+    s.footer("WUAUC (Shopping#2) is a weighted variant of UAUC; the paper does not define its weights")
+    return s
+
+
 def s_setting(n):
     s = Slide("03-setting", n)
     s.title("Setting: Kuaishou, short video and live streaming", part=PART1, pc="gray")
@@ -703,7 +750,7 @@ def s_takeaways(n):
     return s
 
 
-SLIDES = [s_title, s_tldr, s_setting, s_gsu_esu, s_ids_vs_llm, s_naive_llm, s_qarm_v1, s_qarm_v1_results, s_diff,
+SLIDES = [s_title, s_tldr, s_gloss1, s_gloss2, s_setting, s_gsu_esu, s_ids_vs_llm, s_naive_llm, s_qarm_v1, s_qarm_v1_results, s_diff,
           s_noisy_pairs, s_pipeline, s_three_segment,
           s_collision, s_reskmeansfsq, s_usage,
           s_amazon, s_offline, s_online, s_online_live, s_hr, s_codes, s_gsu_case,

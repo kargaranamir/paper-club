@@ -10,6 +10,16 @@ NOTES = {
             "data and a new way to fine-tune the LLM; on the ranking side, a hybrid quantizer. Evidence: online A/B "
             "gains of several percent, offline GAUC gains of 0.05 to 1.1 points, and far fewer code collisions. "
             "Keep in mind for the discussion: there are almost no ablations.",
+    "glossary-models": "Reference slide; skip or go fast. GSU/ESU come from SIM (Pi et al., CIKM 2020, Alibaba). TWIN "
+                       "(Chang et al., KDD 2023) and TWIN V2 (Si et al., CIKM 2024) are Kuaishou's lifelong models: TWIN "
+                       "makes the GSU use the same relevance score as the ESU's attention; V2 compresses ultra-long "
+                       "histories by clustering. DIN (Zhou et al., KDD 2018) attends over recent behaviour. Swing (Alibaba) "
+                       "scores item pairs by users who clicked both, down-weighting very active user pairs. TIGER (Rajput et "
+                       "al., 2023) and OneRec (Kuaishou, 2025) generate semantic IDs instead of scoring items.",
+    "glossary-metrics": "Reference slide. FSQ is from Mentzer et al. (2023), 'VQ-VAE made simple': no learned codebook, "
+                        "just bounded dimensions rounded to a few levels. Offline metrics are in percent, so +0.1 means "
+                        "0.1 AUC points. GAUC is the standard industrial metric because global AUC mixes users with very "
+                        "different base rates. GMV is the total value of orders; exposure is how often items are shown.",
     "setting": "Kuaishou is a short-video and live-streaming platform with more than 400 million daily active users "
                "and tens of millions of new items every day. Active users have more than 100,000 interactions. A "
                "ranking model cannot attend over all of them for every candidate, so lifelong models first select a "
