@@ -400,27 +400,46 @@ def s_three_segment(n):
     for i, (t, c) in enumerate([("input", "gray"), ("<EMB>", "orange"), ("QA", "green")]):
         s.box(gx + i * 140, ly, 26, 26, None, c, round_=False, sw=1, roughness=0)
         s.text(gx + i * 140 + 34, ly - 2, t, 20, P["ink"], mono=(t == "<EMB>"))
-    # right: token sequence and losses
+    # right: the flow, numbered 1-4
     x0 = 650
-    s.text(x0, 175, "Input", 22, P["muted"])
-    s.box(x0, 205, 330, 70, "title, OCR, attributes,\nimage tokens (ViT + projector)", "gray", 19)
-    s.text(x0 + 350, 175, "Compression", 22, P["orange"]["text"])
+
+    def step(x, y, k):
+        s.box(x, y, 34, 34, str(k), "yellow", 20, shape="ellipse", round_=False)
+    s.text(x0, 168, "Input", 21, P["muted"])
+    s.box(x0, 198, 300, 66, "title, OCR, attributes,\nimage tokens (ViT + projector)", "gray", 18)
+    s.text(x0 + 330, 168, "Compression", 21, P["orange"]["text"])
     for k in range(3):
-        s.box(x0 + 350 + k * 78, 205, 70, 70, "EMB", "orange", 18, mono=True)
-    s.text(x0 + 600, 175, "QA", 22, P["green"]["text"])
-    s.box(x0 + 600, 205, 280, 70, "Q: What is this?\nA: Cartoon quilt.", "green", 19)
-    s.box(x0, 300, 880, 64, "decoder-only LLM (fine-tuned)", "blue", 26)
-    for xx in (x0 + 465, x0 + 740):
-        varrow(s, xx, 368, 410)
-    s.box(x0 + 330, 415, 270, 90, "mean of <EMB> states\n→ item embedding m", "orange", 20, fill=P["orange"]["soft"])
-    s.box(x0 + 620, 415, 260, 90, "next-token loss\non the answer", "green", 20, fill=P["green"]["soft"])
-    varrow(s, x0 + 465, 508, 545)
-    s.box(x0 + 330, 550, 270, 80, "in-batch contrastive\nloss with paired item", "purple", 20)
-    s.box(x0, 655, 880, 120, None, "yellow")
-    s.text(x0 + 20, 670, "Why it works: the QA tokens cannot see the input, only the <EMB> tokens.\n"
-                         "To answer, all item information must flow through the embedding.\n"
-                         "Warm start: QA may see the input at first; that attention is annealed to zero.", 21)
-    s.footer(V2 + ", §3.1.2 and Figure 3. Gradient cache is used for large contrastive batches")
+        s.box(x0 + 330 + k * 72, 198, 64, 66, "EMB", "orange", 17, mono=True)
+    s.text(x0 + 560, 168, "QA", 21, P["green"]["text"])
+    s.box(x0 + 560, 198, 320, 66, "Q: What is this?\nA: Cartoon quilt.", "green", 18)
+    step(x0 - 46, 213, 1)
+    for xx in (x0 + 150, x0 + 434, x0 + 720):
+        varrow(s, xx, 266, 296)
+    s.box(x0, 298, 880, 56, "decoder-only LLM (fine-tuned), one forward pass", "blue", 23)
+    # outputs
+    for xx in (x0 + 434, x0 + 720):
+        varrow(s, xx, 356, 384)
+    for k in range(3):
+        s.box(x0 + 330 + k * 72, 386, 64, 40, "h", "orange", 18, fill=P["orange"]["soft"])
+    s.text(x0 + 300, 432, "hidden states of the <EMB> tokens", 16, P["muted"])
+    varrow(s, x0 + 434, 456, 478)
+    s.box(x0 + 300, 480, 268, 56, "mean → item embedding m", "orange", 19)
+    step(x0 + 576, 491, 2)
+    s.box(x0 + 620, 386, 260, 150, None, "green", fill=P["green"]["soft"])
+    s.text(x0 + 640, 398, "predict the answer\ntokens one by one\n→ next-token loss", 19, P["green"]["text"])
+    step(x0 + 836, 492, 3)
+    # contrastive with the paired item
+    s.box(x0, 480, 270, 56, "m of the paired item", "gray", 18)
+    s.text(x0, 540, "(same LLM; pair from the filtered data)", 15, P["muted"])
+    varrow(s, x0 + 135, 566, 590)
+    varrow(s, x0 + 434, 538, 590)
+    s.box(x0, 592, 568, 62, "contrastive loss: pull m and its pair together,\npush the other items in the batch away", "purple", 18)
+    step(x0 + 576, 606, 4)
+    s.box(x0, 672, 880, 108, None, "yellow")
+    s.text(x0 + 18, 684, "Training: loss = contrastive (4) + next-token (3), in one pass.\n"
+                         "Why: QA sees only <EMB>, so the item information must flow through m.\n"
+                         "Use: <EMB> never sees QA, so at inference run input + <EMB> and read m.", 19)
+    s.footer(V2 + ", §3.1.2, Figure 3. Also: gradient cache for large batches; warm start anneals QA→input attention to 0")
     return s
 
 

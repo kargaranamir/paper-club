@@ -165,21 +165,23 @@ B, QA generation. A large VLM sees the whole item, including images, OCR and ASR
 
 Bridge: Both kinds of data train one LLM with the three-segment trick.""",
 
-    "three-segment": """Terms: decoder-only LLM = a GPT-style model that predicts the next token. Attention mask = which tokens may look at which. <EMB> tokens = special tokens whose hidden states become the item embedding. Contrastive loss, next-token (generative) loss.
+    "three-segment": """Terms: decoder-only LLM = a GPT-style model that predicts the next token. Attention mask = which tokens may look at which. <EMB> tokens = special tokens whose hidden states become the item embedding. Hidden state (h) = the LLM's output vector at one token position. Contrastive loss, next-token (generative) loss.
 
-Say: The cleverest idea in the paper; go slowly.
+Say: The cleverest idea in the paper. Follow the yellow numbers 1 to 4.
 
-Point right, top row: the input has three segments. The input segment: the item's title, OCR, attributes and image tokens. The compression segment: a few <EMB> tokens. The QA segment: a question and its answer.
+1. One training example is one token sequence with three segments: the input segment (the item's title, OCR, attributes and image tokens), the compression segment (a few <EMB> tokens), and the QA segment (a question and its answer about the item). All of it goes through the LLM in one forward pass.
 
-Point left, the attention mask, blue means "may attend": input tokens attend to the input; <EMB> tokens attend to the input; QA tokens attend only to the <EMB> tokens, never to the input.
+Point left, the attention mask, blue means "may attend": input tokens see the input; <EMB> tokens see the input; QA tokens see only the <EMB> tokens, never the input.
 
-Why: to answer the question, everything must flow through the <EMB> tokens, so they become a full summary of the item. The mean of their hidden states is the item embedding.
+2. Take the hidden states at the <EMB> positions and average them. That mean is the item embedding m.
 
-Two losses: an in-batch contrastive loss pulls the embedding towards its paired item from the filtered pairs, and the next-token loss trains the answer. So the LLM becomes an embedding generator without giving up next-token prediction.
+3. At the QA positions the LLM predicts the answer tokens one by one: the usual next-token loss. Because the QA tokens cannot see the input, the only way to answer is through the <EMB> tokens. So the embedding is forced to contain the item's information.
 
-Warm start: at first QA may still attend to the input; that is annealed to zero.
+4. The paired item from the filtered data goes through the same LLM and gets its own m. A contrastive loss pulls the two embeddings together and pushes the other items in the batch away. That teaches business similarity.
 
-Caveat: no experiment compares this with a single <EMB> token.
+Point to the yellow box: both losses are added and trained together. After training, <EMB> never looks at QA, so to get an embedding you only run the input plus the <EMB> tokens and read m.
+
+Details if asked: a warm start lets QA see the input at first and anneals that attention to zero; gradient cache makes large contrastive batches fit in memory. No experiment compares this with a single <EMB> token.
 
 Bridge: Part III, the ESU side. Why do semantic IDs collide?""",
 
