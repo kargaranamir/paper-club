@@ -221,17 +221,19 @@ Bridge: Both kinds of data train one LLM with the three-segment trick.
 
 Terms: decoder-only LLM = a GPT-style model that predicts the next token. Attention mask = which tokens may look at which. <EMB> tokens = special tokens whose hidden states become the item embedding. Hidden state (h) = the LLM's output vector at one token position. Contrastive loss, next-token (generative) loss.
 
-Say: The cleverest idea in the paper. Follow the yellow numbers 1 to 4.
+Say: The cleverest idea in the paper. Follow the yellow numbers 1 to 4 on the slide.
 
-1. One training example is one token sequence with three segments: the input segment (the item's title, OCR, attributes and image tokens), the compression segment (a few <EMB> tokens), and the QA segment (a question and its answer about the item). All of it goes through the LLM in one forward pass.
+1. One sequence goes into the LLM in one pass. It has three parts:
+   • the item itself (title, OCR, attributes, image tokens),
+   • three special <EMB> tokens,
+   • a question and its answer about the item ("Q: What is this? A: Cartoon quilt.").
+   The attention mask on the left controls who can see what: <EMB> sees the item, and QA sees only <EMB>, never the item.
 
-Point left, the attention mask, blue means "may attend": input tokens see the input; <EMB> tokens see the input; QA tokens see only the <EMB> tokens, never the input.
+2. The LLM gives one output vector (hidden state) per token. Average the three vectors at the <EMB> positions, and that average is the item embedding m.
 
-2. Take the hidden states at the <EMB> positions and average them. That mean is the item embedding m.
+3. At the QA positions, the LLM must predict the answer word by word (the normal next-token loss). QA can't see the item, so the only way to answer "cartoon quilt" is through the <EMB> tokens. That forces m to contain the item's information.
 
-3. At the QA positions the LLM predicts the answer tokens one by one: the usual next-token loss. Because the QA tokens cannot see the input, the only way to answer is through the <EMB> tokens. So the embedding is forced to contain the item's information.
-
-4. The paired item from the filtered data goes through the same LLM and gets its own m. A contrastive loss pulls the two embeddings together and pushes the other items in the batch away. That teaches business similarity.
+4. The paired item from the filtered data goes through the same LLM and gets its own m. A contrastive loss pulls the two embeddings together and pushes the other items in the batch away. This teaches "business similarity".
 
 Point to the yellow box: both losses are added and trained together. After training, <EMB> never looks at QA, so to get an embedding you only run the input plus the <EMB> tokens and read m.
 
