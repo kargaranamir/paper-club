@@ -353,9 +353,9 @@
   {
    "id": "e10",
    "type": "text",
-   "x": 1516.3,
+   "x": 1517.4,
    "y": 856.8,
-   "width": 23.723846435546875,
+   "width": 22.643844604492188,
    "height": 22.5,
    "angle": 0,
    "strokeColor": "#adb5bd",
@@ -377,13 +377,13 @@
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "25",
+   "text": "27",
    "fontSize": 18,
    "fontFamily": 5,
    "textAlign": "left",
    "verticalAlign": "top",
    "containerId": null,
-   "originalText": "25",
+   "originalText": "27",
    "autoResize": true,
    "lineHeight": 1.25
   }

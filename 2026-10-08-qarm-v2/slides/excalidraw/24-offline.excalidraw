@@ -2704,9 +2704,9 @@
   {
    "id": "e74",
    "type": "text",
-   "x": 1514.8,
+   "x": 1516.9,
    "y": 856.8,
-   "width": 25.1998291015625,
+   "width": 23.129852294921875,
    "height": 22.5,
    "angle": 0,
    "strokeColor": "#adb5bd",
@@ -2728,13 +2728,13 @@
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "22",
+   "text": "24",
    "fontSize": 18,
    "fontFamily": 5,
    "textAlign": "left",
    "verticalAlign": "top",
    "containerId": null,
-   "originalText": "22",
+   "originalText": "24",
    "autoResize": true,
    "lineHeight": 1.25
   }

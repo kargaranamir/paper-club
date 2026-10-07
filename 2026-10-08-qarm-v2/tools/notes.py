@@ -161,6 +161,8 @@ A, pair filtering. Each pair goes to a Qwen3 reasoning model with titles and att
 
 Point to the orange boxes: over 10% of Item2Item pairs and over 70% of User2Item pairs are rejected.
 
+Why so many User2Item rejections? These pairs come from one user's own history: for each item the user engaged with, the most similar of their recent items. One person's recent items mix unrelated needs (detergent, a phone case, a toy), so many pairs only mean "the same person bought both". Swing pairs are aggregated over many users, so they are more stable. Caveat: the two sets are judged by different models, so the gap also reflects model strictness.
+
 B, QA generation. A large VLM sees the whole item, including images, OCR and ASR, and writes ten QA pairs, for example "What is the item category? Spicy food."
 
 Bridge: Both kinds of data train one LLM with the three-segment trick.""",
@@ -225,7 +227,7 @@ Right, the ESU uses the semantic IDs. Each item is its ItemID plus c1, c2, c3, e
 
 The point: the LLM embedding stays frozen in the GSU, but the semantic ID embeddings are learned end-to-end in the ESU. That is the fix for representation unlearning.
 
-Bridge: Part IV, results. First: does each part work on its own? We start with the LLM embedding.""",
+Bridge: Which of these parts are frozen, and which keep learning?""",
 
     "amazon": """Terms: AUC. DIN, SIM-hard, SIM-soft = baselines (glossary slide). ESU retrieval of top-50.
 
@@ -270,6 +272,50 @@ Point to the first row: in Live-streaming#1, cold-start click +3.231% versus +0.
 Curiosity: gift count is exactly +2.917% in both "others" rows; a coincidence or a copy error.
 
 Bridge: Part V. Time to be critical.""",
+
+    "frozen-vs-learned": """Terms: semantic ID (SID) = the address (c1, c2, c3), three integers. SID table = a lookup table inside the ranker with one trainable vector per code value. Frozen = no longer updated.
+
+Say: The most common confusion about this paper is "we already trained the embedding, why semantic IDs?" This slide answers it.
+
+Top row: the fine-tuned LLM turns an item into the embedding m. After fine-tuning, the LLM is frozen. m goes straight to the GSU to find related history.
+
+Second row: the codebooks, fit once and frozen, turn m into the semantic ID, here (512, 77, 9031). That ID never changes for this item: it is a fixed address.
+
+Third row: the ranker has three SID tables, one per level, because 512 at level 1 means something different from 512 at level 2. The address picks one row in each table. Those rows are ordinary trainable parameters, updated with every training batch.
+
+Bottom: the three SID vectors plus the ItemID vector go into the ESU, the MoE head, and out come CTR, CVR and so on.
+
+Point to the yellow box: m was trained once on item pairs ("are these related?") and is frozen. The table rows learn from clicks ("will this user click?") and keep updating as behaviour changes. That is why the predecessor saw +0.02 AUC with frozen m but +0.18 with the codes.
+
+Point to the bottom line: sharing. Every item with c1 = 512 updates and uses the same row, so a brand-new item gets vectors trained on thousands of similar items on day one. That explains the cold-start gains.
+
+If asked "why not a small trainable layer on top of m?": that would also learn from clicks. Neither paper compares against it. Lookup rows can learn arbitrary behaviour per group; a small network on a fixed m learns a smooth function of it.
+
+If asked "is it like PCA?": no. PCA gives fewer continuous numbers; a semantic ID gives discrete addresses. Only the FSQ step (project with W, then round) resembles a projection. The GSU does use PCA, to shrink m for storage.
+
+Bridge: Let us make this precise: what is trained, when, and with which objective.""",
+
+    "objectives": """Terms: contrastive loss, next-token loss, MSE (how far the codebook is from the embeddings), multi-task BCE = binary cross-entropy summed over prediction tasks. MoE = the multi-task head (shared experts, one gate and one tower per task).
+
+Say: Read the table row by row.
+
+Row 1, the LLM: trained offline with a contrastive loss on the filtered item pairs plus a next-token loss on the QA pairs, then frozen. It produces m for the GSU.
+
+Row 2, the codebooks: the two K-means levels and the FSQ matrix W are fit offline to more than 10 million item embeddings; the paper reports a per-level MSE of 0.37, 0.26 and 0.20. Then frozen. They turn m into (c1, c2, c3).
+
+Row 3, highlighted: the three SID tables. They have no special objective. They are trained with the ranker's own loss, the multi-task binary cross-entropy of Eq. 6: one term per task (click, buy, gift, follow and so on), added up. They are updated every training batch.
+
+Row 4: the ItemID table, the attention and the MoE head use the same loss.
+
+So the division of labour: item similarity is learned upstream by the LLM; what predicts clicks and purchases is learned downstream in the SID vectors.
+
+Point to the bottom strip, one impression: look up the rows for c1, c2, c3; run attention and the MoE to get predictions; compare with what happened, 1 or 0 for each task; backpropagate, and the gradient changes only the rows that were looked up; take an optimizer step. Every impression counts, clicked or not.
+
+If asked "what is the MoE?": not the LLM kind. A few small expert networks see the same input; each task has a gate that mixes the experts and a tower that outputs its probability. Tasks share knowledge but can weight it differently. The paper cites another Kuaishou paper for it and gives no details.
+
+If asked "how often is the LLM retrained?": the paper does not say. It stresses "long-term stable inference". New items only need one LLM pass to get m and their SID. If the LLM or codebooks were retrained, the SIDs would change and the learned rows would lose their meaning; the paper does not say how that is handled.
+
+Bridge: Part IV, results. First: does each part work on its own? We start with the LLM embedding.""",
 
     "alignment-hr": """Terms: item-to-item retrieval with the LLM embedding. Trigger items = the user's last 10 clicks. HR@200 / HR@500 = hit rate in the top 200 / 500 retrieved.
 

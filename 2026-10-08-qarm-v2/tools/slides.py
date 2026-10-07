@@ -543,6 +543,81 @@ def s_sid_rounds(n):
     return s
 
 
+def s_frozen_learned(n):
+    s = Slide("18-frozen-vs-learned", n)
+    s.title("Frozen address, learned meaning", "The semantic ID never changes; the vectors it points to are trained with every batch",
+            part=PART3, pc="purple")
+    ice, fire = P["blue"]["text"], P["green"]["text"]
+    # row 1: item -> frozen LLM -> m -> GSU
+    s.box(70, 170, 170, 64, "item", "gray", 22)
+    harrow(s, 244, 290, 202)
+    s.box(295, 170, 270, 64, "fine-tuned LLM", "blue", 22)
+    s.text(430, 240, "frozen after fine-tuning", 18, ice, "c")
+    harrow(s, 569, 615, 202)
+    s.box(620, 170, 200, 64, "embedding m", "blue", 22)
+    harrow(s, 824, 870, 202)
+    s.box(875, 170, 310, 64, "GSU: find related history", "gray", 20)
+    # row 2: m -> codebooks -> SID
+    varrow(s, 720, 238, 290)
+    s.box(560, 295, 320, 64, "codebooks: K-means ×2 + FSQ", "purple", 20)
+    s.text(720, 365, "fit once, frozen", 18, ice, "c")
+    harrow(s, 884, 930, 327)
+    s.box(935, 295, 250, 64, "SID = (512, 77, 9031)", "gray", 21, mono=False)
+    s.text(1060, 365, "fixed address", 18, ice, "c")
+    # row 3: three tables, one per level
+    ty = 445
+    s.line([(1060, 390), (1060, 410), (420, 410)], P["ink"], 2, roughness=0)
+    for xx in (420, 720, 1020):
+        varrow(s, xx, 410, ty - 4)
+    s.text(1075, 395, "picks one row per table", 17, P["muted"])
+    for k, (lab, row, rows) in enumerate([("table 1 · c¹", 512, "K rows"), ("table 2 · c²", 77, "K rows"),
+                                         ("table 3 · c³", 9031, "FSQ codes")]):
+        x = 300 + k * 300
+        s.text(x + 120, ty, lab, 20, P["ink"], "c")
+        s.box(x, ty + 32, 240, 150, None, "gray", fill="#ffffff", round_=False, sw=1, roughness=0)
+        for r in range(1, 6):
+            s.line([(x, ty + 32 + r * 25), (x + 240, ty + 32 + r * 25)], P["grid"], 1, roughness=0)
+        s.box(x + 2, ty + 32 + 2 * 25 + 1, 236, 23, None, "green", round_=False, sw=1, roughness=0)
+        s.text(x + 120, ty + 32 + 2 * 25 + 12, f"row {row}", 16, fire, "c", "m")
+        s.text(x + 120, ty + 190, rows, 16, P["muted"], "c")
+    s.text(70, ty + 80, "one table\nper level", 20, P["muted"])
+    s.text(1215, ty + 70, "trained every\nbatch", 22, fire)
+    # row 4: ESU
+    varrow(s, 720, ty + 215, ty + 250)
+    s.box(320, ty + 255, 800, 60, "3 SID vectors + ItemID vector → ESU → MoE → CTR, CVR, …", "green", 21)
+    # right note
+    s.box(1215, 170, 315, 220, None, "yellow")
+    s.text(1232, 185, "Why not use m\ndirectly?", 22)
+    s.text(1232, 250, "m learned item pairs,\noffline, and is frozen.\nThe table rows learn\nfrom clicks and keep\nupdating.", 18)
+    s.text(70, 800, "Items with the same c¹ share row 512: a new item gets vectors trained on thousands of similar items.  "
+                    "QARM: frozen m +0.02 AUC, as codes +0.18.", 19, P["muted"])
+    s.footer(V2 + ", §3.2–3.3; " + V1 + ", Table 1. Row numbers are illustrative")
+    return s
+
+
+def s_objectives(n):
+    s = Slide("19-objectives", n)
+    s.title("What is trained, when, and with which objective", part=PART3, pc="purple")
+    rows = [["LLM → embedding m", "contrastive loss on filtered item pairs\n+ next-token loss on QA pairs", "offline, then frozen", "GSU"],
+            ["codebooks: K-means C¹, C²\nand FSQ matrix W", "fit to 10M+ item embeddings\n(per-level MSE 0.37 / 0.26 / 0.20)", "offline, then frozen", "m → (c¹, c², c³)"],
+            ["3 SID tables (one per level)", "multi-task BCE: click, buy, gift,\nfollow, … (Eq. 6)", "every training batch", "ESU"],
+            ["ItemID table, attention, MoE", "the same multi-task BCE", "every training batch", "ESU, head"]]
+    s.table(70, 160, [380, 520, 300, 260], rows, header=["part", "objective", "updated", "used in"], fs=20, rh=82,
+            hc="purple", aligns=["l", "l", "l", "l"], hl_rows={2: "green"})
+    s.box(70, 620, 1460, 165, None, "gray", fill=P["paper"])
+    s.text(95, 636, "How one impression updates the SID vectors", 23)
+    x = 95
+    for k, t in enumerate(["look up rows\nc¹, c², c³", "attention +\nMoE → ŷ", "BCE vs what\nhappened (1/0)", "backprop into\nthose rows only",
+                           "optimizer\nstep"]):
+        x2 = x + 250
+        s.box(x, 680, 240, 84, t, "green" if k == 3 else "gray", 19, fill="#ffffff" if k != 3 else None)
+        if k < 4:
+            harrow(s, x + 242, x2 + 4, 722)
+        x = x2 + 8
+    s.footer(V2 + ", §3.1–3.3 and Eq. 6. Not given: optimizer, batch size, task weights, retraining schedule")
+    return s
+
+
 def s_usage(n):
     s = Slide("15-usage", n)
     s.title("How the two outputs enter the ranker", part=PART3, pc="purple")
@@ -770,6 +845,6 @@ def s_takeaways(n):
 
 SLIDES = [s_title, s_tldr, s_gloss1, s_gloss2, s_setting, s_gsu_esu, s_ids_vs_llm, s_naive_llm, s_qarm_v1, s_qarm_v1_results, s_diff,
           s_noisy_pairs, s_pipeline, s_three_segment,
-          s_collision, s_sid_rounds, s_usage,
+          s_collision, s_sid_rounds, s_usage, s_frozen_learned, s_objectives,
           s_hr, s_codes, s_gsu_case, s_amazon, s_offline, s_online, s_online_live,
           s_critique, s_takeaways]

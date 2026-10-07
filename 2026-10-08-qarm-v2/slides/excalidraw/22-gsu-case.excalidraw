@@ -795,9 +795,9 @@
   {
    "id": "e22",
    "type": "text",
-   "x": 1515.4,
+   "x": 1514.8,
    "y": 856.8,
-   "width": 24.551834106445312,
+   "width": 25.1998291015625,
    "height": 22.5,
    "angle": 0,
    "strokeColor": "#adb5bd",
@@ -819,13 +819,13 @@
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "20",
+   "text": "22",
    "fontSize": 18,
    "fontFamily": 5,
    "textAlign": "left",
    "verticalAlign": "top",
    "containerId": null,
-   "originalText": "20",
+   "originalText": "22",
    "autoResize": true,
    "lineHeight": 1.25
   }

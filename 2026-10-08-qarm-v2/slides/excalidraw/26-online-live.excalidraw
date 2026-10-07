@@ -1987,9 +1987,9 @@
   {
    "id": "e55",
    "type": "text",
-   "x": 1516.9,
+   "x": 1515.9,
    "y": 856.8,
-   "width": 23.129852294921875,
+   "width": 24.119842529296875,
    "height": 22.5,
    "angle": 0,
    "strokeColor": "#adb5bd",
@@ -2011,13 +2011,13 @@
    "updated": 1,
    "link": null,
    "locked": false,
-   "text": "24",
+   "text": "26",
    "fontSize": 18,
    "fontFamily": 5,
    "textAlign": "left",
    "verticalAlign": "top",
    "containerId": null,
-   "originalText": "24",
+   "originalText": "26",
    "autoResize": true,
    "lineHeight": 1.25
   }
