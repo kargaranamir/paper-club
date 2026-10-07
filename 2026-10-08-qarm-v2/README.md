@@ -10,12 +10,12 @@ Recommendation at Kuaishou.* [arXiv:2411.11739](https://arxiv.org/abs/2411.11739
 | What | Where |
 |---|---|
 | Clickable deck (arrow keys, `N` notes, `O` overview, `F` full screen) | [`slides/index.html`](slides/index.html) |
-| PDF (28 slides, 16:9) | [`slides/qarm-v2.pdf`](slides/qarm-v2.pdf) |
+| PDF (27 slides, 16:9) | [`slides/qarm-v2.pdf`](slides/qarm-v2.pdf) |
 | Speaker notes | [`slides/speaker-notes.md`](slides/speaker-notes.md) |
 | Editable Excalidraw file per slide | [`slides/excalidraw/`](slides/excalidraw), open on excalidraw.com (menu → Open) |
 | Every number used, with its table or section | [`references/digest.md`](references/digest.md) |
 
-## Outline (28 slides)
+## Outline (27 slides)
 
 1 Title · 2 The paper in one slide · 3–4 glossary (models; quantization, metrics, business terms)
 - **Part I, background:** 5 Kuaishou setting · 6 GSU/ESU two-stage sequence modelling · 7 IDs vs LLM tokens ·
@@ -25,7 +25,7 @@ Recommendation at Kuaishou.* [arXiv:2411.11739](https://arxiv.org/abs/2411.11739
   SIDs enter the ranker
 - **Part IV, results:** 19 Amazon Book · 20 offline GAUC gains · 21 online ads and shopping · 22 online live
   streaming · 23 retrieval hit rate · 24 code collisions · 25 GSU exclusive retrieval
-- **Part V, discussion:** 26 strengths and weaknesses · 27 discussion questions · 28 takeaways
+- **Part V, discussion:** 26 strengths and weaknesses · 27 takeaways
 
 ## Editing
 

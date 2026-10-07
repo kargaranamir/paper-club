@@ -322,29 +322,23 @@ Say: Strong: deployed in ads, shopping and live streaming with multi-week A/B te
 
 Weak: four changes at once and no ablation on ranking metrics; old public baselines; no confidence intervals; numbers that disagree between text and tables; and the filtering LLM sees only titles and attributes, not images.
 
-Bridge: That leads to the discussion questions.""",
-
-    "questions": """Terms: as on earlier slides.
-
-Say: Five questions; pick two or three.
-
-Good opener, question 2: Table 9 suggests better LLM embeddings did most of the work on collisions. Is FSQ needed at all? Would a random hash on the third level do as well?
-
-Good second, question 1: the reasoning filter replaces exposure bias with the LLM's own prior. Is that always better?
-
-Ask the room before giving your own view.""",
+Bridge: To close, five takeaways.""",
 
     "takeaways": """Terms: as on earlier slides.
 
-Say: Four things to remember.
+Say: Five things to take home, each with its evidence.
 
-One: LLM knowledge enters a recommender in two forms: the LLM embedding for GSU retrieval and learnable semantic IDs for the ESU.
+One: a frozen LLM embedding is not enough. QARM showed it: the same knowledge gave +0.02 AUC as a frozen feature and +0.18 as learnable semantic IDs.
 
-Two: better LLM embeddings (cleaner alignment data and training) made the semantic IDs far less crowded, more than FSQ did.
+Two: align the LLM to business similarity, and clean the alignment pairs first. The reasoning LLM throws out more than 70% of the User2Item pairs, and retrieval with the LLM embedding gets much better: click HR@200 from 7.77% to 12.5%.
 
-Three: SID collision rate and EdgeNum are cheap diagnostics worth reporting.
+Three: the three-segment mask lets one LLM produce an embedding and still do next-token prediction, because the QA tokens can only see the <EMB> tokens.
 
-Four: convincing in production, thin on ablations.
+Four: K-means for the coarse levels, FSQ for the last level cuts SID collisions from 78% to 32%. But note that better embeddings alone already did most of it.
+
+Five: the gains are largest where ID embeddings are weakest, on cold-start items: five times more click gain for new live streams.
+
+Point to the bottom line: the open question is which of the four changes buys the online gains; there is no ablation. Good place to open the discussion.
 
 Thank you. Questions?""",
 }

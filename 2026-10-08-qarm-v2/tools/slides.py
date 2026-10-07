@@ -767,37 +767,27 @@ def s_critique(n):
     return s
 
 
-def s_questions(n):
-    s = Slide("24-questions", n)
-    s.title("Questions for the discussion", part=PART5, pc="yellow")
-    qs = [("Whose notion of 'related'?", "The filter swaps exposure bias for the LLM's prior. When should a\nco-click the LLM finds unrelated still count as signal?"),
-          ("Embeddings or quantizer?", "V2 Res-Kmeans already cuts EdgeNum 15×. How much end-to-end gain\nis left for FSQ? Would a random hash on level 3 do as well?"),
-          ("Is the third level semantic?", "FSQ ignores the data distribution. Does c³ carry meaning, or is it a\ntie-breaker that makes SIDs unique?"),
-          ("Three segments vs one <EMB>", "The paper argues next-token loss protects the LLM. No experiment\ncompares it with a plain <EMB> token."),
-          ("Would this work outside Kuaishou?", "Amazon Book: +0.76 AUC over SIM-soft. What is needed in data and\nLLM compute to see the online gains elsewhere?")]
-    for i, (q, d) in enumerate(qs):
-        y = 160 + i * 132
-        s.box(70, y, 60, 60, str(i + 1), "yellow", 28)
-        s.text(160, y - 2, q, 26, P["ink"])
-        s.text(160, y + 38, d, 21, P["muted"])
-    s.footer("")
-    return s
-
-
 def s_takeaways(n):
-    s = Slide("25-takeaways", n)
+    s = Slide("27-takeaways", n)
     s.title("Takeaways", part=PART5, pc="yellow")
-    items = [("blue", "LLM knowledge reaches a ranker in two forms", "an embedding for retrieval (GSU) and learnable semantic IDs for ranking (ESU)."),
-             ("orange", "Better embeddings mattered more than the quantizer", "the V2 embeddings made codes 15× less crowded before FSQ was added."),
-             ("purple", "Code collisions are measurable", "collision rate and items-per-SID are cheap diagnostics worth reporting."),
-             ("green", "Strong in production, thin in ablation", "large online gains, but which component buys them is not shown.")]
+    items = [("blue", "1 · A frozen LLM embedding is not enough; make it learnable",
+              "Turn it into semantic IDs that the ranker learns end-to-end.  QARM: frozen feature +0.02 AUC, as codes +0.18."),
+             ("orange", "2 · Align the LLM to business similarity, and clean the pairs first",
+              "A reasoning LLM rejects 10%+ of Item2Item and 70%+ of User2Item pairs.  Click HR@200: 7.77% → 12.5%."),
+             ("green", "3 · One LLM can be an embedding model and a generator at once",
+              "Three-segment mask: QA sees only <EMB>, so the item embedding m must carry the item's information."),
+             ("purple", "4 · K-means for coarse levels, FSQ for the last level",
+              "Collision 77.92% → 32.39%, items per SID 129 → 2.5; but better embeddings alone already gave 8.4 items per SID."),
+             ("red", "5 · The gains are largest where IDs are weakest",
+              "Cold-start live streams: click +3.231% vs +0.611% for the rest.  Ads revenue +4.873%, shopping GMV up to +5.612%.")]
     for i, (c, a, b) in enumerate(items):
-        y = 165 + i * 140
-        s.box(70, y, 1460, 115, None, c, fill=P[c]["soft"])
-        s.text(95, y + 16, a, 27, P[c]["text"])
-        s.text(95, y + 62, b, 23, P["ink"])
-    s.text(70, 755, "QARM V2: arxiv.org/abs/2602.08559   ·   QARM: arxiv.org/abs/2411.11739", 22, P["muted"], mono=True)
-    s.footer("")
+        y = 150 + i * 122
+        s.box(70, y, 1460, 106, None, c, fill=P[c]["soft"])
+        s.text(95, y + 14, a, 26, P[c]["text"])
+        s.text(95, y + 58, b, 21, P["ink"])
+    s.text(70, 775, "Open question: which of the four changes buys the online gains? The paper has no ablation on ranking metrics.",
+           22, P["muted"])
+    s.footer(V1 + ", Table 1; " + V2 + ", Tables 5–9 and §3")
     return s
 
 
@@ -805,4 +795,4 @@ SLIDES = [s_title, s_tldr, s_gloss1, s_gloss2, s_setting, s_gsu_esu, s_ids_vs_ll
           s_noisy_pairs, s_pipeline, s_three_segment,
           s_collision, s_reskmeansfsq, s_sid_rounds, s_usage,
           s_amazon, s_offline, s_online, s_online_live, s_hr, s_codes, s_gsu_case,
-          s_critique, s_questions, s_takeaways]
+          s_critique, s_takeaways]
