@@ -258,35 +258,15 @@ Point right: FSQ is data-independent; it cuts the space into a fixed grid, so sp
 
 Point to the yellow line: with QARM's three-level Res-Kmeans, more than 30% of semantic IDs mapped to several items in Shopping.
 
-Bridge: Res-KmeansFSQ combines both.
+Bridge: Res-KmeansFSQ combines both: K-means first, FSQ last.
 
-## 16. res kmeans fsq
+## 16. sid rounds
 
-![slide 16](svg/16-res-kmeans-fsq.svg)
-
-Terms: residual = what is left after subtracting the nearest centroid. c1, c2, c3 = the three levels of the semantic ID. FSQ formula: project, sigmoid, scale by L, round.
-
-Say: Top row, left to right. Start from the LLM embedding m.
-
-Level 1: K-means picks the nearest of K = 8,192 centroids; that index is c1, roughly the category.
-
-Level 2: subtract that centroid to get the residual, and run K-means again; that gives c2, a finer category or usage.
-
-Level 3: on the second residual use FSQ instead of K-means; that gives c3, the item-specific detail.
-
-The semantic ID is (c1, c2, c3). The first two levels adapt to the data; the last spreads items evenly to avoid collisions.
-
-Point to the orange box: the codebook sizes are inconsistent: 8,192 in the method section, "3 × 4096" in the experiments, and the FSQ formula as written gives three values per dimension. Mention it briefly.
-
-Bridge: The next slide walks through the three rounds one by one.
-
-## 17. sid rounds
-
-![slide 17](svg/17-sid-rounds.svg)
+![slide 16](svg/16-sid-rounds.svg)
 
 Terms: centroid = the centre of a K-means cluster. Residual = embedding minus its nearest centroid. FSQ = Finite Scalar Quantization. c1, c2, c3 = the three parts of the semantic ID.
 
-Say: The previous slide in slow motion. Three rounds, each one describes what the earlier rounds missed.
+Say: Point to the top strip first: LLM embedding m, three rounds, and out comes the semantic ID (c1, c2, c3). Each round describes what the earlier rounds missed. Then walk through the three panels.
 
 Round 1, coarse: offline, K-means on the LLM embeddings of more than 10 million items gives K centroids. For an item, c1 is the number of its nearest centroid. Items with the same c1 are broadly similar, roughly the same category.
 
@@ -296,13 +276,13 @@ Round 3, item detail: subtract the second centroid and use FSQ instead of a thir
 
 Point to the yellow line: FSQ ignores where items are dense, so rare items spread over many codes. That is why round 3 is FSQ.
 
-If asked: the paper does not say how W is trained, and with L = 2 the rounding gives three values per dimension, not two.
+Point to the orange note in round 3: as written, round(2·sigmoid) gives three values per dimension (3^13 codes); binary dimensions would give 2^13 = 8,192, matching K. The paper does not say which. It also does not say how W is trained.
 
 Bridge: How do the LLM embedding and the semantic IDs enter the ranker?
 
-## 18. usage
+## 17. usage
 
-![slide 18](svg/18-usage.svg)
+![slide 17](svg/17-usage.svg)
 
 Terms: inner product = similarity score between two embeddings. PCA = shrinks the embeddings for storage. Lookup embedding table = one trainable vector per code. Multi-task BCE = the usual click/purchase loss.
 
@@ -312,75 +292,15 @@ Right, the ESU uses the semantic IDs. Each item is its ItemID plus c1, c2, c3, e
 
 The point: the LLM embedding stays frozen in the GSU, but the semantic ID embeddings are learned end-to-end in the ESU. That is the fix for representation unlearning.
 
-Bridge: Part IV, results. First, the only public dataset.
+Bridge: Part IV, results. First: does each part work on its own? We start with the LLM embedding.
 
-## 19. amazon
+## 18. alignment hr
 
-![slide 19](svg/19-amazon.svg)
-
-Terms: AUC. DIN, SIM-hard, SIM-soft = baselines (glossary slide). ESU retrieval of top-50.
-
-Say: Amazon Book is the only public benchmark. QARM V2 reaches 70.33 AUC; the best baseline, SIM-soft, 69.57.
-
-Point to the y-axis: it starts at 66, so the bars exaggerate. The gap is 0.76 AUC points.
-
-Point to the setup box: the baselines are from 2018 and 2020. No TWIN, and no semantic-ID models like TIGER or OneRec.
-
-Bridge: Kuaishou's own data, where the big claims are.
-
-## 20. offline
-
-![slide 20](svg/20-offline.svg)
-
-Terms: GAUC gain in points over the production model. CTR, CVR, CTCVR (click and buy). WUAUC for Shopping#2 CTR.
-
-Say: Each bar is one task: ads, three shopping services, four live-streaming tasks. Height = GAUC gain over the production model.
-
-All twelve are positive; most between +0.1 and +0.5, ads CTCVR the largest at +1.1.
-
-Point to the dashed line: the authors say about 0.1 GAUC is enough for business gains, which is normal in industry.
-
-Caveat: no error bars, so we cannot tell how stable the small gains are.
-
-Bridge: Offline is one thing. What happened with real users?
-
-## 21. online ads shop
-
-![slide 21](svg/21-online-ads-shop.svg)
-
-Terms: online A/B test, exposure, cost (ad spend), revenue, GMV, order.
-
-Say: Live A/B tests over several weeks on main traffic.
-
-Advertising: revenue +4.873% with cost +3.942%, so revenue grew faster than spend. Exposure +1.3%.
-
-Shopping: GMV +1.0% to +5.6%; Shopping#2 gained most on GMV, orders and exposure.
-
-For a platform this size that is a lot of money, but there are no confidence intervals or traffic sizes.
-
-Bridge: Live streaming shows where the gains come from.
-
-## 22. online live
-
-![slide 22](svg/22-online-live.svg)
-
-Terms: cold-start streams vs others. Core metrics (click, watch time, gift count) vs interaction metrics (like, comment, follow).
-
-Say: Live streaming, split into cold-start streams and the rest.
-
-Point to the first row: in Live-streaming#1, cold-start click +3.231% versus +0.611% for other streams, about five times more. That is the paper's story: LLM content knowledge helps most where there is no interaction history.
-
-Curiosity: gift count is exactly +2.917% in both "others" rows; a coincidence or a copy error.
-
-Bridge: Did reasoning item alignment really improve the LLM embedding? The paper tests that directly.
-
-## 23. alignment hr
-
-![slide 23](svg/23-alignment-hr.svg)
+![slide 18](svg/18-alignment-hr.svg)
 
 Terms: item-to-item retrieval with the LLM embedding. Trigger items = the user's last 10 clicks. HR@200 / HR@500 = hit rate in the top 200 / 500 retrieved.
 
-Say: The test: for each user take the 10 most recent clicked trigger items, retrieve 50 candidates per trigger with the LLM embedding, and count how often a real click or order is among them.
+Say: First check: did reasoning item alignment improve the LLM embedding itself? The test: for each user take the 10 most recent clicked trigger items, retrieve 50 candidates per trigger with the LLM embedding, and count how often a real click or order is among them.
 
 Gray is QARM, blue is QARM V2. Every hit rate goes up by roughly 60 to 77% relative; click HR@200 from 7.77% to 12.5%.
 
@@ -388,9 +308,9 @@ Point to the orange text: an inconsistency. The text says order HR@500 rose from
 
 Bridge: And did the semantic IDs stop colliding?
 
-## 24. code conflict
+## 19. code conflict
 
-![slide 24](svg/24-code-conflict.svg)
+![slide 19](svg/19-code-conflict.svg)
 
 Terms: Collision = share of items whose semantic ID is shared. EdgeNum = items returned per semantic-ID lookup. HR@1 = the item itself comes back first. KGNN = Kuaishou's graph store used for the lookup.
 
@@ -406,9 +326,9 @@ Point to the two boxes: most of the improvement comes from better embeddings, no
 
 Bridge: One qualitative check of the GSU.
 
-## 25. gsu case
+## 20. gsu case
 
-![slide 25](svg/25-gsu-case.svg)
+![slide 20](svg/20-gsu-case.svg)
 
 Terms: exclusive rate = share of history items the QARM V2 GSU retrieves that the ID-based SIM GSU does not. Hard negatives = retrieved items that are actually unrelated. Deduplication = removing repeated items from the sequence.
 
@@ -418,23 +338,83 @@ Point to the boxes: in the paper's examples, SIM retrieves hard negatives, like 
 
 Point to the bottom: they do not deduplicate sequences. In live streaming the top-100 interactions cover only 23 authors on average, and the repeats carry signal; deduplication lowered offline AUC.
 
+Bridge: The parts work. Now the end-to-end results, starting with the only public dataset.
+
+## 21. amazon
+
+![slide 21](svg/21-amazon.svg)
+
+Terms: AUC. DIN, SIM-hard, SIM-soft = baselines (glossary slide). ESU retrieval of top-50.
+
+Say: Amazon Book is the only public benchmark. QARM V2 reaches 70.33 AUC; the best baseline, SIM-soft, 69.57.
+
+Point to the y-axis: it starts at 66, so the bars exaggerate. The gap is 0.76 AUC points.
+
+Point to the setup box: the baselines are from 2018 and 2020. No TWIN, and no semantic-ID models like TIGER or OneRec.
+
+Bridge: Kuaishou's own data, where the big claims are.
+
+## 22. offline
+
+![slide 22](svg/22-offline.svg)
+
+Terms: GAUC gain in points over the production model. CTR, CVR, CTCVR (click and buy). WUAUC for Shopping#2 CTR.
+
+Say: Each bar is one task: ads, three shopping services, four live-streaming tasks. Height = GAUC gain over the production model.
+
+All twelve are positive; most between +0.1 and +0.5, ads CTCVR the largest at +1.1.
+
+Point to the dashed line: the authors say about 0.1 GAUC is enough for business gains, which is normal in industry.
+
+Caveat: no error bars, so we cannot tell how stable the small gains are.
+
+Bridge: Offline is one thing. What happened with real users?
+
+## 23. online ads shop
+
+![slide 23](svg/23-online-ads-shop.svg)
+
+Terms: online A/B test, exposure, cost (ad spend), revenue, GMV, order.
+
+Say: Live A/B tests over several weeks on main traffic.
+
+Advertising: revenue +4.873% with cost +3.942%, so revenue grew faster than spend. Exposure +1.3%.
+
+Shopping: GMV +1.0% to +5.6%; Shopping#2 gained most on GMV, orders and exposure.
+
+For a platform this size that is a lot of money, but there are no confidence intervals or traffic sizes.
+
+Bridge: Live streaming shows where the gains come from.
+
+## 24. online live
+
+![slide 24](svg/24-online-live.svg)
+
+Terms: cold-start streams vs others. Core metrics (click, watch time, gift count) vs interaction metrics (like, comment, follow).
+
+Say: Live streaming, split into cold-start streams and the rest.
+
+Point to the first row: in Live-streaming#1, cold-start click +3.231% versus +0.611% for other streams, about five times more. That is the paper's story: LLM content knowledge helps most where there is no interaction history.
+
+Curiosity: gift count is exactly +2.917% in both "others" rows; a coincidence or a copy error.
+
 Bridge: Part V. Time to be critical.
 
-## 26. critique
+## 25. critique
 
-![slide 26](svg/26-critique.svg)
+![slide 25](svg/25-critique.svg)
 
 Terms: ablation = removing one component to measure its effect.
 
 Say: Strong: deployed in ads, shopping and live streaming with multi-week A/B tests; reusable ideas (an LLM as a data filter, the three-segment mask, the hybrid quantizer); and SID collisions measured directly.
 
-Weak: four changes at once and no ablation on ranking metrics; old public baselines; no confidence intervals; numbers that disagree between text and tables; and the filtering LLM sees only titles and attributes, not images.
+Weak: four changes at once and no ablation on ranking metrics; old public baselines; no confidence intervals; numbers that disagree between text and tables; and the filtering LLM sees only titles and attributes, not images. Also, the 10% vs 70% rejection rates come from different models (0.6B vs 8B), so the gap mixes data quality and model strictness.
 
 Bridge: To close, five takeaways.
 
-## 27. takeaways
+## 26. takeaways
 
-![slide 27](svg/27-takeaways.svg)
+![slide 26](svg/26-takeaways.svg)
 
 Terms: as on earlier slides.
 

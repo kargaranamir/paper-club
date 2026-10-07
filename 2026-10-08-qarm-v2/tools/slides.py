@@ -366,7 +366,7 @@ def s_pipeline(n):
     s.text(1030, 450, "ten diverse QA pairs per item, e.g.", 20, P["muted"])
     s.text(1030, 485, "Q: What is the item category?\nA: Spicy food", 20, P["ink"], mono=True)
     s.text(1010, 580, "Only questions the model can answer\nconfidently. Used for the generative loss.", 21, P["muted"])
-    s.takeaway("Exploration pairs are mostly noise: 70%+ of User2Item pairs are rejected.", y=700)
+    s.takeaway("Most exploration pairs fail the check: 70%+ of User2Item pairs are rejected (by the larger Qwen3-8B).", y=700)
     s.footer(V2 + ", §3.1.1 (prompts, models, rejection rates) and Figure 3")
     return s
 
@@ -503,40 +503,19 @@ def s_collision(n):
     return s
 
 
-def s_reskmeansfsq(n):
-    s = Slide("14-res-kmeans-fsq", n)
-    s.title("Res-KmeansFSQ: two K-means levels, then a grid", part=PART3, pc="purple")
-    y = 220
-    s.box(70, y, 200, 90, "LLM item\nembedding m", "blue", 22)
-    harrow(s, 274, 320, y + 45)
-    s.box(325, y, 270, 90, "level 1: K-means\nC¹ (K = 8192)", "purple", 22)
-    harrow(s, 599, 645, y + 45)
-    s.box(650, y, 270, 90, "level 2: K-means\non residual M¹", "purple", 22)
-    harrow(s, 924, 970, y + 45)
-    s.box(975, y, 300, 90, "level 3: FSQ\non residual M²", "blue", 22)
-    harrow(s, 1279, 1325, y + 45)
-    s.box(1330, y, 200, 90, "SID =\n(c¹, c², c³)", "green", 22, mono=False)
-    for x, t in [(460, "c¹"), (785, "c²"), (1125, "c³")]:
-        s.text(x, y + 100, t, 22, P["muted"], "c")
-    s.box(325, 360, 595, 70, "category and usage: adaptive to the data", "purple", 21, fill=P["purple"]["soft"])
-    s.box(975, 360, 300, 70, "item-specific detail", "blue", 21, fill=P["blue"]["soft"])
-    # equations
-    s.box(70, 470, 900, 230, None, "gray", fill=P["paper"])
-    s.text(95, 485, "as in the paper", 20, P["muted"])
-    s.text(95, 520, "M¹ = M − NearestRep(M, C¹)        C² = Kmeans(M¹, K)\n"
-                    "M² = M¹ − NearestRep(M¹, C²)\n"
-                    "Z  = round( L · sigmoid(M² W) ),   W ∈ R^(d×13),  L = 2\n"
-                    "fit on N > 10,000,000 sampled item embeddings (d = 3,000+)", 22, P["ink"], mono=True)
-    s.box(1010, 470, 520, 230, None, "orange", fill=P["orange"]["soft"])
-    s.text(1030, 485, "Check the sizes", 24, P["orange"]["text"])
-    s.text(1030, 530, "§3.2: K = 8192, 13 FSQ dims, L = 2.\n13 binary dims → 2¹³ = 8192 codes.\nBut round(2·σ) gives 3 values per dim.\n§4.5 runs everything as '3 × 4096'.", 21)
-    s.footer(V2 + ", §1 and §3.2 (Eq. 2–3)")
-    return s
-
-
 def s_sid_rounds(n):
     s = Slide("16-sid-rounds", n)
-    s.title("Building a semantic ID in three rounds", "Each round describes what the previous rounds missed", part=PART3, pc="purple")
+    s.title("Res-KmeansFSQ: building a semantic ID in three rounds", "Each round describes what the previous rounds missed",
+            part=PART3, pc="purple")
+    x = 70
+    for k, (lab, c) in enumerate([("LLM embedding m", "blue"), ("1: K-means → c¹", "purple"),
+                                  ("2: K-means on residual → c²", "purple"), ("3: FSQ on residual → c³", "blue"),
+                                  ("SID = (c¹, c², c³)", "green")]):
+        x2 = chip(s, x, 152, lab, c, 20, 46, 16)
+        if k < 4:
+            harrow(s, x2 + 4, x2 + 36, 175)
+        x = x2 + 40
+    Y = 222
     cols = [(70, 445, "Round 1 · coarse", "K-means", "purple",
              "Offline: K-means on the LLM\nembeddings of 10M+ items\n→ K centroids.\n\n"
              "K = 8,192 in the method section,\n4,096 in the experiments.\n\n"
@@ -552,14 +531,12 @@ def s_sid_rounds(n):
              "2. squash each into 0–1 (sigmoid),\n    scale by L = 2, round\n"
              "3. 13 small integers, read together\n    as one code c³, like a\n    13-digit number")]
     for i, (x, w, head, sub, c, body) in enumerate(cols):
-        s.box(x, 160, w, 580, None, c, fill=P[c]["soft"])
-        s.text(x + 22, 176, head, 27, P[c]["text"])
-        s.text(x + 22, 216, sub, 21, P["muted"])
-        s.text(x + 22, 262, body, 23, P["ink"])
-        if i < 2:
-            nx = cols[i + 1][0]
-            harrow(s, x + w + 3, nx - 3, 200)
-    s.text(1042, 672, "SID = (c¹, c², c³)", 28, P["green"]["text"])
+        s.box(x, Y, w, 520, None, c, fill=P[c]["soft"])
+        s.text(x + 22, Y + 14, head, 27, P[c]["text"])
+        s.text(x + 22, Y + 52, sub, 21, P["muted"])
+        s.text(x + 22, Y + 92, body, 23, P["ink"])
+    s.text(1042, 640, "As written, round(2·σ) gives 3 values per\ndim (3¹³ codes); binary dims would give\n"
+                      "2¹³ = 8,192. The paper does not say which.", 18, P["orange"]["text"])
     s.takeaway("FSQ ignores where items are dense, so it spreads rare items over many different codes. That is the point of round 3.",
                y=765, h=70, fs=23)
     s.footer(V2 + ", §3.2 (Eq. 2–3) and §4.5")
@@ -762,7 +739,7 @@ def s_critique(n):
           "• baselines are the production model and, on Amazon,\n  DIN / SIM only (no TWIN, TIGER, OneRec)\n\n"
           "• no confidence intervals; some gains are 0.05 points\n\n• inconsistencies: K = 8192 vs '3 × 4096'; FSQ levels;\n"
           "  order HR@500 13.0 vs 20.0; collision '> 30%' vs 77.92%;\n  vocabulary < 20k vs ~1e5\n\n"
-          "• the filter LLM sees only titles + attributes", "orange", 30, 24)
+          "• the filter LLM sees only titles + attributes, and the\n  10% vs 70% rejection uses different models (0.6B vs 8B)", "orange", 30, 24)
     s.footer(V2 + "; inconsistencies are listed with their locations in references/digest.md")
     return s
 
@@ -793,6 +770,6 @@ def s_takeaways(n):
 
 SLIDES = [s_title, s_tldr, s_gloss1, s_gloss2, s_setting, s_gsu_esu, s_ids_vs_llm, s_naive_llm, s_qarm_v1, s_qarm_v1_results, s_diff,
           s_noisy_pairs, s_pipeline, s_three_segment,
-          s_collision, s_reskmeansfsq, s_sid_rounds, s_usage,
-          s_amazon, s_offline, s_online, s_online_live, s_hr, s_codes, s_gsu_case,
+          s_collision, s_sid_rounds, s_usage,
+          s_hr, s_codes, s_gsu_case, s_amazon, s_offline, s_online, s_online_live,
           s_critique, s_takeaways]

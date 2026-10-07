@@ -200,27 +200,11 @@ Point right: FSQ is data-independent; it cuts the space into a fixed grid, so sp
 
 Point to the yellow line: with QARM's three-level Res-Kmeans, more than 30% of semantic IDs mapped to several items in Shopping.
 
-Bridge: Res-KmeansFSQ combines both.""",
-
-    "res-kmeans-fsq": """Terms: residual = what is left after subtracting the nearest centroid. c1, c2, c3 = the three levels of the semantic ID. FSQ formula: project, sigmoid, scale by L, round.
-
-Say: Top row, left to right. Start from the LLM embedding m.
-
-Level 1: K-means picks the nearest of K = 8,192 centroids; that index is c1, roughly the category.
-
-Level 2: subtract that centroid to get the residual, and run K-means again; that gives c2, a finer category or usage.
-
-Level 3: on the second residual use FSQ instead of K-means; that gives c3, the item-specific detail.
-
-The semantic ID is (c1, c2, c3). The first two levels adapt to the data; the last spreads items evenly to avoid collisions.
-
-Point to the orange box: the codebook sizes are inconsistent: 8,192 in the method section, "3 × 4096" in the experiments, and the FSQ formula as written gives three values per dimension. Mention it briefly.
-
-Bridge: The next slide walks through the three rounds one by one.""",
+Bridge: Res-KmeansFSQ combines both: K-means first, FSQ last.""",
 
     "sid-rounds": """Terms: centroid = the centre of a K-means cluster. Residual = embedding minus its nearest centroid. FSQ = Finite Scalar Quantization. c1, c2, c3 = the three parts of the semantic ID.
 
-Say: The previous slide in slow motion. Three rounds, each one describes what the earlier rounds missed.
+Say: Point to the top strip first: LLM embedding m, three rounds, and out comes the semantic ID (c1, c2, c3). Each round describes what the earlier rounds missed. Then walk through the three panels.
 
 Round 1, coarse: offline, K-means on the LLM embeddings of more than 10 million items gives K centroids. For an item, c1 is the number of its nearest centroid. Items with the same c1 are broadly similar, roughly the same category.
 
@@ -230,7 +214,7 @@ Round 3, item detail: subtract the second centroid and use FSQ instead of a thir
 
 Point to the yellow line: FSQ ignores where items are dense, so rare items spread over many codes. That is why round 3 is FSQ.
 
-If asked: the paper does not say how W is trained, and with L = 2 the rounding gives three values per dimension, not two.
+Point to the orange note in round 3: as written, round(2·sigmoid) gives three values per dimension (3^13 codes); binary dimensions would give 2^13 = 8,192, matching K. The paper does not say which. It also does not say how W is trained.
 
 Bridge: How do the LLM embedding and the semantic IDs enter the ranker?""",
     "usage": """Terms: inner product = similarity score between two embeddings. PCA = shrinks the embeddings for storage. Lookup embedding table = one trainable vector per code. Multi-task BCE = the usual click/purchase loss.
@@ -241,7 +225,7 @@ Right, the ESU uses the semantic IDs. Each item is its ItemID plus c1, c2, c3, e
 
 The point: the LLM embedding stays frozen in the GSU, but the semantic ID embeddings are learned end-to-end in the ESU. That is the fix for representation unlearning.
 
-Bridge: Part IV, results. First, the only public dataset.""",
+Bridge: Part IV, results. First: does each part work on its own? We start with the LLM embedding.""",
 
     "amazon": """Terms: AUC. DIN, SIM-hard, SIM-soft = baselines (glossary slide). ESU retrieval of top-50.
 
@@ -285,11 +269,11 @@ Point to the first row: in Live-streaming#1, cold-start click +3.231% versus +0.
 
 Curiosity: gift count is exactly +2.917% in both "others" rows; a coincidence or a copy error.
 
-Bridge: Did reasoning item alignment really improve the LLM embedding? The paper tests that directly.""",
+Bridge: Part V. Time to be critical.""",
 
     "alignment-hr": """Terms: item-to-item retrieval with the LLM embedding. Trigger items = the user's last 10 clicks. HR@200 / HR@500 = hit rate in the top 200 / 500 retrieved.
 
-Say: The test: for each user take the 10 most recent clicked trigger items, retrieve 50 candidates per trigger with the LLM embedding, and count how often a real click or order is among them.
+Say: First check: did reasoning item alignment improve the LLM embedding itself? The test: for each user take the 10 most recent clicked trigger items, retrieve 50 candidates per trigger with the LLM embedding, and count how often a real click or order is among them.
 
 Gray is QARM, blue is QARM V2. Every hit rate goes up by roughly 60 to 77% relative; click HR@200 from 7.77% to 12.5%.
 
@@ -319,13 +303,13 @@ Point to the boxes: in the paper's examples, SIM retrieves hard negatives, like 
 
 Point to the bottom: they do not deduplicate sequences. In live streaming the top-100 interactions cover only 23 authors on average, and the repeats carry signal; deduplication lowered offline AUC.
 
-Bridge: Part V. Time to be critical.""",
+Bridge: The parts work. Now the end-to-end results, starting with the only public dataset.""",
 
     "critique": """Terms: ablation = removing one component to measure its effect.
 
 Say: Strong: deployed in ads, shopping and live streaming with multi-week A/B tests; reusable ideas (an LLM as a data filter, the three-segment mask, the hybrid quantizer); and SID collisions measured directly.
 
-Weak: four changes at once and no ablation on ranking metrics; old public baselines; no confidence intervals; numbers that disagree between text and tables; and the filtering LLM sees only titles and attributes, not images.
+Weak: four changes at once and no ablation on ranking metrics; old public baselines; no confidence intervals; numbers that disagree between text and tables; and the filtering LLM sees only titles and attributes, not images. Also, the 10% vs 70% rejection rates come from different models (0.6B vs 8B), so the gap mixes data quality and model strictness.
 
 Bridge: To close, five takeaways.""",
 
