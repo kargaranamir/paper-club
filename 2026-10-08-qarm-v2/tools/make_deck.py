@@ -7,7 +7,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
-from notes import NOTES  # noqa: E402
+from notes import NOTES, STORY  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 TITLE = "QARM V2: Quantitative Alignment Multi-Modal Recommendation for Reasoning User Sequence Modeling"
@@ -22,6 +22,7 @@ for f in svgs:
 # ---------------------------------------------------------------- speaker notes
 with open(os.path.join(ROOT, "slides/speaker-notes.md"), "w") as f:
     f.write(f"# Speaker notes — {TITLE}\n\nPaper club · 8 October 2026 · arXiv:2602.08559 (predecessor: arXiv:2411.11739)\n\n")
+    f.write(STORY + "\n\n---\n\n")
     for i, s in enumerate(slides, 1):
         f.write(f"## {i}. {s['name'][3:].replace('-', ' ')}\n\n![slide {i}](svg/{s['name']}.svg)\n\n{s['note']}\n\n")
 
@@ -43,7 +44,7 @@ html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:15px/1
 #count{color:var(--muted);min-width:64px;text-align:center}
 #prog{flex:1;height:4px;background:rgba(128,128,128,.25);border-radius:2px;overflow:hidden}
 #prog i{display:block;height:100%;background:var(--accent);width:0}
-#notes{position:fixed;left:16px;right:16px;bottom:64px;max-height:30vh;overflow:auto;background:var(--card);border-radius:10px;padding:12px 16px;box-shadow:0 4px 20px rgba(0,0,0,.15);display:none}
+#notes{position:fixed;left:16px;right:16px;bottom:64px;max-height:42vh;white-space:pre-wrap;overflow:auto;background:var(--card);border-radius:10px;padding:12px 16px;box-shadow:0 4px 20px rgba(0,0,0,.15);display:none}
 body.shownotes #notes{display:block}
 #grid{position:fixed;inset:0;overflow:auto;background:var(--bg);padding:16px;display:none;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 body.overview #grid{display:grid}
