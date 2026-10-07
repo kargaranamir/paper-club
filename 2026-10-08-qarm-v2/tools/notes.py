@@ -1,282 +1,333 @@
 """Speaker notes, keyed by slide slug (file name without the number). Used by make_deck.py.
 
-Each note is a short script in plain words: what to say, what to point at, and a bridge to the next slide.
-Paragraphs are separated by blank lines. STORY is printed at the top of slides/speaker-notes.md.
+Each note: "Terms" (the technical words on that slide, with a plain meaning), "Say" (a short script that uses
+the same terms as the slide), "Point to" cues, and a "Bridge" to the next slide. STORY goes at the top of
+slides/speaker-notes.md.
 """
 
 STORY = """The story in six sentences:
 
-1. Kuaishou's recommender must guess what each user wants next, from a history of 100,000+ interactions.
-2. It does this in two steps: first pick the few past items related to the candidate (GSU), then look at them closely (ESU).
-3. Both steps need to know which items are "related", and item IDs alone are bad at that, especially for new items.
-4. An LLM understands items, but its idea of "similar" is wrong for shopping, and a frozen LLM vector cannot be trained by the recommender.
-5. QARM V2 fixes the first problem by teaching the LLM business similarity from cleaned item pairs, and the second by turning its vectors into short codes (semantic IDs) that the recommender can learn.
+1. Kuaishou's recommender must predict what each user clicks or buys next, from a history of 100,000+ interactions.
+2. It does this in two steps: the GSU picks the few past items related to the candidate (target) item, then the ESU looks at them closely.
+3. Both steps need to know which items are "related"; ID embeddings are bad at that, especially for new (cold-start) items.
+4. LLM embeddings understand items, but suffer from representation unmatch (the LLM's "similar" is not the business's "similar") and representation unlearning (a frozen embedding cannot be trained by the recommender).
+5. QARM V2 fixes unmatch with reasoning item alignment (cleaned item pairs + a three-segment training trick), and unlearning with Res-KmeansFSQ semantic IDs that the ESU learns end-to-end.
 6. It works in production (several percent more revenue and GMV), but the paper does not show which part of the recipe causes the gains."""
 
 NOTES = {
-    "title": """Say: Today's paper is QARM V2, from Kuaishou, the Chinese short-video and live-streaming platform. It is the follow-up to QARM from 2024, so we will look at both.
+    "title": """Terms: LLM embedding = one vector per item computed by an LLM. Semantic ID (SID) = the same item written as three short discrete codes. GSU / ESU = the two steps of the recommender (explained on slide 3).
 
-Point to the row of boxes: this is the whole paper in one line. An LLM reads an item (its title, images, text in the images). It produces a vector, which helps find related items. It also produces short codes, which the ranking model can learn from. In the end the system predicts clicks and purchases.
+Say: Today's paper is QARM V2 from Kuaishou, the Chinese short-video and live-streaming platform. It follows QARM from 2024, so we look at both.
+
+Point to the row of boxes: the whole paper in one line. A fine-tuned LLM reads an item (title, images, OCR text). It produces an LLM embedding, which the GSU uses to find related items, and semantic IDs, which the ESU learns from. At the end the model predicts CTR and CVR, click and purchase.
 
 Bridge: Here is the paper in one slide.""",
 
-    "tldr": """Say: Three boxes, read left to right.
+    "tldr": """Terms: representation unmatch, representation unlearning (the paper's two problem names). Res-Kmeans, FSQ (two quantizers that produce semantic IDs). GAUC (ranking quality per user). SID collision (two items getting the same semantic ID).
 
-Problem: everybody tries to add LLM vectors to their recommender, and it usually helps only a little. The paper gives two reasons. First, the LLM thinks two items are similar when they look alike, but shoppers care about whether items are used together. Second, the LLM vector is frozen, so the recommender cannot adjust it.
+Say: Read the three boxes left to right.
 
-Fixes: one fix for each reason. Clean the training data with a reasoning LLM and train the LLM in a smarter way. Then cut its vector into short codes that the recommender can learn.
+Problem: adding LLM embeddings to a recommender usually helps only a little. Reason one, representation unmatch: the LLM calls items similar when they look alike, but the business cares about items people use or buy together. Reason two, representation unlearning: the LLM embedding is frozen, so the recommender's training cannot adjust it.
 
-Evidence: real online tests with several percent more revenue, plus offline gains.
+Two fixes, one per problem. On the GSU side, clean the alignment pairs with a reasoning LLM and train the LLM with a three-segment trick. On the ESU side, turn the embedding into semantic IDs with two levels of Res-Kmeans plus one level of FSQ, so fewer items collide.
 
-Point to the yellow line: keep this in mind. The results are strong, but there are almost no experiments that show which part does the work.
+Evidence: online A/B tests with several percent more revenue and GMV, GAUC gains offline, and far fewer SID collisions.
 
-Bridge: Before we start, two slides of vocabulary. I will go through them quickly.""",
+Point to the yellow line: strong results, but almost no ablations showing which part does the work.
 
-    "glossary-models": """Say: Recommendation papers use many short names. You only need four of them for today.
+Bridge: Two slides of vocabulary first; I will go quickly.""",
 
-GSU and ESU: two steps. GSU is a quick filter, "pick the 50 past items most related to this candidate". ESU is the careful step that looks at those 50 and is trained with the rest of the model.
+    "glossary-models": """Terms: everything on this slide is a term; four of them matter today.
 
-SIM is the 2020 Alibaba paper that introduced these two steps. TWIN is Kuaishou's own version from 2023.
+Say: GSU, General Search Unit: a quick filter that keeps the K past items most related to the candidate. ESU, Exact Search Unit: the careful step that attends over those K items and is trained with the rest of the model.
 
-Semantic ID: an item written as three small codes, like a postal code. The first part is coarse, the last part is specific.
+SIM is the 2020 Alibaba paper that introduced the GSU/ESU split. TWIN is Kuaishou's own version from 2023.
 
-The rest is for reference. Skip it unless someone asks.
+Semantic ID: an item written as a tuple of three codes, c1, c2, c3, coarse to fine, like a postal code.
 
-Bridge: The second glossary covers numbers and metrics.""",
+Target attention: the candidate (target) item is the query that decides how much each history item counts.
 
-    "glossary-metrics": """Say: Only three lines matter for reading the results.
+The rest is reference; skip unless asked.
 
-CTR is the chance a user clicks. CVR is the chance they buy after clicking.
+Bridge: The second glossary covers quantization and metrics.""",
 
-AUC measures how well the model ranks good items above bad ones; 50 is random guessing. GAUC is the same, computed per user and then averaged. In industry, a gain of 0.1 points is already worth money.
+    "glossary-metrics": """Terms: as on the slide.
 
-GMV is the total money spent on orders.
+Say: For the method part: Res-Kmeans clusters the embeddings, subtracts the cluster centre and clusters the rest again; FSQ rounds each dimension to a few fixed values, with no learned codebook.
 
-Bridge: Now the setting. Why is this problem hard at Kuaishou?""",
+For the results: CTR is P(click), CVR is P(buy after click). AUC is how well positives are ranked above negatives, 50 is chance. GAUC is AUC per user, averaged. In industry +0.1 GAUC is already worth money. GMV is the money spent on orders. HR@K is how often a true item is in the top K.
 
-    "setting": """Say: Three numbers. 400 million people use the app every day. Tens of millions of new videos, live streams and products appear every day. An active user has more than 100,000 past interactions.
+Bridge: Now the setting. Why is this hard at Kuaishou?""",
 
-The model should use that whole history, but checking 100,000 items for every recommendation is far too slow. So every system first shrinks the history.
+    "setting": """Terms: lifelong user sequence = the user's full interaction history. Streaming training = the model keeps training on new data all the time.
 
-Point to the blue box: items are not just IDs. They have titles, pictures, text in the pictures and speech. An LLM can read all of that. Both papers ask how to turn that understanding into something the recommender can use.
+Say: Three numbers: 400 million daily active users, tens of millions of new items every day, and more than 100,000 interactions per active user.
 
-Bridge: Let us see how the history is shrunk.""",
+The model should use that whole lifelong sequence, but scoring 100,000 items for every candidate in streaming training is far too expensive. So every lifelong model first cuts the history down.
 
-    "gsu-esu": """Say: This is the standard design for long histories, from SIM and TWIN.
+Point to the blue box: items are not just IDs. They have titles, images, OCR and speech (ASR), which an LLM can read. Both papers ask how to turn that understanding into something the ranking model can use.
 
-Point top left: the long history. Point right: the candidate, which we call the target item.
+Bridge: How is the history cut down? With the GSU and ESU.""",
 
-Step 1, the GSU: a cheap search keeps only the K past items most related to the target. Point to the blue squares: those survive.
+    "gsu-esu": """Terms: target item = the candidate being scored. GSU, ESU, top-K subsequence, target attention, MoE (one output head per task).
 
-Step 2, the ESU: the model looks carefully at those K items, weighs them against the target, and predicts click and purchase.
+Say: The standard design for long histories, from SIM and TWIN.
 
-Point to the orange box: everything depends on what "related" means in step 1. Older systems use the same category, or similar ID vectors. QARM V2 uses the LLM: the LLM vector for step 1, and LLM-based codes for step 2.
+Point top left: the user history. Point right: the target item.
 
-Bridge: Why not simply keep using IDs?""",
+GSU: a cheap search keeps the top-K history items most related to the target. Point to the blue squares: that is the top-K subsequence. The GSU is not trained.
 
-    "ids-vs-llm": """Say: Today recommenders learn one vector per item ID from clicks. That has three weaknesses.
+ESU: target attention over those K items; the target is the query. Trained end-to-end, it feeds an MoE that predicts CTR, CVR and so on.
 
-Row 1: there are billions of IDs and new ones every day. An LLM uses a fixed vocabulary of words.
+Point to the orange box: everything depends on what "related" means in the GSU. SIM-hard uses the same category tag; SIM-soft and TWIN use similar ID embeddings. QARM V2 uses the LLM embedding in the GSU and semantic IDs in the ESU.
 
-Row 2: what an ID vector learned is stored only in that vector. When the item disappears, the knowledge disappears too. An LLM stores knowledge in its layers.
+Bridge: Why not keep using ID embeddings?""",
 
-Row 3: ID vectors go stale and must be retrained all the time. A trained LLM stays useful.
+    "ids-vs-llm": """Terms: ID embedding = a vector learned from clicks for each item ID. Long-tail problem. Knowledge isolation. Cold-start item = a new item with no interactions.
 
-Point to the gray box: the clearest case is a new item. It has no clicks, so its ID vector is random noise, but an LLM can read its title and pictures on day one.
+Say: Three weaknesses of ID embeddings, one per row.
 
-Bridge: So, just add LLM vectors? People tried. It helps less than you would hope.""",
+Information units: billions of IDs, growing daily, against a fixed LLM token vocabulary.
 
-    "naive-llm": """Say: The common practice is to compute one LLM vector per item, store it, and give it to the recommender as an extra input. The paper says this has two problems.
+Knowledge storage: what an ID embedding learned lives only in that embedding; when the item is gone, the knowledge is gone. The paper calls this knowledge isolation. An LLM stores knowledge in 40+ transformer layers.
 
-Left, "representation unmatch": the LLM learned from pictures and captions, so it thinks toothpaste and ointment are similar, because both come in a tube. A shopper uses them for completely different things.
+Generalization: ID embeddings need constant streaming training; an LLM stays stable once trained.
 
-Right, "representation unlearning": the stored vector is frozen. The recommender's training cannot change it, so it never adapts to what users actually do.
+Point to the gray box: the long-tail problem made concrete. A cold-start item has no clicks, so its ID embedding is noise. An LLM reads its title and images on day one.
 
-Point to the quote: this is the paper's goal in its own words. Do not recommend look-alikes; find new things the user will like.
+Bridge: So just add LLM embeddings? People did, and it helps less than you would hope.""",
 
-Bridge: The first QARM paper already attacked both problems. Let us see how.""",
+    "naive-llm": """Terms: representation unmatch, representation unlearning (the two problems the whole paper is about).
 
-    "qarm-v1": """Say: QARM, 2024, has two parts.
+Say: Common practice: compute one LLM embedding per item, cache it, add it as a feature. Two problems.
 
-Left, the fix for "unmatch": take item pairs that Kuaishou's existing systems consider related, for example items that the same users clicked. Fine-tune the LLM so that those pairs get similar vectors. Now the LLM's idea of "similar" is the business's idea.
+Representation unmatch, left: the LLM was pre-trained on image-text matching and captions, so toothpaste and ointment get close embeddings because both are tubes. For the business they are unrelated.
 
-Right, the fix for "unlearning": turn each LLM vector into a few short codes. The recommender treats the codes like new IDs and learns a vector for each, so this part is trainable.
+Representation unlearning, right: the cached embedding is a fixed input. No gradient reaches it, so it never adapts to the ranking task.
 
-Point to the yellow line: this is the key result. The same LLM knowledge gave almost nothing as a frozen input (+0.02 AUC) and nine times more as trainable codes (+0.18).
+Point to the quote: the paper's goal. Do not recommend look-alikes; discover new interests.
 
-Bridge: A quick look at QARM's results, because V2 is compared with it.""",
+Bridge: QARM (2024) already attacked both problems.""",
 
-    "qarm-v1-results": """Say: Top left: the frozen vector barely helps; the codes help, and both together help most.
+    "qarm-v1": """Terms: item alignment = fine-tune the LLM so items the business considers related get close embeddings. Item2Item (Swing) and User2Item (two-tower) = Kuaishou's retrieval models that export related item pairs. Contrastive loss = pull paired embeddings together, push others apart. Quantitative codes = QARM's name for semantic IDs. VQ code, RQ code (Res-Kmeans).
 
-Top right: real online tests. Ad revenue went up almost 10% for new ads and about 3% for the rest. Shopping GMV went up 1.6% and 2.3% in two services.
+Say: Left, item alignment fixes unmatch. Take item pairs that Kuaishou's own retrieval models consider related: Item2Item pairs from Swing (clicked by the same users) and User2Item pairs from the two-tower model. Fine-tune the multimodal LLM with a contrastive loss so these pairs get close embeddings.
 
-Point to the bar chart: items are grouped from least bought (L1) to most bought (L6). The least-bought items gained most, +8% GMV. That supports the idea that content knowledge helps items with little click history.
+Right, quantitative codes fix unlearning. Turn each aligned embedding into discrete codes: a VQ code (the IDs of the 25 nearest items) and an RQ code (6 levels of Res-Kmeans). The ranking model gives each code a learnable embedding, so this part is trained end-to-end.
 
-Bridge: So what does V2 change?""",
+Point to the yellow line: the key evidence. As a frozen feature the aligned embedding gave +0.02 AUC; as learnable codes, +0.18, nine times more.
 
-    "what-changes": """Say: Four changes, one per row.
+Bridge: QARM's results, since V2 is compared with it.""",
 
-Row 1: QARM trained on raw item pairs. V2 first lets a reasoning LLM throw out bad pairs, and adds question-answer data about each item.
+    "qarm-v1-results": """Terms: AUC gain, A/B test, GMV, cold-start, long tail (L1 = least purchased items).
 
-Row 2: V2 trains the LLM with a special attention mask so it learns two things at once. We will see this in two slides.
+Say: Top left: the frozen embedding barely helps; VQ and RQ codes help, both together most.
 
-Row 3: the codes. V2 drops the "nearest neighbours" codes and replaces the last level of clustering with a fixed grid called FSQ.
+Top right: online A/B tests. Ad revenue +9.7% for cold-start ads and +3.1% for the rest. Shopping GMV +2.3% and +1.6%.
 
-Row 4: V2 uses the LLM vector for step 1 (GSU) and the codes for step 2 (ESU).
+Point to the bar chart: items grouped from L1, least purchased, to L6, most purchased. The long-tail group L1 gained most, +8% GMV. Content knowledge helps items with little interaction history.
 
-Bridge: Part II, rows 1 and 2. First, why do the pairs need cleaning?""",
+Bridge: What does V2 change?""",
 
-    "noisy-pairs": """Say: The training pairs come from Kuaishou's own retrieval systems, so they inherit their mistakes.
+    "what-changes": """Terms: reasoning LLM, QA pairs, three-segment mask, contrastive + next-token loss, semantic IDs, Res-Kmeans, FSQ, GSU retrieval, ESU target attention.
 
-Left: "items clicked by the same users" pairs soy sauce with laundry detergent. Both are just very popular, so many people click both. They are not related. The reasoning LLM says no, and the pair is removed.
+Say: Four changes, one per row.
 
-Right: the other source pairs fashion boots with a down jacket. They look nothing alike, but people buy them together when winter comes. The LLM says yes, and the pair is kept. This is exactly the kind of relation we want the model to learn.
+Alignment data: QARM used raw item pairs; V2 lets a reasoning LLM filter them and adds generated QA pairs about each item.
 
-Bridge: Here is the full data pipeline.""",
+Embedding LLM: V2 uses a decoder-only LLM trained with a three-segment attention mask, so it learns a contrastive loss and the normal next-token loss together.
 
-    "data-pipeline": """Say: Two data streams.
+Semantic IDs: V2 drops the VQ code, keeps two levels of Res-Kmeans and replaces the last level with FSQ.
 
-Part A, cleaning pairs. Each pair is shown to a Qwen3 model as titles and attributes only. The question: are these related, by use or because people buy them together? Answer yes or no. The cheap 0.6B model handles the reliable pairs; the bigger 8B model handles the noisy ones.
+Use in the ranker: the LLM embedding goes to the GSU, the semantic IDs to the ESU.
 
-Point to the orange boxes: over 10% of the reliable pairs and over 70% of the noisy pairs are thrown out.
+Bridge: Part II covers the GSU side, rows 1 and 2. First: why filter the pairs?""",
 
-Part B, question-answer data. A large vision-language model looks at everything about an item, including the pictures, and writes ten questions and answers, for example "What category is this? Spicy food."
+    "noisy-pairs": """Terms: Item2Item Swing pairs (exploitation: stable co-click relations). User2Item two-tower pairs (exploration: looser relations). Exposure bias = popular items get shown and clicked more, so they look related to everything.
 
-Bridge: How are both kinds of data used to train one LLM?""",
+Say: The alignment pairs come from Kuaishou's retrieval models, so they inherit their mistakes.
 
-    "three-segment": """Say: This is the cleverest idea in the paper. Go slowly.
+Left, an Item2Item Swing pair: soy sauce and laundry detergent. Both are hot items, so many users click both; that is exposure bias, not a real relation. The reasoning LLM answers "no" and the pair is rejected.
 
-Point right, top row: the input is split into three parts. First the item itself (title, pictures). Then a few special EMB tokens. Then a question and its answer.
+Right, a User2Item two-tower pair: fashion boots and a down jacket. They look nothing alike, but people buy them together when the season changes. The LLM answers "yes" and the pair is kept. This is exactly the business similarity we want the LLM embedding to learn.
 
-Point left, the grid: blue means "may look at". The item part reads itself. The EMB tokens read the item. The question and answer may read only the EMB tokens, not the item.
+Bridge: The full reasoning data pipeline.""",
 
-Why? To answer the question, the model must get everything it needs through the EMB tokens. So the EMB tokens are forced to become a good summary of the item. The average of the EMB tokens is the item's vector.
+    "data-pipeline": """Terms: reasoning model (Qwen3) = an LLM that thinks step by step before answering. QA pairs = generated question-answer pairs about one item. VLM = vision-language model (Gemini, Qwen2.5-VL-72B).
 
-Two losses: the vector is pulled close to its partner item from the cleaned pairs (contrastive loss), and the answer must be predicted word by word (the normal LLM loss).
+Say: Two data streams.
 
-Note: the paper has no experiment comparing this with the usual one-token approach.
+A, pair filtering. Each pair goes to a Qwen3 reasoning model with titles and attributes only. The prompt asks: are these related by use, or bought together? Answer yes or no. The small Qwen3-0.6B handles the reliable Swing pairs, the larger Qwen3-8B the noisy two-tower pairs.
 
-Bridge: Part III, the codes. First, why do codes collide?""",
+Point to the orange boxes: over 10% of Item2Item pairs and over 70% of User2Item pairs are rejected.
 
-    "collisions": """Say: A semantic ID is useful only if different items get different codes. In QARM, many items shared a code.
+B, QA generation. A large VLM sees the whole item, including images, OCR and ASR, and writes ten QA pairs, for example "What is the item category? Spicy food."
 
-Point left: this is a toy picture with real K-means on made-up points. The catalogue is crowded in the middle (popular kinds of items) and thin at the edges (rare items). K-means puts most of its centres where the points are crowded. Point to the dashed circle: most centres sit there. Rare items at the edges share a few centres, so they get the same code.
+Bridge: Both kinds of data train one LLM with the three-segment trick.""",
 
-Point right: FSQ ignores where the points are. It just cuts space into a fixed grid, so the edges keep their own cells.
+    "three-segment": """Terms: decoder-only LLM = a GPT-style model that predicts the next token. Attention mask = which tokens may look at which. <EMB> tokens = special tokens whose hidden states become the item embedding. Contrastive loss, next-token (generative) loss.
 
-Point to the yellow line: in QARM's shopping data, more than 30% of codes stood for several items.
+Say: The cleverest idea in the paper; go slowly.
 
-Bridge: V2 combines both methods.""",
+Point right, top row: the input has three segments. The input segment: the item's title, OCR, attributes and image tokens. The compression segment: a few <EMB> tokens. The QA segment: a question and its answer.
 
-    "res-kmeans-fsq": """Say: Read the top row left to right. Start with the LLM vector of an item.
+Point left, the attention mask, blue means "may attend": input tokens attend to the input; <EMB> tokens attend to the input; QA tokens attend only to the <EMB> tokens, never to the input.
 
-Level 1: K-means picks the closest of 8,192 centres. That is the first code, roughly the category.
+Why: to answer the question, everything must flow through the <EMB> tokens, so they become a full summary of the item. The mean of their hidden states is the item embedding.
 
-Level 2: subtract that centre and cluster what is left. That is the second code, a finer category or use.
+Two losses: an in-batch contrastive loss pulls the embedding towards its paired item from the filtered pairs, and the next-token loss trains the answer. So the LLM becomes an embedding generator without giving up next-token prediction.
 
-Level 3: on what is left after that, use the FSQ grid instead of K-means. That gives the third code, which separates individual items.
+Warm start: at first QA may still attend to the input; that is annealed to zero.
 
-So the first two codes follow the data, and the last code spreads items evenly.
+Caveat: no experiment compares this with a single <EMB> token.
 
-Point to the orange box: the sizes in the paper do not add up. The method section says 8,192 per level; the experiments say 4,096. Mention it, do not dwell on it.
+Bridge: Part III, the ESU side. Why do semantic IDs collide?""",
 
-Bridge: How are the vector and the codes used inside the recommender?""",
+    "collisions": """Terms: code collision = several items share the same semantic ID. K-means centroid. Data-dependent vs data-independent quantization. FSQ grid.
 
-    "usage": """Say: Left, step 1 (GSU): every item's LLM vector is stored. For a candidate, the system keeps the past items whose vectors are most similar to the candidate's. This is plain vector search, no training.
+Say: A semantic ID is useful only if it separates items. In QARM, many items collided.
 
-Right, step 2 (ESU): each item is described by its ID plus its three codes. Each code gets its own learnable vector. The model compares the candidate with the selected past items, weighs them, and predicts click, purchase and so on.
+Point left: a toy picture with real K-means on synthetic points. The catalogue is long-tailed: dense in the middle (common item types), sparse at the edges (rare items). K-means is data-dependent: it puts most centroids where the data is dense. Point to the dashed circle: most centroids sit there. Rare items at the edges share a few centroids, so they get the same semantic ID.
 
-The point: the LLM vector stays frozen, but the codes are trained together with the recommender. That is the fix for "unlearning".
+Point right: FSQ is data-independent; it cuts the space into a fixed grid, so sparse regions keep their own cells.
+
+Point to the yellow line: with QARM's three-level Res-Kmeans, more than 30% of semantic IDs mapped to several items in Shopping.
+
+Bridge: Res-KmeansFSQ combines both.""",
+
+    "res-kmeans-fsq": """Terms: residual = what is left after subtracting the nearest centroid. c1, c2, c3 = the three levels of the semantic ID. FSQ formula: project, sigmoid, scale by L, round.
+
+Say: Top row, left to right. Start from the LLM embedding m.
+
+Level 1: K-means picks the nearest of K = 8,192 centroids; that index is c1, roughly the category.
+
+Level 2: subtract that centroid to get the residual, and run K-means again; that gives c2, a finer category or usage.
+
+Level 3: on the second residual use FSQ instead of K-means; that gives c3, the item-specific detail.
+
+The semantic ID is (c1, c2, c3). The first two levels adapt to the data; the last spreads items evenly to avoid collisions.
+
+Point to the orange box: the codebook sizes are inconsistent: 8,192 in the method section, "3 × 4096" in the experiments, and the FSQ formula as written gives three values per dimension. Mention it briefly.
+
+Bridge: How do the LLM embedding and the semantic IDs enter the ranker?""",
+
+    "usage": """Terms: inner product = similarity score between two embeddings. PCA = shrinks the embeddings for storage. Lookup embedding table = one trainable vector per code. Multi-task BCE = the usual click/purchase loss.
+
+Say: Left, the GSU uses the LLM embedding. Every item's embedding is stored, PCA-reduced. For a target item, keep the top-k history items with the highest inner product with the target's embedding. Plain vector search, nothing trained.
+
+Right, the ESU uses the semantic IDs. Each item is its ItemID plus c1, c2, c3, each looked up in its own trainable embedding table. Target attention: the target is the query, the top-k history items are keys and values. An MoE predicts CTR, CVR and so on, trained with multi-task BCE.
+
+The point: the LLM embedding stays frozen in the GSU, but the semantic ID embeddings are learned end-to-end in the ESU. That is the fix for representation unlearning.
 
 Bridge: Part IV, results. First, the only public dataset.""",
 
-    "amazon": """Say: Amazon book reviews, the only public test. QARM V2 scores 70.33 AUC; the best baseline, SIM-soft, scores 69.57.
+    "amazon": """Terms: AUC. DIN, SIM-hard, SIM-soft = baselines (glossary slide). ESU retrieval of top-50.
 
-Point to the axis: careful, it starts at 66, so the differences look bigger than they are. The gap is 0.76 points.
+Say: Amazon Book is the only public benchmark. QARM V2 reaches 70.33 AUC; the best baseline, SIM-soft, 69.57.
 
-Point to the box: the baselines are old (2018 and 2020). There is no comparison with TWIN or with newer semantic-ID models.
+Point to the y-axis: it starts at 66, so the bars exaggerate. The gap is 0.76 AUC points.
 
-Bridge: Now Kuaishou's own data, where the big claims are.""",
+Point to the setup box: the baselines are from 2018 and 2020. No TWIN, and no semantic-ID models like TIGER or OneRec.
 
-    "offline": """Say: Each bar is one prediction task on Kuaishou data: ads, three shopping services, live streaming. The height is the GAUC gain over the current production model.
+Bridge: Kuaishou's own data, where the big claims are.""",
 
-All twelve bars are positive. Most are between 0.1 and 0.5 points. The biggest is ads, +1.1.
+    "offline": """Terms: GAUC gain in points over the production model. CTR, CVR, CTCVR (click and buy). WUAUC for Shopping#2 CTR.
 
-Point to the dashed green line: the authors say about 0.1 points is enough to make money, which is normal in industry.
+Say: Each bar is one task: ads, three shopping services, four live-streaming tasks. Height = GAUC gain over the production model.
 
-Caveat: no error bars, so we do not know how stable the small ones are.
+All twelve are positive; most between +0.1 and +0.5, ads CTCVR the largest at +1.1.
 
-Bridge: Offline numbers are one thing. What happened with real users?""",
+Point to the dashed line: the authors say about 0.1 GAUC is enough for business gains, which is normal in industry.
 
-    "online-ads-shop": """Say: These are live A/B tests over several weeks: some users got the new model, the others the old one.
+Caveat: no error bars, so we cannot tell how stable the small gains are.
 
-Ads: revenue +4.9%, with ad spend +3.9%, so revenue grew faster than spend.
+Bridge: Offline is one thing. What happened with real users?""",
 
-Shopping: GMV +1% to +5.6%. Shopping#2 gained most on every metric.
+    "online-ads-shop": """Terms: online A/B test, exposure, cost (ad spend), revenue, GMV, order.
 
-For a platform this size, several percent is a lot of money. But there are no confidence intervals or traffic sizes.
+Say: Live A/B tests over several weeks on main traffic.
+
+Advertising: revenue +4.873% with cost +3.942%, so revenue grew faster than spend. Exposure +1.3%.
+
+Shopping: GMV +1.0% to +5.6%; Shopping#2 gained most on GMV, orders and exposure.
+
+For a platform this size that is a lot of money, but there are no confidence intervals or traffic sizes.
 
 Bridge: Live streaming shows where the gains come from.""",
 
-    "online-live": """Say: Live streaming, split into new streams (cold-start) and the rest.
+    "online-live": """Terms: cold-start streams vs others. Core metrics (click, watch time, gift count) vs interaction metrics (like, comment, follow).
 
-Point to the first row: for new streams in Live-streaming#1, clicks went up 3.2%, about five times more than for the other streams. That is the story of the paper: content knowledge helps most when there is no click history yet.
+Say: Live streaming, split into cold-start streams and the rest.
 
-Curiosity: the gift count is exactly +2.917% in both "others" rows. It may be a coincidence or a copy error.
+Point to the first row: in Live-streaming#1, cold-start click +3.231% versus +0.611% for other streams, about five times more. That is the paper's story: LLM content knowledge helps most where there is no interaction history.
 
-Bridge: Did the cleaned training data really make the LLM vector better? The paper tests that directly.""",
+Curiosity: gift count is exactly +2.917% in both "others" rows; a coincidence or a copy error.
 
-    "alignment-hr": """Say: The test: take a user's last 10 clicked items, retrieve 50 similar items for each, and check how often the user really clicked or bought one of them. Higher is better.
+Bridge: Did reasoning item alignment really improve the LLM embedding? The paper tests that directly.""",
 
-Gray is QARM, blue is QARM V2. Every bar goes up by roughly 60 to 77%. For example, click hit rate at 200 goes from 7.8% to 12.5%.
+    "alignment-hr": """Terms: item-to-item retrieval with the LLM embedding. Trigger items = the user's last 10 clicks. HR@200 / HR@500 = hit rate in the top 200 / 500 retrieved.
 
-Point to the orange text: one small error. The text says order HR@500 rose from 20.0%, the table says 13.0%.
+Say: The test: for each user take the 10 most recent clicked trigger items, retrieve 50 candidates per trigger with the LLM embedding, and count how often a real click or order is among them.
 
-Bridge: And did the codes stop colliding?""",
+Gray is QARM, blue is QARM V2. Every hit rate goes up by roughly 60 to 77% relative; click HR@200 from 7.77% to 12.5%.
 
-    "code-conflict": """Say: Three rows, read top to bottom.
+Point to the orange text: an inconsistency. The text says order HR@500 rose from 20.0%, the table says 13.0%.
 
-Row 1, QARM: 78% of items share their code with another item, and a code lookup returns 129 items on average.
+Bridge: And did the semantic IDs stop colliding?""",
 
-Row 2: same clustering method, but on the new V2 vectors. Already only 8.4 items per code. That is 15 times fewer, from better vectors alone.
+    "code-conflict": """Terms: Collision = share of items whose semantic ID is shared. EdgeNum = items returned per semantic-ID lookup. HR@1 = the item itself comes back first. KGNN = Kuaishou's graph store used for the lookup.
 
-Row 3: add the FSQ grid on the last level. 2.5 items per code, and 32% of items share a code.
+Say: Three rows, top to bottom.
 
-Point to the two boxes: the surprise is that most of the improvement comes from the better vectors, not from the new FSQ trick.
+QARM Res-Kmeans: collision 77.92%, EdgeNum 129.
 
-Bridge: One more qualitative check of step 1.""",
+QARM V2 Res-Kmeans: same quantizer, new V2 LLM embeddings. EdgeNum drops to 8.4, 15 times fewer, from better embeddings alone.
 
-    "gsu-case": """Say: How different is the new step 1 from the old ID-based one? About 60% of the past items it picks are items the old system would not have picked.
+QARM V2 Res-KmeansFSQ: FSQ on the last level. EdgeNum 2.5, collision 32.39%, HR@1 95.2%.
 
-Point to the boxes: in the paper's examples, the old system picks unrelated things, like jewellery for a phone-case target. The new one stays in the right category and meaning.
+Point to the two boxes: most of the improvement comes from better embeddings, not from FSQ.
 
-Point to the bottom: a side finding. They do not remove repeated items from the history. In live streaming, the last 100 interactions involve only 23 different streamers on average, and the repeats carry useful signal.
+Bridge: One qualitative check of the GSU.""",
+
+    "gsu-case": """Terms: exclusive rate = share of history items the QARM V2 GSU retrieves that the ID-based SIM GSU does not. Hard negatives = retrieved items that are actually unrelated. Deduplication = removing repeated items from the sequence.
+
+Say: About 60% of what the new GSU retrieves is exclusive: the ID-based SIM GSU would not have retrieved it.
+
+Point to the boxes: in the paper's examples, SIM retrieves hard negatives, like jewellery for a phone-accessory target; QARM V2 stays in the right category and meaning.
+
+Point to the bottom: they do not deduplicate sequences. In live streaming the top-100 interactions cover only 23 authors on average, and the repeats carry signal; deduplication lowered offline AUC.
 
 Bridge: Part V. Time to be critical.""",
 
-    "critique": """Say: Strong points: it runs in production in three businesses, with weeks of A/B tests. The ideas are reusable anywhere: an LLM as a data filter, the three-part mask, the mixed quantizer. And they measure code collisions directly.
+    "critique": """Terms: ablation = removing one component to measure its effect.
 
-Weak points: they change four things at once and never test them one by one on the final metrics. The public baselines are old. There are no error bars. Several numbers disagree between text and tables. And the filtering LLM sees only titles and attributes, not the pictures.
+Say: Strong: deployed in ads, shopping and live streaming with multi-week A/B tests; reusable ideas (an LLM as a data filter, the three-segment mask, the hybrid quantizer); and SID collisions measured directly.
 
-Bridge: That leads to our discussion questions.""",
+Weak: four changes at once and no ablation on ranking metrics; old public baselines; no confidence intervals; numbers that disagree between text and tables; and the filtering LLM sees only titles and attributes, not images.
 
-    "questions": """Say: Five questions. Pick two or three, depending on time.
+Bridge: That leads to the discussion questions.""",
 
-Good opener: number 2. The code-collision table suggests better vectors did most of the work. So is FSQ needed at all?
+    "questions": """Terms: as on earlier slides.
 
-Number 1 is a good second question: the filter replaces one bias (popular items) with another (the LLM's opinion). Is that always better?
+Say: Five questions; pick two or three.
+
+Good opener, question 2: Table 9 suggests better LLM embeddings did most of the work on collisions. Is FSQ needed at all? Would a random hash on the third level do as well?
+
+Good second, question 1: the reasoning filter replaces exposure bias with the LLM's own prior. Is that always better?
 
 Ask the room before giving your own view.""",
 
-    "takeaways": """Say: Four things to remember.
+    "takeaways": """Terms: as on earlier slides.
 
-One: LLM knowledge can enter a recommender in two forms, a vector for searching and short trainable codes for ranking.
+Say: Four things to remember.
 
-Two: better training data for the LLM made the codes much cleaner, more than the new quantizer did.
+One: LLM knowledge enters a recommender in two forms: the LLM embedding for GSU retrieval and learnable semantic IDs for the ESU.
 
-Three: code collisions are easy to measure and worth reporting.
+Two: better LLM embeddings (cleaner alignment data and training) made the semantic IDs far less crowded, more than FSQ did.
 
-Four: convincing in production, weak on showing which part matters.
+Three: SID collision rate and EdgeNum are cheap diagnostics worth reporting.
+
+Four: convincing in production, thin on ablations.
 
 Thank you. Questions?""",
 }
