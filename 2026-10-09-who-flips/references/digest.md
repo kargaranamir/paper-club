@@ -209,3 +209,10 @@ Authors: MMLU only, a single challenge, no tested mitigation, no incorrect-to-co
 26. source-audit
 27. discussion-questions
 28. takeaways
+
+
+## Figure revision
+
+Visual reference: https://kshkrvea.github.io/lid-calibration/report/ (inspected 9 October 2026). Its connected sweeps, explicit uncertainty and repeated panels informed the redesign; no GlotLID data are used in this deck.
+
+Slides 10, 11, 13, 15, 17, 19 and 22 now use small multiples, connected model-size plots, model-role scatterplots and point/interval comparisons. All marks and labels remain native editable Excalidraw elements. Numerical inputs are unchanged. Slide 19 reconstructs EP and EA as unweighted off-diagonal column and row means of the whole-percent cells printed in Figure 4. These approximate coordinates are not raw-data estimates and are labeled accordingly. The layout follows the conceptual comparison of Figure 5. Slide 11 uses total model-size labels, including the Qwen 35B mixture-of-experts model; it does not equate size with active compute.

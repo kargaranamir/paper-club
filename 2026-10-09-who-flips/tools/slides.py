@@ -55,6 +55,27 @@ def paired(s,left,right,deltas,ci,kind):
   s.text(1370,y,f'+{deltas[i]:.1f} ± {ci[i]:.1f}',24,P['purple']['text'],anchor='c',valign='m')
  s.text(80,176,'Blue: blind / same source',22,P['blue']['text']); s.text(650,176,'Orange: '+kind,22,P['orange']['text'])
 
+
+# Reusable chart coordinates; all marks remain editable Excalidraw elements.
+SHORT=['Llama 8B','Llama 70B','Qwen 4B','Qwen 9B','GPT-5.1','Gemma 26B','Qwen 35B']
+COLORS=['red','orange','purple','purple','blue','green','purple']
+
+def xy_axes(s,x,y,w,h,xmax=100,ymax=100,xticks=(0,25,50,75,100),yticks=(0,25,50,75,100)):
+ for v in yticks:
+  yy=y+h-h*v/ymax
+  s.line([(x,yy),(x+w,yy)],P['grid'],1,roughness=0)
+  s.text(x-14,yy,str(v),20,P['muted'],anchor='r',valign='m')
+ for v in xticks:
+  xx=x+w*v/xmax
+  s.line([(xx,y),(xx,y+h)],P['grid'],1,roughness=0)
+  s.text(xx,y+h+15,str(v),20,P['muted'],anchor='c')
+ s.line([(x,y),(x,y+h),(x+w,y+h)],P['faint'],2,roughness=0)
+ return lambda a,b:(x+w*a/xmax,y+h-h*b/ymax)
+
+def mark_label(s,xy,label,c,dx=15,dy=-22):
+ dot(s,*xy,c,9)
+ s.text(xy[0]+dx,xy[1]+dy,label,24,P[c]['text'])
+
 def s01(n):
  s=Slide('title',n);s.text(70,90,'PAPER CLUB  /  9 OCTOBER 2026',21,P['muted'])
  s.text(70,150,'Who Flips?',88)
@@ -134,18 +155,36 @@ def s09(n):
  return end(s,'Table 2; whiskers show reported 95% CI','Even the most stable model here flips on 17.5% of eligible challenges.')
 
 def s10(n):
- s=base('argument-length',n,'Longer arguments have model-dependent effects',part='Results')
- rows=[[m]+[f'{v:.1f}' for v in a]+[f'{a[-1]-a[0]:+.1f}'] for m,a in zip(MODELS,AFR)]
- s.table(70,178,[430,170,170,170,170,350],rows,['blind AFR (%)','k = 1','k = 3','k = 5','k = 10','k10 minus k1 (pp)'],fs=25,rh=62)
- s.text(85,717,'Across-model means: 48.4, 47.3, 48.5, 50.2%. The average hides opposite trends.',25,P['muted'])
- return end(s,'Table 2; all per-cell CIs in references/digest.md','Qwen 4B and 9B increase most; the paper reports no significant downward trends.')
+ s=base('argument-length',n,'Longer arguments push models in different directions','Seven small multiples; identical 0–100% axes; whiskers show reported 95% CIs','Results')
+ for i in range(7):
+  col,row=i%4,i//4; x=110+col*370;y=225+row*285;w=270;h=155
+  s.text(x,y-43,SHORT[i],26,P[COLORS[i]]['text'])
+  f=xy_axes(s,x,y,w,h,10,100,(1,3,5,10),(0,50,100))
+  pts=[f(k,v) for k,v in zip(K,AFR[i])]
+  s.line(pts,P[COLORS[i]]['stroke'],3,roughness=0)
+  for k,v,ci in zip(K,AFR[i],AFR_CI[i]):
+   a,b=f(k,v-ci),f(k,v+ci);dot(s,*f(k,v),COLORS[i],5);s.line([a,b],P[COLORS[i]]['text'],1,roughness=0)
+   for xx,yy in (a,b): s.line([(xx-4,yy),(xx+4,yy)],P[COLORS[i]]['text'],1,roughness=0)
+  s.text(x+w,y+h+44,f'{AFR[i][-1]-AFR[i][0]:+.1f} pp: k1 → k10',19,P[COLORS[i]]['text'],anchor='r')
+ s.text(1220,510,'Argument length k\n= 1, 3, 5, 10 sentences\n\nQwen 4B and 9B rise;\nseveral others fall.',25)
+ return end(s,'Table 2; points connected only to guide the eye','Pooling all models hides opposing trends; downward trends were not significant.')
 
 def s11(n):
- s=base('model-scale',n,'Size tracks stability within Qwen, but not across families',part='Results')
- s.text(75,172,'Qwen3.5 family: mean blind AFR (%)',29,P['blue']['text'])
- s.grouped_bars(140,245,750,410,['4B','9B','35B'],[[64.3,39.3,17.5]],0,100,[0,25,50,75,100],['blue'],values=True,fs=25)
- panel(s,1000,220,530,370,'Across families','Llama-3.3-70B: 75.8%\nQwen3.5-9B: 39.3%\n\nParameter count alone\ndoes not order these\nmodels by stability.','orange',28)
- return end(s,'Table 2; §5.1','This comparison is descriptive: model families differ in more than size.')
+ s=base('model-scale',n,'Size tracks stability within Qwen, but not across families','Mean blind AFR (%) versus reported model size; Qwen and Llama family members','Results')
+ f=xy_axes(s,155,225,1030,430,80,100,(0,20,40,60,80))
+ s.text(155,172,'Mean blind AFR (%) ↓',26,P['muted'])
+ for indices,sizes,c in [([2,3,6],[4,9,35],'purple'),([0,1],[8,70],'orange')]:
+  pts=[f(a,MEAN[i]) for a,i in zip(sizes,indices)]
+  s.line(pts,P[c]['stroke'],3,roughness=0)
+  for a,i in zip(sizes,indices):
+   xx,yy=f(a,MEAN[i]);mark_label(s,(xx,yy),SHORT[i],c,15,-30)
+   ends=[f(a,MEAN[i]-MEAN_CI[i]),f(a,MEAN[i]+MEAN_CI[i])]
+   s.line(ends,P[c]['text'],2,roughness=0)
+   for ex,ey in ends:s.line([(ex-5,ey),(ex+5,ey)],P[c]['text'],1,roughness=0)
+ s.text(660,704,'Reported parameters (billions)',27,anchor='c')
+ s.text(1250,295,'Qwen3.5',30,P['purple']['text']);s.text(1250,350,'64.3% → 17.5%',25)
+ s.text(1250,465,'Llama',30,P['orange']['text']);s.text(1250,520,'97.3% → 75.8%',25)
+ return end(s,'Table 2; whiskers: 95% CIs; total size labels; Qwen 35B is MoE','Total parameter labels differ from active compute; these are not controlled scaling runs.')
 
 def s12(n):
  s=base('self-attribution',n,'Calling it “your earlier reasoning” increases flips','Same items, same argument; only attribution changes','Results')
@@ -153,10 +192,14 @@ def s12(n):
  return end(s,'Table 3; change ± reported 95% CI half-width','Mean self-attribution delta: +7.1 pp. Qwen3.5-4B shifts by +18.7 pp.')
 
 def s13(n):
- s=base('refusal-vs-resistance',n,'Refusing to write a wrong argument differs from resisting it',part='Results')
- s.table(70,175,[430,340,300,390],[[m,f'{a:.1f}%',f'{b:+.1f} pp',f'{c:.1f}%'] for m,a,b,c in zip(MODELS,CRR,RSS,COMBINED)],['model','generation refusal','refusal selectivity','later AFR (blind + self)'],fs=24,rh=64)
- s.text(80,728,'Selectivity = refusal on initially correct items minus refusal on initially incorrect items.',24,P['muted'])
- return end(s,'Table 4; §5.3','Llama-3.1-8B: 41.3% refusal yet 97.5% AFR. These measure distinct behaviors.')
+ s=base('refusal-vs-resistance',n,'Refusal and resistance are different behaviors','Each point is a model: generating the wrong argument versus later answering it','Results')
+ f=xy_axes(s,160,235,960,425,50,100,(0,10,20,30,40,50))
+ s.text(160,180,'Later AFR, blind + self (%) ↑',26,P['muted'])
+ offsets=[(-185,-40),(16,-25),(16,18),(16,-28),(-10,28),(16,-23),(16,4)]
+ for i in range(7): mark_label(s,f(CRR[i],COMBINED[i]),SHORT[i],COLORS[i],*offsets[i])
+ s.text(630,711,'Wrong-argument generation refusal (%) →',27,anchor='c')
+ panel(s,1200,250,330,350,'Two decisions','Llama 8B refuses\n41.3% of generation\nattempts.\n\nOn eligible challenges,\nit later flips 97.5%.','orange',25)
+ return end(s,'Table 4; later AFR is conditional; no fitted trend or causal claim','A model can refuse many requests yet remain vulnerable when an argument exists.')
 
 def s14(n):
  s=base('linguistic-correlates',n,'Language differs between held and flipped answers','Descriptive associations from lexical features, not causal explanations','Results')
@@ -166,9 +209,16 @@ def s14(n):
  return end(s,'§5.4; Figure 2; Appendix B','Response markers partly describe the outcome; they do not establish why it happened.')
 
 def s15(n):
- s=base('subject-domains',n,'Instability also varies by subject','Selected subjects; averages pool models, lengths and attribution conditions','Results')
- bars(s,[v[0] for v in SUBJECTS],[v[1] for v in SUBJECTS],[v[2] for v in SUBJECTS],x=490,w=860,gap=75,colors=['orange']*3+['green']*3)
- return end(s,'Table 5; selected extremes; whiskers: reported 95% CI','Moral disputes: 80.8%. Elementary mathematics: 20.9%. Causes remain untested.')
+ s=base('subject-domains',n,'Subject differences are large, even with uncertainty','Selected extremes; averages pool models, lengths and attribution conditions','Results')
+ x,w=540,850;axis_h(s,x,220,w)
+ for i,(lab,v,ci) in enumerate(SUBJECTS):
+  y=260+i*72;c='orange' if i<3 else 'green'
+  s.text(x-25,y,lab,27,anchor='r',valign='m')
+  s.line([(x+w*(v-ci)/100,y),(x+w*(v+ci)/100,y)],P[c]['text'],4,roughness=0)
+  dot(s,x+w*v/100,y,c,9)
+  s.text(x+w*(v+ci)/100+23,y,f'{v:.1f}%',25,P[c]['text'],valign='m')
+ s.text(x,177,'AFR (%) · point estimate and 95% interval',25,P['muted'])
+ return end(s,'Table 5; six selected subjects, not the full 57-subject distribution','The two selected extremes differ by 59.9 pp; this does not explain the causes.')
 
 def s16(n):
  s=base('cross-matrix',n,'Who writes the argument, and who is challenged?','Blind, k = 10. Rows = source, columns = target. Values rounded as in Figure 4.','Cross-model results')
@@ -183,10 +233,18 @@ def s16(n):
  return end(s,'Figure 4; diagonal: same source, off-diagonal: cross source','Many sources can destabilize the same vulnerable target, but source effects remain.')
 
 def s17(n):
- s=base('cross-vs-same',n,'A different source does not increase flips on average','Compare same-source blind AFR with mean cross-source AFR at k = 10','Cross-model results')
- rows=[[m,f'{a[-1]:.1f}',f'{c:.1f}',f'{d:+.1f} ± {ci:.1f}'] for m,a,c,d,ci in zip(MODELS,AFR,CROSS,CROSS_DELTA,CROSS_CI)]
- s.table(70,190,[460,320,320,360],rows,['target','same source (%)','cross source (%)','change (pp), 95% CI'],fs=26,rh=66)
- return end(s,'Table 6; averages over the other six source models','Mean change: -1.6 pp. Opposing target-specific effects disappear in that average.')
+ s=base('cross-vs-same',n,'Changing the source helps some targets and hurts others','Cross-source minus same-source blind AFR at k = 10; reported 95% intervals','Cross-model results')
+ x,w=560,780;lo,hi=-15,10
+ fx=lambda v:x+w*(v-lo)/(hi-lo)
+ for v in [-15,-10,-5,0,5,10]:
+  xx=fx(v);s.line([(xx,230),(xx,690)],P['faint'] if v==0 else P['grid'],2 if v==0 else 1,roughness=0)
+  s.text(xx,705,f'{v:+d}' if v else '0',21,P['muted'],anchor='c')
+ s.text(620,175,'fewer flips',27,P['green']['text']);s.text(1155,175,'more flips',27,P['orange']['text'])
+ for i,m in enumerate(MODELS):
+  y=260+61*i;v=CROSS_DELTA[i];ci=CROSS_CI[i];c='green' if v<0 else 'orange'
+  s.text(490,y,m,26,anchor='r',valign='m');s.line([(fx(v-ci),y),(fx(v+ci),y)],P[c]['text'],4,roughness=0);dot(s,fx(v),y,c,9)
+  s.text(1430,y,f'{v:+.1f}',26,P[c]['text'],anchor='c',valign='m')
+ return end(s,'Table 6; mean change -1.6 pp; changes retained as printed','A near-zero average conceals target-specific changes in both directions.')
 
 def s18(n):
  s=base('variance-decomposition',n,'Target susceptibility explains most reported variance',part='Cross-model results')
@@ -198,11 +256,22 @@ def s18(n):
  return end(s,'§5.6; reported components sum to 98.0%','Source identity contributes, but target identity dominates this analysis.')
 
 def s19(n):
- s=base('source-and-target-roles',n,'Resistance and persuasive errors are separate roles',part='Cross-model results')
- panel(s,70,180,700,430,'EP: susceptibility as a target','Average a target column,\nexcluding the diagonal.\n\nHow often do other models’\narguments flip this target?\n\nLower EP means more resistance.','blue',30)
- panel(s,830,180,700,430,'EA: efficacy as a source','Average a source row,\nexcluding the diagonal.\n\nHow often does this source’s\nwrong argument flip other models?\n\nHigher EA means more effective errors.','orange',30)
- s.text(80,670,'Llama-3.1-8B: EP about 99%, EA about 24% (paper’s rounded summary).',28)
- return end(s,'Definition 5.3; §5.6; Figure 5','The strongest sources of wrong arguments can also be among the most stable targets.')
+ s=base('source-and-target-roles',n,'Strong sources of errors can be resistant targets','Figure 5 concept, redrawn from off-diagonal means of the rounded Figure 4 matrix','Cross-model results')
+ f=xy_axes(s,165,230,930,425,100,100)
+ s.line([f(0,0),f(100,100)],P['faint'],2,dashed=True,roughness=0)
+ s.text(175,177,'Argument efficacy as a source, EA (%) ↑',26,P['muted'])
+ s.text(610,710,'Susceptibility as a target, EP (%) →',27,anchor='c')
+ s.text(675,245,'EA = EP',23,P['muted'])
+ ep=[sum(MATRIX[r][j] for r in range(7) if r!=j)/6 for j in range(7)]
+ ea=[sum(v for j,v in enumerate(row) if j!=i)/6 for i,row in enumerate(MATRIX)]
+ names=['GPT-5.1','Gemma 26B','Llama 8B','Llama 70B','Qwen 35B','Qwen 4B','Qwen 9B']
+ cs=['blue','green','red','orange','purple','purple','purple']
+ offsets=[(-110,-52),(28,-12),(-140,12),(-115,15),(-100,22),(20,-22),(-115,15)]
+ for i in range(7):
+  xx,yy=f(ep[i],ea[i]);dx,dy=offsets[i]
+  s.line([(xx,yy),(xx+dx+45,yy+dy+14)],P['faint'],1,roughness=0);mark_label(s,(xx,yy),names[i],cs[i],dx,dy)
+ panel(s,1170,230,360,400,'Reading the map','Upper left:\nstrong wrong arguments,\nresistant target.\n\nLower right:\nweaker wrong arguments,\nvulnerable target.\n\nPositions are approximate.','blue',25)
+ return end(s,'Definition 5.3; Figures 4–5; means of rounded cells, not raw-data estimates','The two roles are distinct: being hard to persuade does not prevent persuading others.')
 
 def s20(n):
  s=base('maxflip-selection',n,'MaxFlip selects a strong argument for each question',part='MaxFlip')
@@ -219,10 +288,14 @@ def s21(n):
  return end(s,'Table 7; change ± reported 95% CI half-width','Qwen3.5-9B: +23.6 pp. GPT-5.1: +2.4 pp, not statistically significant.')
 
 def s22(n):
- s=base('maxflip-producers',n,'Stable targets often supply the selected wrong arguments','Producer shares as printed in Table 7; not renormalized','MaxFlip')
- idx=[4,5,6,2,1,3,0]
- bars(s,[MODELS[i] for i in idx],[PRODUCER[i] for i in idx],x=450,w=810,maxv=30,colors=['blue','blue','blue','orange','orange','orange','gray'])
- return end(s,'Table 7; published shares sum to 96.1%, not 100%; see audit','GPT-5.1 supplies 24.4% of the selected arguments; Llama-3.1-8B supplies 3.7%.')
+ s=base('maxflip-producers',n,'Stable targets often supply selected wrong arguments','Producer share versus standard same-source blind AFR at k = 10','MaxFlip')
+ f=xy_axes(s,170,235,1000,425,100,30,(0,25,50,75,100),(0,10,20,30))
+ s.text(170,178,'Share of selected arguments (%) ↑',26,P['muted'])
+ offsets=[(-155,-32),(-145,-30),(16,-22),(16,-20),(16,-32),(16,3),(16,3)]
+ for i in range(7): mark_label(s,f(AFR[i][-1],PRODUCER[i]),SHORT[i],COLORS[i],*offsets[i])
+ s.text(670,711,'Standard AFR as a target (%) →',27,anchor='c')
+ panel(s,1240,275,290,305,'Published shares','GPT-5.1: 24.4%\nLlama 8B: 3.7%\n\nShares sum to 96.1%.\nShown as printed;\nnot renormalized.','gray',24)
+ return end(s,'Table 7; descriptive model-level comparison','The most vulnerable target contributes the smallest published producer share.')
 
 def s23(n):
  s=base('controls-and-scope',n,'What the design controls, and what can still vary',part='Discussion')

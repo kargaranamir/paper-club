@@ -71,7 +71,7 @@ The bar chart reproduces mean blind AFR and its reported 95% CI half-width from 
 
 ![slide 10](svg/10-argument-length.svg)
 
-The two smaller Qwen models rise from 61.4 to 71.9 and from 36.3 to 45.8 when going from one to ten sentences. The authors call these increases significant using non-overlapping endpoint intervals. The more stable models have downward endpoint changes, but the paper does not report them as significant. Llama-70B is nonmonotonic, falling at k = 3 before rising. Note a source inconsistency: the across-model mean at k = 3 is 47.3, so the prose's range 48.4–50.2 omits the actual minimum. Also, the claim that five models vary by under 4 pp across all k conflicts with Llama-70B's 9.7 pp range. The displayed table and full digest retain published cells and CIs. Source: Table 2, §5.1.
+The two smaller Qwen models rise from 61.4 to 71.9 and from 36.3 to 45.8 when going from one to ten sentences. The authors call these increases significant using non-overlapping endpoint intervals. The more stable models have downward endpoint changes, but the paper does not report them as significant. Llama-70B is nonmonotonic, falling at k = 3 before rising. Note a source inconsistency: the across-model mean at k = 3 is 47.3, so the prose's range 48.4–50.2 omits the actual minimum. Also, the claim that five models vary by under 4 pp across all k conflicts with Llama-70B's 9.7 pp range. The small multiples share a 0–100% scale and show every published cell and CI. Lines guide the eye; k is requested length, not time. Source: Table 2, §5.1.
 
 ## 11. model scale
 
@@ -89,7 +89,7 @@ Each line joins mean blind AFR to mean self-attributed AFR for one model. The ri
 
 ![slide 13](svg/13-refusal-vs-resistance.svg)
 
-CRR is the proportion of Stage I argument-generation requests refused. RSS compares refusal rates on questions the model later answers correctly versus incorrectly at baseline. The last column averages AFR over blind and self conditions, so it differs from the blind-only chart. The contrast between Llama-8B and GPT-5.1 shows why generation refusal cannot substitute for a separate resistance measurement: Llama refuses 41.3% but has 97.5% combined AFR, whereas GPT refuses 0.1% and has 26.9% AFR. The paper does not claim a monotonic correlation across all models. Small RSS values support only a limited relationship to baseline correctness, not a direct measurement of whether a model internally “knows” something. Source: Table 4, Definition 5.2, §5.3.
+CRR is the proportion of Stage I argument-generation requests refused. RSS compares refusal rates on questions the model later answers correctly versus incorrectly at baseline. The vertical axis averages AFR over blind and self conditions, so it differs from the blind-only chart. The contrast between Llama-8B and GPT-5.1 shows why generation refusal cannot substitute for a separate resistance measurement: Llama refuses 41.3% but has 97.5% combined AFR, whereas GPT refuses 0.1% and has 26.9% AFR. The paper does not claim a monotonic correlation across all models. Small RSS values support only a limited relationship to baseline correctness, not a direct measurement of whether a model internally “knows” something. Source: Table 4, Definition 5.2, §5.3.
 
 ## 14. linguistic correlates
 
@@ -113,7 +113,7 @@ The row is the model that generated the wrong argument; the column is the challe
 
 ![slide 17](svg/17-cross-vs-same.svg)
 
-This table uses the paper's more precise aggregated cross-source AFR values. The baseline is same-source blind at ten sentences. Each cross average is over the other six sources. Llama-8B, Llama-70B and Qwen-9B increase under peer challenge; Qwen-4B, GPT and Gemma decrease. Qwen-35B's reported decrease is not significant. The paper's mean change is -1.6 pp, so switching source is not a uniformly stronger challenge. This does not conflict with MaxFlip: averaging all other sources and selecting the strongest argument per question are different operations. The CI column is the reported delta interval half-width, not a new independent test computed from rounded data. Source: Table 6, §5.6.
+This interval plot uses the paper's reported cross-minus-same deltas. The baseline is same-source blind at ten sentences. Each cross average is over the other six sources. Llama-8B, Llama-70B and Qwen-9B increase under peer challenge; Qwen-4B, GPT and Gemma decrease. Qwen-35B's reported decrease is not significant. The paper's mean change is -1.6 pp, so switching source is not a uniformly stronger challenge. This does not conflict with MaxFlip: averaging all other sources and selecting the strongest argument per question are different operations. The whiskers use the reported delta interval half-width, not a new independent test computed from rounded data. Source: Table 6, §5.6.
 
 ## 18. variance decomposition
 
@@ -125,7 +125,7 @@ The authors attribute 76.7% of total variance to baseline/target susceptibility,
 
 ![slide 19](svg/19-source-and-target-roles.svg)
 
-Epistemic Porosity averages off-diagonal values down a target's column: how often it flips under other sources. Epistemic Authority averages across a source's row: how often its wrong arguments flip other targets. Both are benchmark summaries and the word authority does not imply truthfulness. The authors describe GPT-5.1, Qwen-35B and Gemma as strong exporters of wrong arguments while comparatively resistant themselves. Llama-8B has rounded EP 99% and EA 24%. Table 6 gives Gemma EP 18.1%, so we avoid repeating the prose's strict “at most 18%” bound. No scatter coordinates were estimated from the figure image. Source: Definition 5.3, §5.6, Figure 5.
+Epistemic Porosity averages off-diagonal values down a target's column: how often it flips under other sources. Epistemic Authority averages across a source's row: how often its wrong arguments flip other targets. Both are benchmark summaries and the word authority does not imply truthfulness. The authors describe GPT-5.1, Qwen-35B and Gemma as strong exporters of wrong arguments while comparatively resistant themselves. Llama-8B has rounded EP 99% and EA 24%. Table 6 gives Gemma EP 18.1%, so we avoid repeating the prose's strict “at most 18%” bound. The scatter is reconstructed by averaging the whole-percent off-diagonal cells printed in Figure 4. Both axes are therefore approximate, rather than the raw-data estimates in Figure 5 or the more precise EP values in Table 6. The equality line separates greater source efficacy from greater target susceptibility; it is not a fitted trend. Source: Definition 5.3, §5.6, Figure 5.
 
 ## 20. maxflip selection
 
@@ -143,7 +143,7 @@ The largest gain is Qwen3.5-9B, rising from 45.8% standard AFR to 69.4% under Ma
 
 ![slide 22](svg/22-maxflip-producers.svg)
 
-The bars reproduce the Producer % column of Table 7, sorted for readability. GPT contributes the largest printed share at 24.4%, followed by Gemma at 21.5%. Llama-8B contributes 3.7%. These are shares of the curated arguments attributed to each producer, not flip rates for that producer as a target. The seven printed shares sum to 96.1%. Rounding to one decimal cannot plausibly explain a 3.9-point shortfall across seven exhaustive categories. We preserve the reported numbers, label the discrepancy and do not create an “other” category or renormalize. The underlying records would be required to resolve the denominator or omission. Source: Table 7.
+The scatter pairs the Producer % column of Table 7 on the vertical axis with standard same-source blind k = 10 AFR on the horizontal axis. This reveals each model’s two roles without treating the incomplete shares as a whole. GPT contributes the largest printed share at 24.4%, followed by Gemma at 21.5%. Llama-8B contributes 3.7%. These are shares of the curated arguments attributed to each producer, not flip rates for that producer as a target. The seven printed shares sum to 96.1%. Rounding to one decimal cannot plausibly explain a 3.9-point shortfall across seven exhaustive categories. We preserve the reported numbers, label the discrepancy and do not create an “other” category or renormalize. The underlying records would be required to resolve the denominator or omission. Source: Table 7.
 
 ## 23. controls and scope
 

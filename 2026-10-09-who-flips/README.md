@@ -24,6 +24,10 @@ Download `slides/index.html` and open it in a browser. It embeds the slide image
 
 The source audit distinguishes minor rounding differences from larger prose/table inconsistencies. In particular, the producer shares remain exactly as printed, even though they sum to 96.1%. All reported effects retain their conditions; the blind average over lengths is not confused with the k = 10 baseline used for MaxFlip.
 
+## Figures
+
+The visual revision replaces seven table/bar or text-heavy slides with argument-length small multiples, connected size trajectories, refusal and producer scatterplots, uncertainty intervals, and the paper’s source-versus-target map. Marks and labels remain editable in Excalidraw. The [GlotLID calibration report](https://kshkrvea.github.io/lid-calibration/report/) inspired the use of connected comparisons and repeated panels. Slide 19 uses approximate means reconstructed from Figure 4’s rounded matrix, clearly distinguished from raw-data estimates.
+
 ## Rebuild
 
 Requirements: Python 3, Node.js, npm, Chrome/Chromium, and Poppler (`pdfunite`). Install Python dependencies in a virtual environment:
