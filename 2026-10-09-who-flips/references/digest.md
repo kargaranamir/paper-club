@@ -144,7 +144,7 @@ Values are whole percentages transcribed from the source PDF figure. Diagonal: s
 
 - Target susceptibility: 76.7% of reported total variance, 95% CI [74.8, 78.7]. Source: 12.0% [10.1, 14.5]. Subject: 9.3% [9.2, 13.6]. The listed components sum to 98.0%; no remainder label is inferred.
 - EP averages off-diagonal column values (target susceptibility). EA averages off-diagonal row values (source efficacy). These are behavioral summaries, not measures of factual authority.
-- Paper describes GPT, Qwen-35B and Gemma as strong exporters. Llama-8B has rounded EP 99%, EA 24%. The deck does not estimate unprinted scatter coordinates.
+- Paper describes GPT, Qwen-35B and Gemma as strong exporters. Llama-8B has rounded EP 99%, EA 24%. The deck reproduces the vector marker positions from Figure 5; extraction provenance is recorded separately.
 
 ## MaxFlip (Table 7)
 
@@ -182,37 +182,36 @@ Authors: MMLU only, a single challenge, no tested mitigation, no incorrect-to-co
 ## Slide map
 
 1. title
-2. one-slide
-3. toy-example
-4. two-stage-protocol
-5. afr-denominator
-6. three-conditions
-7. experimental-setup
-8. coverage-and-ci
-9. blind-afr
-10. argument-length
-11. model-scale
-12. self-attribution
-13. refusal-vs-resistance
-14. linguistic-correlates
-15. subject-domains
-16. cross-matrix
-17. cross-vs-same
-18. variance-decomposition
-19. source-and-target-roles
-20. maxflip-selection
-21. maxflip-results
-22. maxflip-producers
-23. controls-and-scope
-24. strengths
-25. limitations
-26. source-audit
-27. discussion-questions
-28. takeaways
+2. toy-example
+3. two-stage-protocol
+4. afr-denominator
+5. blind-afr
+6. argument-length
+7. self-attribution
+8. subject-domains
+9. two-roles
+10. cross-matrix
+11. source-and-target-roles
+12. cross-vs-same
+13. maxflip-selection
+14. maxflip-results
+15. maxflip-producers
+16. refusal-vs-resistance
+17. limitations
+18. held-out-transfer
+19. balanced-revision
+20. takeaways
+21. experimental-setup (backup)
+22. three-conditions (backup)
+23. all-model-lengths (backup)
+24. coverage-and-ci (backup)
+25. model-scale (backup)
+26. linguistic-correlates (backup)
+27. variance-decomposition (backup)
+28. source-audit (backup)
 
+## Revised Excalidraw presentation
 
-## Figure revision
+The main talk has 20 slides plus eight backups. It uses point-and-interval charts, model trajectories, a sequential cross-model matrix, role comparisons and editable protocol/selection diagrams. Source values and confidence intervals are preserved. The MaxFlip schematic uses explicitly illustrative candidates and outcomes.
 
-Visual reference: https://kshkrvea.github.io/lid-calibration/report/ (inspected 9 October 2026). Its connected sweeps, explicit uncertainty and repeated panels informed the redesign; no GlotLID data are used in this deck.
-
-Slides 10, 11, 13, 15, 17, 19 and 22 now use small multiples, connected model-size plots, model-role scatterplots and point/interval comparisons. All marks and labels remain native editable Excalidraw elements. Numerical inputs are unchanged. Slide 19 reconstructs EP and EA as unweighted off-diagonal column and row means of the whole-percent cells printed in Figure 4. These approximate coordinates are not raw-data estimates and are labeled accordingly. The layout follows the conceptual comparison of Figure 5. Slide 11 uses total model-size labels, including the Qwen 35B mixture-of-experts model; it does not equate size with active compute.
+The source/target plot reproduces Figure 5 positions recovered from the original vector PDF, using tick locations to calibrate marker centers. See [ea-ep-provenance.json](ea-ep-provenance.json). These are graphical reconstructions, not new raw-data estimates. They replace the previous approximation that averaged Figure 4's rounded whole-percent cells. The original figure, Table 6 and rounded-cell means are kept distinct.

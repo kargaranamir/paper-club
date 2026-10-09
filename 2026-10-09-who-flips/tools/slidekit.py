@@ -19,17 +19,18 @@ W, H = 1600, 900
 # Taken from the reference figure (Excalidraw pastel blocks on white).
 P = {
     "ink": "#1e1e1e",
-    "muted": "#6b6f76",
+    "muted": "#59666b",
     "faint": "#adb5bd",
     "grid": "#e9ecef",
     "paper": "#f1f3f5",
     "orange": {"stroke": "#e8a33d", "fill": "#f9d8aa", "text": "#b5690b", "soft": "#fdf0dc"},
-    "blue": {"stroke": "#5b9be6", "fill": "#b8d6fb", "text": "#2c68c9", "soft": "#eaf2fd"},
+    "blue": {"stroke": "#007f88", "fill": "#ccecef", "text": "#005e65", "soft": "#edf8f7"},
     "green": {"stroke": "#5cbf6a", "fill": "#d9f5dc", "text": "#2f8a3d", "soft": "#effaf0"},
+    "cyan": {"stroke": "#3279a8", "fill": "#d9edf8", "text": "#236087", "soft": "#f1f8fc"},
     "purple": {"stroke": "#8a63e8", "fill": "#e3dcfb", "text": "#6a45c9", "soft": "#f3effd"},
     "yellow": {"stroke": "#1e1e1e", "fill": "#fdf3c4", "text": "#1e1e1e", "soft": "#fffae3"},
     "gray": {"stroke": "#ced4da", "fill": "#f1f3f5", "text": "#495057", "soft": "#f8f9fa"},
-    "red": {"stroke": "#e8590c", "fill": "#ffd8c2", "text": "#c2410c", "soft": "#fff1e8"},
+    "red": {"stroke": "#c33d70", "fill": "#f9dce7", "text": "#a32354", "soft": "#fdf0f5"},
 }
 
 # ---------------------------------------------------------------- text metrics
@@ -51,8 +52,8 @@ def _load(fam):
     return adv
 
 
-def text_width(s, fs, mono=False):
-    adv = _load("ComicShanns" if mono else "Excalifont")
+def text_width(s, fs, mono=False, hand=False):
+    adv = _load("ComicShanns" if mono else "Excalifont" if hand else "Liberation")
     best = 0.0
     for line in s.split("\n"):
         w = 0.0
@@ -116,7 +117,7 @@ class Slide:
         return el
 
     # -------------------------------------------------- primitives
-    def text(self, x, y, s, fs=26, color=None, anchor="l", valign="t", mono=False, align=None, opacity=None):
+    def text(self, x, y, s, fs=26, color=None, anchor="l", valign="t", mono=False, align=None, opacity=None, hand=False):
         """Standalone text. anchor l/c/r is horizontal reference, valign t/m/b vertical."""
         h = text_height(s, fs)
         if valign == "m":
@@ -128,15 +129,15 @@ class Slide:
             # one left-aligned element per line: renders identically everywhere
             el = None
             for i, ln in enumerate(lines):
-                el = self.text(x, y + i * fs * LH, ln, fs, color, anchor, "t", mono, None, opacity)
+                el = self.text(x, y + i * fs * LH, ln, fs, color, anchor, "t", mono, None, opacity, hand)
             return el
-        w = text_width(s, fs, mono)
+        w = text_width(s, fs, mono, hand)
         if anchor == "c":
             x = x - w / 2
         elif anchor == "r":
             x = x - w
         el = {"type": "text", "x": round(x, 1), "y": round(y, 1), "text": s, "fontSize": fs,
-              "strokeColor": color or P["ink"]}
+              "strokeColor": color or P["ink"], "fontFamily": 5 if hand else 2}
         if mono:
             el["fontFamily"] = 8
         if opacity:
@@ -182,7 +183,7 @@ class Slide:
 
     # -------------------------------------------------- slide furniture
     def title(self, s, sub=None, part=None, pc="blue"):
-        self.text(70, 42, s, 46)
+        self.text(70, 46, s, 48, hand=True)
         if sub:
             self.text(72, 108, sub, 26, P["muted"])
         if part:
@@ -195,7 +196,8 @@ class Slide:
             self.text(W - 60, 868, f"{self.n}", 18, P["faint"], anchor="r", valign="m")
 
     def takeaway(self, s, y=770, x=70, w=W - 140, h=64, fs=26):
-        self.box(x, y, w, h, s, "yellow", fs, sw=2)
+        self.line([(x,y),(x+w,y)], P["blue"]["stroke"], 2, roughness=0)
+        self.text(x, y+16, s, fs, P["blue"]["text"])
 
     def bullets(self, x, y, items, fs=26, color=None, gap=14, dot="•", dcolor=None, width=None):
         cy = y

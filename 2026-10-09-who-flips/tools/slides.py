@@ -7,11 +7,12 @@ from data import *
 SRC='Who Flips? arXiv:2606.16011v2'
 
 def base(slug,n,title,sub='',part=''):
+ if n>20: part='Backup' if part=='Backup' else 'Backup / '+part
  s=Slide(slug,n); s.title(title,sub,part); return s
 
 def end(s,source,take=None):
- if take: s.takeaway(take,fs=26)
- s.footer(SRC+' | '+source); return s
+ if take: s.takeaway(take,fs=28)
+ s.footer(source); return s
 
 def panel(s,x,y,w,h,title,body,c='blue',fs=28):
  s.box(x,y,w,h,c=c,fill=P[c]['soft']); s.text(x+24,y+22,title,32,P[c]['text'])
@@ -24,7 +25,7 @@ def arr(s,x1,y1,x2,y2,c='ink'):
  s.arrow([(x1,y1),(x2,y2)], P[c] if c=='ink' else P[c]['stroke'])
 
 def dot(s,x,y,c,r=7):
- s.box(x-r,y-r,r*2,r*2,c=c,shape='ellipse',roughness=0,sw=1)
+ s.box(x-r,y-r,r*2,r*2,c=c,fill=P[c]['text'],stroke=P[c]['text'],shape='ellipse',roughness=0,sw=1)
 
 def axis_h(s,x,y,w,maxv=100,ticks=(0,25,50,75,100)):
  for t in ticks:
@@ -58,7 +59,7 @@ def paired(s,left,right,deltas,ci,kind):
 
 # Reusable chart coordinates; all marks remain editable Excalidraw elements.
 SHORT=['Llama 8B','Llama 70B','Qwen 4B','Qwen 9B','GPT-5.1','Gemma 26B','Qwen 35B']
-COLORS=['red','orange','purple','purple','blue','green','purple']
+COLORS=['red','orange','blue','purple','green','cyan','gray']
 
 def xy_axes(s,x,y,w,h,xmax=100,ymax=100,xticks=(0,25,50,75,100),yticks=(0,25,50,75,100)):
  for v in yticks:
@@ -77,56 +78,78 @@ def mark_label(s,xy,label,c,dx=15,dy=-22):
  s.text(xy[0]+dx,xy[1]+dy,label,24,P[c]['text'])
 
 def s01(n):
- s=Slide('title',n);s.text(70,90,'PAPER CLUB  /  9 OCTOBER 2026',21,P['muted'])
- s.text(70,150,'Who Flips?',88)
- s.text(72,272,'Self- and Cross-Model Counterarguments Reveal\nAnswer Instability in LLMs',38)
- s.text(72,390,'Paper authors and affiliations: see the linked arXiv paper',24,P['muted'])
- s.text(72,435,'TUM, MCML, MDSI and LMU Munich',22,P['muted'])
- s.text(72,488,'arXiv:2606.16011v2  /  30 August 2026  /  EMNLP Findings 2026',22,P['muted'],mono=True)
- node(s,72,600,340,94,'Initially correct','green',31);arr(s,427,647,530,647)
- node(s,545,600,440,94,'Plausible wrong argument','orange',29);arr(s,999,647,1100,647)
- node(s,1115,600,410,94,'Still correct?','purple',32)
- s.text(72,740,'Accuracy measures the first answer. Stability tests what happens next.',29,P['blue']['text'])
- return end(s,'Paper title, abstract and protocol; original explanatory drawings')
+ s=Slide('title',n)
+ s.text(75,55,'PAPER CLUB',23,P['blue']['text'],mono=True)
+ s.text(75,120,'Who Flips?',108,hand=True)
+ s.text(80,265,'Self- and Cross-Model Counterarguments\nReveal Answer Instability in LLMs',39)
+ s.text(80,390,'Nafiseh Nikeghbal · Amir Hossein Kargaran\nShaghayegh Kolli · Jana Diesner',26,P['muted'])
+ s.text(80,475,'TUM, MCML, MDSI and LMU Munich',23,P['muted'])
+ s.text(1030,165,'Correct\nfirst.',64,P['green']['text'],hand=True)
+ arr(s,1240,365,1240,435,'blue')
+ s.text(1030,480,'Stable\nnext?',64,P['blue']['text'],hand=True)
+ s.text(80,665,'Evaluate stability\nalongside accuracy.',45,P['blue']['text'],hand=True)
+ s.text(80,809,'arxiv.org/abs/2606.16011v2',23,P['muted'])
+ s.footer('Who Flips? / EMNLP Findings 2026')
+ return s
 
 def s02(n):
- s=base('one-slide',n,'The paper in one slide')
- panel(s,70,168,460,550,'Question','When a model knows the\ncorrect answer, can a wrong\nargument make it change?\n\nTest only initially correct\nanswers after successful\nargument generation.','orange')
- panel(s,567,168,460,550,'Experiment','7 models, 57 MMLU subjects\n2,052 questions\n\nVary argument length,\nself-attribution and the\nmodel that wrote the\nwrong argument.','blue')
- panel(s,1064,168,466,550,'Main results','17.5% to 97.3% mean\nblind answer flip rate\n\n+7.1 pp mean effect of\nself-attribution\n\nMaxFlip: up to +23.6 pp','purple')
- return end(s,'§§3–5; Tables 2, 3 and 7','Answer stability adds a different measurement alongside accuracy.')
+ s=base('two-roles',n,'Arguing and resisting are different abilities','The same two models can exchange roles','Source and target')
+ node(s,105,230,375,145,'GPT-5.1\nsource of an argument','green',32)
+ node(s,1085,230,405,145,'Llama-3.1-8B\ntarget answering again','red',32)
+ arr(s,505,300,1055,300,'red')
+ s.text(780,229,'100% flip rate',39,P['red']['text'],anchor='c')
+ s.text(780,328,'GPT-5.1 argues for a wrong option',25,P['muted'],anchor='c')
+ node(s,105,510,375,145,'GPT-5.1\ntarget answering again','green',32)
+ node(s,1085,510,405,145,'Llama-3.1-8B\nsource of an argument','red',32)
+ arr(s,1055,580,505,580,'green')
+ s.text(780,509,'11% flip rate',39,P['green']['text'],anchor='c')
+ s.text(780,608,'Llama-3.1-8B argues for a wrong option',25,P['muted'],anchor='c')
+ return end(s,'Figure 4 / rounded pairwise AFR / blind, k = 10','An effective source of wrong arguments can also be a resistant target.')
 
 def s03(n):
- s=base('toy-example',n,'A correct answer can be lost after a challenge','Illustrative example for teaching; not a measured paper example','Protocol')
- node(s,70,190,620,140,'Which is prime?\nA: 9     B: 11     C: 15     D: 21','gray',31)
- node(s,70,390,620,110,'Initial answer: B (11)','green',32)
- arr(s,380,337,380,376)
- panel(s,825,190,700,260,'Wrong-option argument','“9 is odd, and odd numbers are prime.\nTherefore A is correct.”\n\nThe premise does not justify the claim.','orange',28)
- arr(s,700,445,810,445)
- node(s,825,520,315,120,'Hold: B\nstill correct','green');node(s,1210,520,315,120,'Flip: A\nnow wrong','red')
- s.text(80,590,'An answer change counts as a flip\nif the final option is any wrong option.',28,P['purple']['text'])
- return end(s,'Protocol definition; toy question and argument written for this deck','Good revision requires checking the argument, not just accepting its conclusion.')
+ s=base('toy-example',n,'A correct answer can be lost after a challenge','Invented teaching example, not a measured question or model response','The question')
+ s.text(80,180,'A fair coin lands heads five times.\nWhat is the probability of heads next?',36)
+ s.text(80,288,'A  1/6       B  1/2       C  5/6       D  1',28,P['muted'])
+ node(s,80,385,440,115,'First answer: B (1/2)','green',35)
+ s.text(80,545,'Each fair flip is independent.',29,P['green']['text'])
+ arr(s,548,442,665,442,'orange')
+ node(s,710,220,800,200,'Wrong argument:\n“After five heads, tails is overdue.\nThe chance of another head must be lower.\nChoose A.”','orange',30)
+ arr(s,1100,442,1100,500,'orange')
+ node(s,710,535,360,130,'HOLD B\nStill correct','green',32)
+ node(s,1150,535,360,130,'FLIP to A\nNow wrong','red',32)
+ return end(s,'Definition 3.1 / illustrative example','The question tests whether the model keeps an answer it already got right.')
 
 def s04(n):
- s=base('two-stage-protocol',n,'Two stages keep generation and challenge separate',part='Protocol')
- s.text(70,175,'Stage I: source model, isolated session',31,P['orange']['text'])
- node(s,70,240,360,130,'Question + wrong option\n+ requested length k','gray')
- arr(s,445,305,515,305);node(s,530,240,370,130,'Generate a committed\nwrong-answer argument','orange')
- arr(s,915,305,985,305);node(s,1000,240,530,130,'Argument exists?\nRefusal excludes this attempt','gray')
- s.text(70,442,'Stage II: target model, fresh session',31,P['blue']['text'])
- for x,w,t,c in [(70,310,'Answer original\nquestion','blue'),(450,310,'Keep only\ncorrect answers','green'),(830,310,'Show Stage I\nargument','orange'),(1210,320,'Answer again\nand score','purple')]: node(s,x,510,w,135,t,c)
- for x in (392,772,1152): arr(s,x,578,x+45,578)
- return end(s,'§3 and Appendix A','The source generates the challenge before the target is evaluated.')
+ s=base('two-stage-protocol',n,'The challenge protocol','Source and target use separate sessions, even when they are the same model','Measurement')
+ s.text(80,180,'SOURCE SESSION',27,P['orange']['text'],mono=True)
+ node(s,80,245,350,115,'Question + wrong option','gray',30)
+ arr(s,452,303,555,303)
+ node(s,580,245,420,115,'Write a committed\nwrong-answer argument','orange',30)
+ arr(s,1025,303,1120,303)
+ s.text(1160,250,'Refusal?\nNo challenge to score.',29,P['muted'])
+ s.line([(80,424),(1520,424)],P['faint'],1,True,0)
+ s.text(80,458,'TARGET SESSION',27,P['blue']['text'],mono=True)
+ for x,w,t,c in [(80,270,'Answer\nthe question','blue'),(435,300,'Keep correct\nfirst answers','green'),(825,300,'Present the\nwrong argument','orange'),(1210,310,'Answer again\nHold or flip?','purple')]:
+  node(s,x,535,w,128,t,c,31)
+ for x1,x2 in [(375,410),(760,800),(1145,1185)]:arr(s,x1,600,x2,600)
+ s.line([(790,368),(790,475),(975,475),(975,515)],P['orange']['stroke'],2,True,0)
+ return end(s,'Protocol, §3 / prompts, Appendix A','Seven models and 57 MMLU subjects test the same two-stage idea.')
 
 def s05(n):
- s=base('afr-denominator',n,'Answer flip rate has a conditional denominator',part='Protocol')
- s.text(110,204,'AFR =',54,P['purple']['text'])
- s.text(875,207,'eligible challenges ending in a wrong answer',33,anchor='c')
- s.line([(360,260),(1430,260)],P['ink'],2)
- s.text(875,287,'initially correct answer + available wrong argument',31,anchor='c')
- panel(s,70,390,700,300,'What AFR answers','Of the eligible challenges, how often\ndid the model lose a correct answer?\n\nA flip need not choose the defended option.','purple',28)
- panel(s,825,390,700,300,'What AFR leaves out','Initially incorrect answers\nRefused generation attempts\n\nIt is not the final error rate on all MMLU.','gray',28)
- return end(s,'Definition 3.1','Report coverage together with AFR so the tested population stays visible.')
+ s=base('afr-denominator',n,'Answer flip rate measures a conditional failure','A challenge is eligible only if the first answer is correct and an argument exists','Measurement')
+ node(s,80,235,520,380,None,'gray')
+ s.text(110,265,'All benchmark questions',32,P['muted'])
+ s.box(115,342,450,235,c='green',fill=P['green']['soft'],roughness=0)
+ s.text(140,365,'Initially correct',30,P['green']['text'])
+ s.box(145,432,390,105,'Wrong argument available','blue',28,roughness=0)
+ s.text(140,637,'Eligibility defines the denominator.',28,P['blue']['text'])
+ s.text(765,225,'AFR',69,P['blue']['text'],hand=True)
+ s.text(1010,247,'Answer flip rate',37)
+ s.text(1115,365,'Eligible challenges ending wrong',32,anchor='c')
+ s.line([(735,419),(1510,419)],P['ink'],3,roughness=0)
+ s.text(1115,451,'All eligible challenges',32,anchor='c')
+ s.text(750,585,'Any final wrong option counts.\nThe defended option need not win.',30,P['muted'])
+ return end(s,'Definition 3.1 / coverage in Table 2','AFR describes losing a correct answer among the challenges that can be tested.')
 
 def s06(n):
  s=base('three-conditions',n,'Attribution and source are different experimental factors',part='Protocol')
@@ -150,24 +173,30 @@ def s08(n):
  return end(s,'§4.2; Table 2; §5.1','Models can be compared on different eligible subsets; that limits ranking claims.')
 
 def s09(n):
- s=base('blind-afr',n,'Mean blind flip rates span almost 80 percentage points','Average over k = 1, 3, 5, 10; lower means more stable','Results')
- bars(s,MODELS,MEAN,MEAN_CI,colors=['red','orange','orange','purple','blue','blue','green'])
- return end(s,'Table 2; whiskers show reported 95% CI','Even the most stable model here flips on 17.5% of eligible challenges.')
+ s=base('blind-afr',n,'Answer stability varies across models','Mean blind AFR, averaged over argument lengths. Lower means more stable.','First result')
+ x,w=495,815
+ for v in (0,25,50,75,100):
+  xx=x+w*v/100;s.line([(xx,216),(xx,683)],P['grid'],1,roughness=0);s.text(xx,702,str(v),23,P['muted'],anchor='c')
+ s.text(1375,170,'AFR',24,P['muted'],anchor='c');s.text(1485,170,'Coverage',22,P['muted'],anchor='c')
+ for i,(m,v,ci) in enumerate(zip(MODELS,MEAN,MEAN_CI)):
+  y=249+i*67;c='red' if i==0 else 'blue'
+  s.text(460,y,m,30,anchor='r',valign='m')
+  s.line([(x+w*(v-ci)/100,y),(x+w*(v+ci)/100,y)],P[c]['text'],3,roughness=0);dot(s,x+w*v/100,y,c,8)
+  s.text(1375,y,f'{v:.1f}%',28,P[c]['text'],anchor='c',valign='m');s.text(1485,y,f'{COVERAGE[i]}%',25,P['muted'],anchor='c',valign='m')
+ s.text(905,738,'Answer flip rate (%)',26,anchor='c')
+ return end(s,'Table 2 / whiskers: reported 95% intervals','Mean blind AFR ranges from 17.5% to 97.3%. Eligible subsets differ by model.')
 
 def s10(n):
- s=base('argument-length',n,'Longer arguments push models in different directions','Seven small multiples; identical 0–100% axes; whiskers show reported 95% CIs','Results')
- for i in range(7):
-  col,row=i%4,i//4; x=110+col*370;y=225+row*285;w=270;h=155
-  s.text(x,y-43,SHORT[i],26,P[COLORS[i]]['text'])
-  f=xy_axes(s,x,y,w,h,10,100,(1,3,5,10),(0,50,100))
-  pts=[f(k,v) for k,v in zip(K,AFR[i])]
-  s.line(pts,P[COLORS[i]]['stroke'],3,roughness=0)
+ s=base('argument-length',n,'Longer arguments are not always stronger','Four selected models. The backup slides show all seven.','Argument design')
+ f=xy_axes(s,150,220,880,440,10,100,(1,3,5,10),(0,25,50,75,100))
+ s.text(150,169,'Blind answer flip rate (%)',27,P['muted'])
+ for i,c in [(0,'red'),(2,'blue'),(3,'purple'),(4,'green')]:
+  pts=[f(k,v) for k,v in zip(K,AFR[i])];s.line(pts,P[c]['text'],3,roughness=0)
   for k,v,ci in zip(K,AFR[i],AFR_CI[i]):
-   a,b=f(k,v-ci),f(k,v+ci);dot(s,*f(k,v),COLORS[i],5);s.line([a,b],P[COLORS[i]]['text'],1,roughness=0)
-   for xx,yy in (a,b): s.line([(xx-4,yy),(xx+4,yy)],P[COLORS[i]]['text'],1,roughness=0)
-  s.text(x+w,y+h+44,f'{AFR[i][-1]-AFR[i][0]:+.1f} pp: k1 → k10',19,P[COLORS[i]]['text'],anchor='r')
- s.text(1220,510,'Argument length k\n= 1, 3, 5, 10 sentences\n\nQwen 4B and 9B rise;\nseveral others fall.',25)
- return end(s,'Table 2; points connected only to guide the eye','Pooling all models hides opposing trends; downward trends were not significant.')
+   xx,yy=f(k,v);s.line([f(k,v-ci),f(k,v+ci)],P[c]['text'],2,roughness=0);dot(s,xx,yy,c,7)
+  xx,yy=pts[-1];s.line([(xx+13,yy),(xx+45,yy)],P[c]['text'],2,roughness=0);s.text(xx+60,yy,MODELS[i],29,P[c]['text'],valign='m')
+ s.text(590,706,'Argument length (sentences)',28,anchor='c')
+ return end(s,'Table 2 / reported 95% intervals','The smaller Qwen models rise. GPT-5.1 shows no clear decrease.')
 
 def s11(n):
  s=base('model-scale',n,'Size tracks stability within Qwen, but not across families','Mean blind AFR (%) versus reported model size; Qwen and Llama family members','Results')
@@ -187,9 +216,21 @@ def s11(n):
  return end(s,'Table 2; whiskers: 95% CIs; total size labels; Qwen 35B is MoE','Total parameter labels differ from active compute; these are not controlled scaling runs.')
 
 def s12(n):
- s=base('self-attribution',n,'Calling it “your earlier reasoning” increases flips','Same items, same argument; only attribution changes','Results')
- paired(s,MEAN,SELF,SAD,SAD_CI,'self-attributed')
- return end(s,'Table 3; change ± reported 95% CI half-width','Mean self-attribution delta: +7.1 pp. Qwen3.5-4B shifts by +18.7 pp.')
+ s=base('self-attribution',n,'Calling it your earlier reasoning increases flips','The argument stays fixed. Only its attribution changes.','Argument design')
+ s.text(80,188,'Same argument',38,P['orange']['text'],hand=True)
+ node(s,80,265,430,100,'Anonymous presentation','gray',30)
+ arr(s,295,390,295,440,'orange')
+ node(s,80,465,430,140,'Claimed to be your\nearlier reasoning','orange',32)
+ s.text(90,640,'Mean change: +7.1 pp',32,P['orange']['text'])
+ x,w=855,500
+ for v in (0,5,10,15,20):
+  xx=x+w*v/20;s.line([(xx,205),(xx,680)],P['grid'],1,roughness=0);s.text(xx,700,str(v),23,P['muted'],anchor='c')
+ for i in range(7):
+  y=245+i*67;s.text(820,y,SHORT[i],28,anchor='r',valign='m')
+  v,ci=SAD[i],SAD_CI[i];s.line([(x+w*(v-ci)/20,y),(x+w*(v+ci)/20,y)],P['orange']['text'],3,roughness=0);dot(s,x+w*v/20,y,'orange',8)
+  s.text(1460,y,f'+{v:.1f}',28,P['orange']['text'],anchor='c',valign='m')
+ s.text(1120,737,'AFR increase (percentage points)',25,anchor='c')
+ return end(s,'Table 3 / reported deltas and 95% intervals','Every reported change is positive. Qwen3.5-4B has the largest increase, +18.7 pp.')
 
 def s13(n):
  s=base('refusal-vs-resistance',n,'Refusal and resistance are different behaviors','Each point is a model: generating the wrong argument versus later answering it','Results')
@@ -209,31 +250,39 @@ def s14(n):
  return end(s,'§5.4; Figure 2; Appendix B','Response markers partly describe the outcome; they do not establish why it happened.')
 
 def s15(n):
- s=base('subject-domains',n,'Subject differences are large, even with uncertainty','Selected extremes; averages pool models, lengths and attribution conditions','Results')
- x,w=540,850;axis_h(s,x,220,w)
+ s=base('subject-domains',n,'Answer stability also varies by subject','Three lowest and three highest subject AFRs, pooled across models and conditions','Domain')
+ x,w=545,770
+ for v in (0,25,50,75,100):
+  xx=x+w*v/100;s.line([(xx,235),(xx,690)],P['grid'],1,roughness=0);s.text(xx,710,str(v),23,P['muted'],anchor='c')
  for i,(lab,v,ci) in enumerate(SUBJECTS):
-  y=260+i*72;c='orange' if i<3 else 'green'
-  s.text(x-25,y,lab,27,anchor='r',valign='m')
-  s.line([(x+w*(v-ci)/100,y),(x+w*(v+ci)/100,y)],P[c]['text'],4,roughness=0)
-  dot(s,x+w*v/100,y,c,9)
-  s.text(x+w*(v+ci)/100+23,y,f'{v:.1f}%',25,P[c]['text'],valign='m')
- s.text(x,177,'AFR (%) · point estimate and 95% interval',25,P['muted'])
- return end(s,'Table 5; six selected subjects, not the full 57-subject distribution','The two selected extremes differ by 59.9 pp; this does not explain the causes.')
+  y=270+i*69;c='red' if i<3 else 'green'
+  s.text(510,y,lab,29,anchor='r',valign='m');s.line([(x+w*(v-ci)/100,y),(x+w*(v+ci)/100,y)],P[c]['text'],3,roughness=0);dot(s,x+w*v/100,y,c,9)
+  s.text(1440,y,f'{v:.1f}%',30,P[c]['text'],anchor='c',valign='m')
+ s.text(545,177,'AFR (%)',28,P['muted'])
+ s.line([(95,447),(1510,447)],P['faint'],1,True,0)
+ return end(s,'Table 5 / reported 95% intervals / selected extremes','These are subject results, not averages of broad domain categories.')
 
 def s16(n):
- s=base('cross-matrix',n,'Who writes the argument, and who is challenged?','Blind, k = 10. Rows = source, columns = target. Values rounded as in Figure 4.','Cross-model results')
- short=['GPT\n5.1','Gemma\n26B','Llama\n8B','Llama\n70B','Qwen\n35B','Qwen\n4B','Qwen\n9B']
- x,y,cw,rh=335,255,166,65
- for j,m in enumerate(short): s.text(x+(j+.5)*cw,179,m,24,anchor='c')
+ s=base('cross-matrix',n,'Who persuades whom?','Rows supply wrong arguments. Columns answer the question again.','Source and target')
+ short=['GPT-5.1','Gemma\n26B','Llama\n8B','Llama\n70B','Qwen\n35B','Qwen\n4B','Qwen\n9B']
+ x,y,cw,rh=380,257,158,61
+ s.text(945,160,'TARGET MODEL',24,P['blue']['text'],anchor='c',mono=True)
+ s.text(78,186,'SOURCE\nMODEL',26,P['blue']['text'],mono=True)
+ for j,m in enumerate(short):s.text(x+(j+.5)*cw,207,m,26,anchor='c')
  for i,m in enumerate(MATRIX_MODELS):
-  s.text(x-20,y+i*rh+rh/2,m,23,anchor='r',valign='m')
+  s.text(x-27,y+i*rh+rh/2,m,27,anchor='r',valign='m')
   for j,v in enumerate(MATRIX[i]):
-   c='gray' if i==j else ('green' if v<30 else 'yellow' if v<60 else 'orange' if v<85 else 'red')
-   s.box(x+j*cw,y+i*rh,cw-6,rh-6,f'{v}%',c,26,round_=False,roughness=0,sw=1)
- return end(s,'Figure 4; diagonal: same source, off-diagonal: cross source','Many sources can destabilize the same vulnerable target, but source effects remain.')
+   t=v/100;start=(238,247,246);stop=(0,105,115);fill='#'+''.join(f'{round(a+(b-a)*t):02x}' for a,b in zip(start,stop))
+   s.box(x+j*cw,y+i*rh,cw-4,rh-4,str(v),fs=29,fill=fill,stroke=P['ink'] if i==j else '#ffffff',tcolor='#ffffff' if v>=60 else P['ink'],sw=2 if i==j else 1,round_=False,roughness=0)
+ s.text(380,708,'Outlined diagonal: same-model source',23,P['muted'])
+ for i in range(11):
+  t=i/10;fill='#'+''.join(f'{round(a+(b-a)*t):02x}' for a,b in zip((238,247,246),(0,105,115)))
+  s.box(1140+i*25,716,26,16,fill=fill,stroke=fill,round_=False,roughness=0)
+ s.text(1100,714,'0',20,P['muted']);s.text(1430,710,'100%',22,P['muted'])
+ return end(s,'Figure 4 / rounded AFR (%) / blind, k = 10','Source effects depend on the target. The colors use one shared AFR scale.')
 
 def s17(n):
- s=base('cross-vs-same',n,'Changing the source helps some targets and hurts others','Cross-source minus same-source blind AFR at k = 10; reported 95% intervals','Cross-model results')
+ s=base('cross-vs-same',n,'Changing the source has no uniform effect','Cross-source minus same-source blind AFR at k = 10; reported 95% intervals','Cross-model results')
  x,w=560,780;lo,hi=-15,10
  fx=lambda v:x+w*(v-lo)/(hi-lo)
  for v in [-15,-10,-5,0,5,10]:
@@ -244,10 +293,11 @@ def s17(n):
   y=260+61*i;v=CROSS_DELTA[i];ci=CROSS_CI[i];c='green' if v<0 else 'orange'
   s.text(490,y,m,26,anchor='r',valign='m');s.line([(fx(v-ci),y),(fx(v+ci),y)],P[c]['text'],4,roughness=0);dot(s,fx(v),y,c,9)
   s.text(1430,y,f'{v:+.1f}',26,P[c]['text'],anchor='c',valign='m')
+ s.text(950,738,'AFR change (percentage points)',25,anchor='c')
  return end(s,'Table 6; mean change -1.6 pp; changes retained as printed','A near-zero average conceals target-specific changes in both directions.')
 
 def s18(n):
- s=base('variance-decomposition',n,'Target susceptibility explains most reported variance',part='Cross-model results')
+ s=base('variance-decomposition',n,'Target identity dominates the reported variance',part='Cross-model results')
  vals=[76.7,12.0,9.3];labs=['Target / baseline','Argument source','Subject'];ci=[(74.8,78.7),(10.1,14.5),(9.2,13.6)]
  for i,(lab,v,(lo,hi)) in enumerate(zip(labs,vals,ci)):
   y=235+i*132;s.text(70,y,lab,32);s.box(430,y,800*v/100,45,c=['blue','orange','purple'][i],round_=False)
@@ -256,36 +306,64 @@ def s18(n):
  return end(s,'§5.6; reported components sum to 98.0%','Source identity contributes, but target identity dominates this analysis.')
 
 def s19(n):
- s=base('source-and-target-roles',n,'Strong sources of errors can be resistant targets','Figure 5 concept, redrawn from off-diagonal means of the rounded Figure 4 matrix','Cross-model results')
- f=xy_axes(s,165,230,930,425,100,100)
+ import json
+ from pathlib import Path
+ points=json.loads((Path(__file__).resolve().parents[1]/'references/ea-ep-provenance.json').read_text())['points']
+ s=base('source-and-target-roles',n,'Persuasive sources can be hard to flip','EP: susceptibility as a target. EA: efficacy of wrong arguments as a source.','Source and target')
+ x,y,w,h=145,226,985,445
+ f=xy_axes(s,x,y,w,h)
  s.line([f(0,0),f(100,100)],P['faint'],2,dashed=True,roughness=0)
- s.text(175,177,'Argument efficacy as a source, EA (%) ↑',26,P['muted'])
- s.text(610,710,'Susceptibility as a target, EP (%) →',27,anchor='c')
- s.text(675,245,'EA = EP',23,P['muted'])
- ep=[sum(MATRIX[r][j] for r in range(7) if r!=j)/6 for j in range(7)]
- ea=[sum(v for j,v in enumerate(row) if j!=i)/6 for i,row in enumerate(MATRIX)]
- names=['GPT-5.1','Gemma 26B','Llama 8B','Llama 70B','Qwen 35B','Qwen 4B','Qwen 9B']
- cs=['blue','green','red','orange','purple','purple','purple']
- offsets=[(-110,-52),(28,-12),(-140,12),(-115,15),(-100,22),(20,-22),(-115,15)]
- for i in range(7):
-  xx,yy=f(ep[i],ea[i]);dx,dy=offsets[i]
-  s.line([(xx,yy),(xx+dx+45,yy+dy+14)],P['faint'],1,roughness=0);mark_label(s,(xx,yy),names[i],cs[i],dx,dy)
- panel(s,1170,230,360,400,'Reading the map','Upper left:\nstrong wrong arguments,\nresistant target.\n\nLower right:\nweaker wrong arguments,\nvulnerable target.\n\nPositions are approximate.','blue',25)
- return end(s,'Definition 5.3; Figures 4–5; means of rounded cells, not raw-data estimates','The two roles are distinct: being hard to persuade does not prevent persuading others.')
+ s.text(x,173,'EA (%) / flips other models',28,P['muted'])
+ s.text(635,716,'EP (%) / is flipped by other sources',29,anchor='c')
+ s.text(850,307,'EA = EP',23,P['muted'])
+ offsets=[(-50,-61),(-111,33),(27,-12),(-75,26),(15,30),(-92,-53),(-115,18)]
+ cs=['green','gray','cyan','purple','blue','orange','red']
+ labels=['GPT-5.1','Qwen 35B','Gemma 26B','Qwen 9B','Qwen 4B','Llama 70B','Llama 8B']
+ for (name,ep,ea),c,lab,(dx,dy) in zip(points,cs,labels,offsets):
+  xx,yy=f(ep,ea);s.line([(xx,yy),(xx+dx+35,yy+dy+15)],P['faint'],1,roughness=0);mark_label(s,(xx,yy),lab,c,dx,dy)
+ s.text(1200,245,'Upper left',33,P['blue']['text'],hand=True)
+ s.text(1200,300,'Hard to flip.\nEffective source\nof wrong arguments.',28)
+ s.text(1200,475,'Lower right',33,P['red']['text'],hand=True)
+ s.text(1200,530,'Easy to flip.\nLess effective\nas a source.',28)
+ return end(s,'Figure 5 / positions recovered from the published vector figure','Argument efficacy and answer stability describe different model behaviors.')
 
 def s20(n):
- s=base('maxflip-selection',n,'MaxFlip selects a strong argument for each question',part='MaxFlip')
- node(s,70,220,340,180,'One question\n\nPool wrong arguments\nfrom source models','blue',27)
- arr(s,423,310,495,310);node(s,510,220,450,180,'Test candidates against\nthe target models\n\nCount how many flip','orange',27)
- arr(s,973,310,1045,310);node(s,1060,220,470,180,'Keep the argument that\nflips the most models\n\nBreak ties randomly','purple',27)
- s.text(100,488,'Repeat for each question',36,P['purple']['text'])
- panel(s,70,565,1460,155,'Evaluation question','Does a selected pool challenge models more than their own standard blind k = 10 arguments?','gray',27)
- return end(s,'§5.7; Table 7','Selection uses observed flips, so held-out targets are a useful next test of generalization.')
+ s=base('maxflip-selection',n,'MaxFlip pools, tests and selects','Illustrative candidates and outcomes. The schematic does not show measured scores.','Stronger challenges')
+ s.text(80,174,'ONE QUESTION',28,P['blue']['text'],mono=True)
+ s.text(80,225,'Pool arguments\nacross sources',37,hand=True)
+ for i,(lab,c) in enumerate([('Argument A','blue'),('Argument B','purple'),('Argument C','orange')]):
+  node(s,95,350+i*102,340,76,lab,c,30)
+ arr(s,468,489,565,489)
+ s.text(635,180,'Test on target models',35,hand=True)
+ for j in range(7):s.text(665+j*66,283,str(j+1),24,P['muted'],anchor='c')
+ s.text(870,237,'TARGETS',22,P['muted'],anchor='c',mono=True)
+ patterns=[[1,0,1,0,0,1,0],[1,1,1,0,1,1,0],[0,1,0,0,1,0,0]]
+ for i,row in enumerate(patterns):
+  yy=388+i*102
+  if i==1:s.box(601,448,568,80,fill=P['purple']['soft'],stroke=P['purple']['stroke'],round_=False,roughness=0)
+  for j,on in enumerate(row):
+   xx=665+j*66;s.box(xx-14,yy-14,28,28,shape='ellipse',fill=P['purple']['text'] if on else '#ffffff',stroke=P['purple']['text'] if on else P['faint'],roughness=0)
+  s.text(1140,yy,str(sum(row)),30,P['purple']['text'],anchor='c',valign='m')
+ s.text(1140,283,'Flips',24,P['muted'],anchor='c')
+ arr(s,1191,489,1260,489,'purple')
+ node(s,1285,416,230,145,'Keep B\nMost flips','purple',32)
+ s.text(620,679,'Filled circle = flip. Ties break randomly.',26,P['muted'])
+ return end(s,'§5.7 / one selected argument per question','Selection uses the observed target set. Transfer to unseen targets needs a separate test.')
 
 def s21(n):
- s=base('maxflip-results',n,'MaxFlip raises AFR most for models in the middle','Standard = same-source blind k = 10; changes and CIs as reported','MaxFlip')
- paired(s,[r[-1] for r in AFR],CURATED,GAIN,GAIN_CI,'MaxFlip')
- return end(s,'Table 7; change ± reported 95% CI half-width','Qwen3.5-9B: +23.6 pp. GPT-5.1: +2.4 pp, not statistically significant.')
+ s=base('maxflip-results',n,'MaxFlip strengthens the selected challenges','AFR increase over standard same-model blind challenges','Stronger challenges')
+ x,w,lo,hi=530,765,-5,30
+ fx=lambda v:x+w*(v-lo)/(hi-lo)
+ for v in (-5,0,10,20,30):
+  xx=fx(v);s.line([(xx,211),(xx,687)],P['faint'] if v==0 else P['grid'],2 if v==0 else 1,roughness=0);s.text(xx,705,str(v),23,P['muted'],anchor='c')
+ s.text(1433,165,'Gain (pp)',25,P['muted'],anchor='c')
+ for i,m in enumerate(MODELS):
+  y=249+i*67;v,ci=GAIN[i],GAIN_CI[i];c='gray' if i==4 else 'purple'
+  s.text(490,y,m,29,anchor='r',valign='m');s.line([(fx(v-ci),y),(fx(v+ci),y)],P[c]['text'],3,roughness=0)
+  s.box(fx(v)-8,y-8,16,16,shape='ellipse',fill='#ffffff' if i==4 else P[c]['text'],stroke=P[c]['text'],roughness=0)
+  s.text(1430,y,f'+{v:.1f}',30,P[c]['text'],anchor='c',valign='m')
+ s.text(930,738,'AFR change (percentage points)',27,anchor='c')
+ return end(s,'Table 7 / reported gains and 95% intervals / blind k = 10 baseline','Qwen3.5-9B gains 23.6 pp. No clear increase for GPT-5.1.')
 
 def s22(n):
  s=base('maxflip-producers',n,'Stable targets often supply selected wrong arguments','Producer share versus standard same-source blind AFR at k = 10','MaxFlip')
@@ -304,36 +382,71 @@ def s23(n):
  return end(s,'§§3–4; reviewer interpretation distinguished in notes','The design isolates specific comparisons; it does not identify every causal mechanism.')
 
 def s24(n):
- s=base('strengths',n,'Why this is a useful evaluation contribution',part='Discussion')
- for y,num,head,body,c in [(180,'1','A failure standard accuracy misses','An initially correct answer can still fail during the next exchange.','blue'),(360,'2','A reusable protocol with multiple controls','Length, attribution and source appear in one framework.','purple'),(540,'3','A released challenge resource','The protocol, records and MaxFlip support follow-up evaluation.','green')]:
-  node(s,70,y,95,95,num,c,44);s.text(205,y+2,head,34,P[c]['text']);s.text(205,y+62,body,28)
- return end(s,'Introduction, conclusion and released resources','The contribution is measurement and characterization; the paper does not test a fix.')
+ s=base('balanced-revision',n,'Good revision depends on the evidence','A proposed complementary test, not an experiment in this paper','Next experiments')
+ s.text(85,190,'WRONG ARGUMENT',25,P['orange']['text'],mono=True)
+ node(s,85,265,390,115,'Correct first answer','green',34)
+ arr(s,501,322,610,322,'orange');node(s,640,265,375,115,'Invalid challenge','orange',32)
+ arr(s,1040,322,1140,322,'green');node(s,1170,265,345,115,'Keep it correct','green',33)
+ s.text(85,470,'VALID CORRECTION',25,P['blue']['text'],mono=True)
+ node(s,85,545,390,115,'Incorrect first answer','red',34)
+ arr(s,501,602,610,602,'blue');node(s,640,545,375,115,'Valid evidence','blue',32)
+ arr(s,1040,602,1140,602,'green');node(s,1170,545,345,115,'Revise to correct','green',33)
+ return end(s,'Limitations / proposed complementary evaluation','A useful model resists misleading arguments and accepts justified corrections.')
 
 def s25(n):
- s=base('limitations',n,'The results have a specific scope',part='Discussion')
- panel(s,70,180,700,510,'Limits stated by the authors','MMLU only\n\nOne challenge per exchange\n\nModel-generated English arguments\n\nNo tested mitigation\n\nNo incorrect-to-correct revision study','orange',29)
- panel(s,830,180,700,510,'Questions for follow-up','How do reasoning-enabled models behave?\n\nDoes MaxFlip transfer to unseen targets?\n\nCan a model resist bad evidence while\nstill accepting a valid correction?\n\nHow do rates change on a common\neligible subset?','purple',28)
- return end(s,'Limitations; right column: proposed follow-up experiments','Resistance to wrong arguments is valuable; blanket refusal to revise would not be enough.')
+ s=base('limitations',n,'What the evidence covers','The results describe this controlled setting','Scope')
+ items=[('Benchmark','MMLU multiple-choice questions','Open-ended tasks remain untested.'),('Interaction','One model-generated challenge','Human arguments and multi-turn exchanges remain untested.'),('Inference','The paper\'s fixed model settings','Reasoning-enabled behavior requires a separate evaluation.'),('Intervention','Measurement of answer instability','The paper does not test a mitigation.')]
+ for i,(a,b,c) in enumerate(items):
+  y=195+i*133;s.text(85,y,a,29,P['blue']['text'],hand=True);s.text(440,y,b,33);s.text(440,y+52,c,27,P['muted'])
+  if i<3:s.line([(85,y+105),(1510,y+105)],P['grid'],1,roughness=0)
+ return end(s,'Experimental setup and Limitations','The measured failure is real within this setting. Its reach is an empirical question.')
 
 def s26(n):
- s=base('source-audit',n,'A few source details need careful reading','The deck uses table values and records discrepancies without silently correcting the paper.','Discussion')
+ s=base('source-audit',n,'Source details and reported inconsistencies','Reported numbers are preserved. These discrepancies qualify particular summaries.','Discussion')
  rows=[['Length means','Table 2 includes 47.3% at k = 3.','Prose range 48.4–50.2 omits it.'],['Subject categories','Table 5 lists 8 STEM subjects in the lowest 10.','Prose says 9 of 10.'],['Producer shares','Table 7 shares sum to 96.1%.','Do not normalize or invent the missing share.'],['Cross-matrix range','Figure 4 has 57–94% for the Llama-70B target.','Prose claims column ranges of at most 10 pp.']]
  s.table(70,190,[300,620,540],rows,['detail','source evidence','reading note'],fs=24,rh=108,aligns=['l','l','l'])
  return end(s,'Tables 2, 5, 7; Figure 4; full audit in references/digest.md','These checks qualify particular summaries; they do not erase the observed answer flips.')
 
 def s27(n):
- s=base('discussion-questions',n,'What would make the next experiment more informative?',part='Discussion')
- for y,a,b in [(185,'Held-out transfer','Select MaxFlip without the evaluated target, then test that target.'),(330,'Balanced revision','Test correct-to-wrong and incorrect-to-correct changes together.'),(475,'Evidence checking','Compare baseline responses with explicit verification or tool access.'),(620,'Comparable populations','Report shared-subset AFR, coverage and per-subject uncertainty.')]:
-  s.text(75,y,a,33,P['purple']['text']);s.text(75,y+55,b,29)
- return end(s,'Proposed discussion and follow-up work, not results from the paper')
+ s=base('held-out-transfer',n,'Does MaxFlip transfer to an unseen target?','Proposed next experiment, not a reported result','Next experiments')
+ s.text(80,190,'SELECT',28,P['purple']['text'],mono=True)
+ node(s,80,270,390,180,'Pool candidate\nwrong arguments','orange',34)
+ arr(s,495,360,575,360)
+ node(s,600,270,460,180,'Choose the argument\nusing selection models','purple',33)
+ s.text(620,490,'The held-out target contributes\nno flip outcomes to selection.',29,P['purple']['text'])
+ arr(s,1085,360,1165,360,'blue')
+ node(s,1190,270,330,180,'Freeze the\nselected set','blue',33)
+ arr(s,1355,475,1355,565,'blue')
+ node(s,975,592,545,115,'Evaluate an unseen target','green',32)
+ s.text(80,625,'This separates selection strength\nfrom transfer to another model.',33)
+ return end(s,'Proposed follow-up to §5.7','Selecting and evaluating on the same model set leaves this question open.')
 
 def s28(n):
- s=base('takeaways',n,'Accuracy is only the start of the conversation')
- items=[('Correct first answers can be fragile.','Mean blind AFR spans 17.5% to 97.3% in this setup.','blue'),('The framing of an argument matters.','Self-attribution adds +7.1 pp on average.','orange'),('Source and target play different roles.','Target susceptibility dominates, while selected sources strengthen challenges.','purple'),('MaxFlip is a useful stress test.','Next: unseen targets, valid corrections and tested mitigations.','green')]
- for i,(h,b,c) in enumerate(items):
-  y=160+i*138;s.box(70,y,1460,116,c=c,fill=P[c]['soft']);s.text(95,y+15,h,30,P[c]['text']);s.text(95,y+62,b,26)
- s.text(75,751,'Paper: arxiv.org/abs/2606.16011v2',23,P['blue']['text'])
- s.text(75,791,'Code: github.com/nafisenik/WhoFlips    Data: hf.co/datasets/nafisehNik/WhoFlips',22,P['muted'])
- return end(s,'Tables 2, 3, 7; §5.6; conclusion; proposed next steps clearly labeled')
+ s=base('takeaways',n,'Evaluate stability alongside accuracy')
+ s.text(90,192,'A correct answer can still flip.',43,P['blue']['text'],hand=True)
+ s.text(95,259,'Mean blind AFR ranges from 17.5% to 97.3%.',31)
+ s.text(90,371,'Arguing and resisting are different abilities.',43,P['purple']['text'],hand=True)
+ s.text(95,438,'Resistant targets can produce persuasive wrong arguments.',31)
+ s.text(90,550,'Selected arguments make stronger challenges.',43,P['orange']['text'],hand=True)
+ s.text(95,617,'MaxFlip adds up to 23.6 percentage points in the evaluated pool.',31)
+ s.line([(80,722),(1520,722)],P['blue']['stroke'],2,roughness=0)
+ s.text(80,753,'Paper: arxiv.org/abs/2606.16011v2',25,P['blue']['text'])
+ s.text(80,797,'Code: github.com/nafisenik/WhoFlips     Data: huggingface.co/datasets/nafisehNik/WhoFlips',23,P['muted'])
+ return end(s,'Tables 2 and 7 / Figure 5 / backup slides follow')
 
-SLIDES=[s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21,s22,s23,s24,s25,s26,s27,s28]
+def s29(n):
+ s=base('all-model-lengths',n,'Longer arguments push models in different directions','Seven small multiples; identical 0–100% axes; whiskers show reported 95% CIs','Backup')
+ for i in range(7):
+  col,row=i%4,i//4; x=110+col*370;y=225+row*285;w=270;h=155
+  s.text(x,y-43,SHORT[i],26,P[COLORS[i]]['text'])
+  f=xy_axes(s,x,y,w,h,10,100,(1,3,5,10),(0,50,100))
+  pts=[f(k,v) for k,v in zip(K,AFR[i])]
+  s.line(pts,P[COLORS[i]]['stroke'],3,roughness=0)
+  for k,v,ci in zip(K,AFR[i],AFR_CI[i]):
+   a,b=f(k,v-ci),f(k,v+ci);dot(s,*f(k,v),COLORS[i],5);s.line([a,b],P[COLORS[i]]['text'],1,roughness=0)
+   for xx,yy in (a,b): s.line([(xx-4,yy),(xx+4,yy)],P[COLORS[i]]['text'],1,roughness=0)
+  s.text(x+w,y+h+44,f'{AFR[i][-1]-AFR[i][0]:+.1f} pp: k1 → k10',19,P[COLORS[i]]['text'],anchor='r')
+ s.text(1220,510,'Argument length k\n= 1, 3, 5, 10 sentences\n\nQwen 4B and 9B rise;\nseveral others fall.',25)
+ return end(s,'Table 2; points connected only to guide the eye','Pooling all models hides opposing trends; downward trends were not significant.')
+
+SLIDES=[s01,s03,s04,s05,s09,s10,s12,s15,s02,s16,s19,s17,s20,s21,s22,s13,s25,s27,s24,s28,s07,s06,s29,s08,s11,s14,s18,s26]

@@ -32,7 +32,7 @@ page = """<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Who Flips? paper club</title>
 <style>
-:root{--bg:#f1f3f5;--ink:#1e1e1e;--muted:#6b6f76;--accent:#e8a33d;--card:#ffffff}
+:root{--bg:#f1f3f5;--ink:#1e1e1e;--muted:#6b6f76;--accent:#007f88;--card:#ffffff}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1b1c1e;--ink:#e9ecef;--muted:#a0a4ab;--card:#26282b}}
 :root[data-theme="dark"]{--bg:#1b1c1e;--ink:#e9ecef;--muted:#a0a4ab;--card:#26282b}
 *{box-sizing:border-box}
@@ -63,6 +63,7 @@ body:fullscreen #stage img{border-radius:0;box-shadow:none}
  <button id="prev" aria-label="Previous slide">&#8592;</button><span id="count"></span><button id="next" aria-label="Next slide">&#8594;</button>
  <div id="prog"><i></i></div>
  <button id="nb" class="opt">Notes (N)</button><button id="ob" class="opt">Overview (O)</button><button id="fb" class="opt">Full screen (F)</button>
+ <button id="bb" class="opt">Backup (B)</button>
 </div>
 <script>
 const S = __SLIDES__;
@@ -70,7 +71,7 @@ let i = 0;
 try { const h = parseInt(location.hash.slice(1)); if (h >= 1 && h <= S.length) i = h - 1; } catch (e) {}
 const img = document.getElementById('slide'), cnt = document.getElementById('count'), notes = document.getElementById('notes'), prog = document.querySelector('#prog i');
 function show(k){ i = Math.max(0, Math.min(S.length - 1, k)); img.src = S[i].src; img.alt = 'Slide ' + (i + 1);
-  cnt.textContent = (i + 1) + ' / ' + S.length; notes.textContent = S[i].note; prog.style.width = ((i + 1) / S.length * 100) + '%';
+  cnt.textContent = (i + 1) + ' / ' + S.length + (i >= 20 ? ' · Backup' : ''); notes.textContent = S[i].note; prog.style.width = ((i + 1) / S.length * 100) + '%';
   try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {} }
 const grid = document.getElementById('grid');
 S.forEach((s, k) => { const f = document.createElement('figure'); f.innerHTML = '<img loading="lazy" alt="">' + '<figcaption>' + (k + 1) + ' · ' + s.name.slice(3).replace(/-/g, ' ') + '</figcaption>';
@@ -80,12 +81,14 @@ document.getElementById('next').onclick = () => show(i + 1);
 document.getElementById('nb').onclick = () => document.body.classList.toggle('shownotes');
 document.getElementById('ob').onclick = () => document.body.classList.toggle('overview');
 document.getElementById('fb').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.body.requestFullscreen();
+document.getElementById('bb').onclick = () => show(i < 20 ? 20 : 0);
 document.getElementById('stage').onclick = e => show(e.clientX > innerWidth / 3 ? i + 1 : i - 1);
 addEventListener('keydown', e => { const k = e.key;
   if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(k)) { e.preventDefault(); show(i + 1); }
   else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); show(i - 1); }
   else if (k === 'Home') show(0); else if (k === 'End') show(S.length - 1);
   else if (k === 'n' || k === 'N') document.body.classList.toggle('shownotes');
+  else if (k === 'b' || k === 'B') document.getElementById('bb').click();
   else if (k === 'o' || k === 'O' || k === 'Escape') document.body.classList.toggle('overview', k !== 'Escape' ? undefined : false);
   else if (k === 'f' || k === 'F') document.getElementById('fb').click(); });
 let tx = null; addEventListener('touchstart', e => tx = e.touches[0].clientX, {passive: true});
@@ -106,3 +109,34 @@ os.makedirs(os.path.join(ROOT, "tools/render/dist"), exist_ok=True)
 with open(os.path.join(ROOT, "tools/render/dist/deck-artifact.html"), "w") as f:
     f.write(frag)
 print("artifact page: tools/render/dist/deck-artifact.html")
+
+# One native Excalidraw canvas with a named frame per slide.
+import copy
+elements = []
+for index, entry in enumerate(slides):
+    prefix = f"slide{index+1:02d}-"
+    dx, dy = (index % 4) * 1800, (index // 4) * 1100
+    scene_path = os.path.join(ROOT, "slides/excalidraw", entry["name"] + ".excalidraw")
+    scene = json.load(open(scene_path))
+    frame = copy.deepcopy(scene["elements"][0])
+    frame.update(id=prefix+"frame", type="frame", x=dx, y=dy, width=1600, height=900,
+                 name=entry["name"].replace("-", " "), strokeColor="#adb5bd",
+                 backgroundColor="transparent", roundness=None, frameId=None,
+                 boundElements=None, groupIds=[])
+    elements.append(frame)
+    for original in scene["elements"]:
+        e = copy.deepcopy(original)
+        e.update(id=prefix+e["id"], x=e["x"]+dx, y=e["y"]+dy, frameId=frame["id"])
+        e["groupIds"] = [prefix+g for g in e.get("groupIds", [])]
+        for key in ("containerId",):
+            if e.get(key): e[key] = prefix+e[key]
+        for key in ("startBinding", "endBinding"):
+            if e.get(key): e[key]["elementId"] = prefix+e[key]["elementId"]
+        if e.get("boundElements"):
+            for bound in e["boundElements"]: bound["id"] = prefix+bound["id"]
+        elements.append(e)
+board = {"type":"excalidraw", "version":2, "source":"https://excalidraw.com",
+         "elements":elements, "appState":{"viewBackgroundColor":"#edf2f2", "gridSize":None}, "files":{}}
+with open(os.path.join(ROOT, "slides/all-slides.excalidraw"), "w") as f:
+    json.dump(board, f, ensure_ascii=False, separators=(",", ":"))
+print("combined canvas:", len(slides), "slide frames,", len(elements), "native elements")

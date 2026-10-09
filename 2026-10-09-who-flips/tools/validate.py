@@ -36,6 +36,14 @@ for i,p in enumerate(reader.pages,1):
  if len(p.extract_text().strip())<40: errors.append(f'PDF page {i}: missing text')
 if round(sum(PRODUCER),1)!=96.1: errors.append('published producer shares changed')
 if len(MATRIX)!=7 or any(len(row)!=7 for row in MATRIX): errors.append('matrix dimensions')
+board=json.loads((root/'slides/all-slides.excalidraw').read_text())
+board_ids=[e['id'] for e in board['elements']]
+frames={e['id'] for e in board['elements'] if e['type']=='frame'}
+if len(frames)!=len(expected): errors.append('combined canvas frame count')
+if len(board_ids)!=len(set(board_ids)): errors.append('combined canvas duplicate IDs')
+for e in board['elements']:
+ if e['type']=='image': errors.append('combined canvas contains a raster element')
+ if e['type']!='frame' and e.get('frameId') not in frames: errors.append('combined canvas orphan element')
 if errors:
  print('\n'.join(errors));sys.exit(1)
 print(f'PASS: {len(expected)} source scenes, Excalidraw files, SVGs, notes and PDF pages; safe text bounds and embedded viewer consistency.')
