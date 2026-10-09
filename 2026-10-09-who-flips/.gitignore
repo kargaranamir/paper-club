@@ -1,0 +1,4 @@
+tools/render/node_modules/
+tools/render/dist/
+__pycache__/
+.venv/
