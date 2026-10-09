@@ -1,0 +1,13 @@
+The model gets the answer right. Then comes a misleading challenge.
+
+Does it hold—or flip?
+
+In our paper, “Who Flips?”, we study whether correct LLM answers remain stable under self- and cross-model counterarguments.
+
+Our takeaway: evaluate stability alongside accuracy.
+
+Paper: https://arxiv.org/abs/2606.16011
+Code: https://github.com/nafisenik/WhoFlips
+Data: https://huggingface.co/datasets/nafisehNik/WhoFlips
+
+The Mars/Venus exchange in this animation is an illustrative example.

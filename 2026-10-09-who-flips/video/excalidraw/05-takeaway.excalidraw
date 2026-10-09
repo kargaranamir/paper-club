@@ -1,0 +1,1395 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "05-takeaway-base-paper",
+   "type": "rectangle",
+   "x": 0,
+   "y": 0,
+   "width": 1080,
+   "height": 1080,
+   "angle": 0,
+   "strokeColor": "transparent",
+   "backgroundColor": "#fffaf0",
+   "fillStyle": "solid",
+   "strokeWidth": 0,
+   "strokeStyle": "solid",
+   "roughness": 0,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "a0",
+   "roundness": null,
+   "seed": 1474866041,
+   "version": 1,
+   "versionNonce": 1027980975,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "05-takeaway-base-1",
+   "type": "rectangle",
+   "x": 22,
+   "y": 22,
+   "width": 1036,
+   "height": 1036,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 0.6,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "a1",
+   "roundness": {
+    "type": 3
+   },
+   "seed": 1021072093,
+   "version": 1,
+   "versionNonce": 1305913197,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "05-takeaway-base-2",
+   "type": "line",
+   "x": 70,
+   "y": 63.949999999999996,
+   "width": 47.25,
+   "height": 49,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "#cceee7",
+   "fillStyle": "solid",
+   "strokeWidth": 1.4,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "a2",
+   "roundness": null,
+   "seed": 1071404950,
+   "version": 1,
+   "versionNonce": 1037964163,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     40.949999999999996,
+     -6.3
+    ],
+    [
+     47.25,
+     29.749999999999996
+    ],
+    [
+     31.849999999999998,
+     32.199999999999996
+    ],
+    [
+     24.5,
+     42.699999999999996
+    ],
+    [
+     22.049999999999997,
+     34.3
+    ],
+    [
+     5.6,
+     37.099999999999994
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "05-takeaway-base-3",
+   "type": "line",
+   "x": 79.8,
+   "y": 77.94999999999999,
+   "width": 20.65,
+   "height": 15.399999999999999,
+   "angle": 0,
+   "strokeColor": "#007f88",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 3.15,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "a3",
+   "roundness": null,
+   "seed": 1054627331,
+   "version": 1,
+   "versionNonce": 366712308,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     8.399999999999999,
+     6.6499999999999995
+    ],
+    [
+     20.65,
+     -8.75
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "05-takeaway-base-4",
+   "type": "line",
+   "x": 108.5,
+   "y": 75.85,
+   "width": 46.9,
+   "height": 48.3,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "#ffb9d7",
+   "fillStyle": "solid",
+   "strokeWidth": 1.4,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "a4",
+   "roundness": null,
+   "seed": 970739236,
+   "version": 1,
+   "versionNonce": 365873665,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     42.349999999999994,
+     5.25
+    ],
+    [
+     37.8,
+     42.349999999999994
+    ],
+    [
+     23.799999999999997,
+     40.599999999999994
+    ],
+    [
+     14,
+     48.3
+    ],
+    [
+     14.35,
+     39.199999999999996
+    ],
+    [
+     -4.55,
+     36.75
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "05-takeaway-base-5",
+   "type": "line",
+   "x": 120.75,
+   "y": 87.39999999999999,
+   "width": 15.399999999999999,
+   "height": 16.45,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 3.15,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "a5",
+   "roundness": null,
+   "seed": 953961617,
+   "version": 1,
+   "versionNonce": 902610378,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     15.399999999999999,
+     16.45
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "05-takeaway-base-6",
+   "type": "line",
+   "x": 136.85,
+   "y": 89.14999999999999,
+   "width": 17.5,
+   "height": 13.299999999999999,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 3.15,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "a6",
+   "roundness": null,
+   "seed": 1004294474,
+   "version": 1,
+   "versionNonce": 634661342,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     -17.5,
+     13.299999999999999
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "05-takeaway-base-7",
+   "type": "arrow",
+   "x": 95.9,
+   "y": 49.95,
+   "width": 46.199999999999996,
+   "height": 19.949999999999996,
+   "angle": 0,
+   "strokeColor": "#007f88",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 1.9249999999999998,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "a7",
+   "roundness": {
+    "type": 2
+   },
+   "seed": 987516855,
+   "version": 1,
+   "versionNonce": 1037125520,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.5,
+     0.5
+    ],
+    [
+     17.5,
+     -8.049999999999999
+    ],
+    [
+     37.8,
+     -2.4499999999999997
+    ],
+    [
+     45.699999999999996,
+     11.399999999999999
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "05-takeaway-base-8",
+   "type": "text",
+   "x": 173.95,
+   "y": 63.949999999999996,
+   "width": 73.82337951660156,
+   "height": 47.25,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 0,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "a8",
+   "roundness": null,
+   "seed": 1172070664,
+   "version": 1,
+   "versionNonce": 502066093,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Who",
+   "fontSize": 37.8,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "originalText": "Who",
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "05-takeaway-base-9",
+   "type": "text",
+   "x": 255.14999999999998,
+   "y": 63.949999999999996,
+   "width": 101.15275573730469,
+   "height": 47.25,
+   "angle": 0,
+   "strokeColor": "#007f88",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 0,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "a9",
+   "roundness": null,
+   "seed": 1155293045,
+   "version": 1,
+   "versionNonce": 1038751221,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Flips?",
+   "fontSize": 37.8,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "originalText": "Flips?",
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "05-takeaway-base-10",
+   "type": "text",
+   "x": 866.63671875,
+   "y": 82,
+   "width": 139.59375,
+   "height": 27.599999999999998,
+   "angle": 0,
+   "strokeColor": "#007f88",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 0,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "aA",
+   "roundness": null,
+   "seed": 987138436,
+   "version": 1,
+   "versionNonce": 1186640357,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "OUR PAPER",
+   "fontSize": 24,
+   "fontFamily": 2,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "originalText": "OUR PAPER",
+   "autoResize": true,
+   "lineHeight": 1.15
+  },
+  {
+   "id": "05-takeaway-base-11",
+   "type": "line",
+   "x": 62,
+   "y": 158,
+   "width": 956,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#d9ded4",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 1.5,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "aB",
+   "roundness": null,
+   "seed": 1003916055,
+   "version": 1,
+   "versionNonce": 1723671260,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     956,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "05-takeaway-base-12",
+   "type": "text",
+   "x": 218.29,
+   "y": 944,
+   "width": 643.42041015625,
+   "height": 28.749999999999996,
+   "angle": 0,
+   "strokeColor": "#51666a",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 0,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "aC",
+   "roundness": null,
+   "seed": 1020693674,
+   "version": 1,
+   "versionNonce": 1321155499,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "An evaluation of answer stability under counterarguments.",
+   "fontSize": 25,
+   "fontFamily": 2,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "originalText": "An evaluation of answer stability under counterarguments.",
+   "autoResize": true,
+   "lineHeight": 1.15
+  },
+  {
+   "id": "05-takeaway-base-13",
+   "type": "ellipse",
+   "x": 470,
+   "y": 1012,
+   "width": 12,
+   "height": 12,
+   "angle": 0,
+   "strokeColor": "transparent",
+   "backgroundColor": "#d6ddd6",
+   "fillStyle": "solid",
+   "strokeWidth": 0,
+   "strokeStyle": "solid",
+   "roughness": 0.6,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "aD",
+   "roundness": null,
+   "seed": 1037471293,
+   "version": 1,
+   "versionNonce": 1992407354,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "05-takeaway-base-14",
+   "type": "ellipse",
+   "x": 502,
+   "y": 1012,
+   "width": 12,
+   "height": 12,
+   "angle": 0,
+   "strokeColor": "transparent",
+   "backgroundColor": "#d6ddd6",
+   "fillStyle": "solid",
+   "strokeWidth": 0,
+   "strokeStyle": "solid",
+   "roughness": 0.6,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "aE",
+   "roundness": null,
+   "seed": 920027960,
+   "version": 1,
+   "versionNonce": 1857053569,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "05-takeaway-base-15",
+   "type": "ellipse",
+   "x": 534,
+   "y": 1012,
+   "width": 12,
+   "height": 12,
+   "angle": 0,
+   "strokeColor": "transparent",
+   "backgroundColor": "#d6ddd6",
+   "fillStyle": "solid",
+   "strokeWidth": 0,
+   "strokeStyle": "solid",
+   "roughness": 0.6,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "aF",
+   "roundness": null,
+   "seed": 936805579,
+   "version": 1,
+   "versionNonce": 1320368441,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "05-takeaway-base-16",
+   "type": "ellipse",
+   "x": 566,
+   "y": 1012,
+   "width": 12,
+   "height": 12,
+   "angle": 0,
+   "strokeColor": "transparent",
+   "backgroundColor": "#d6ddd6",
+   "fillStyle": "solid",
+   "strokeWidth": 0,
+   "strokeStyle": "solid",
+   "roughness": 0.6,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "aG",
+   "roundness": null,
+   "seed": 953583198,
+   "version": 1,
+   "versionNonce": 1991620296,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "05-takeaway-base-17",
+   "type": "ellipse",
+   "x": 598,
+   "y": 1012,
+   "width": 12,
+   "height": 12,
+   "angle": 0,
+   "strokeColor": "transparent",
+   "backgroundColor": "#007f88",
+   "fillStyle": "solid",
+   "strokeWidth": 0,
+   "strokeStyle": "solid",
+   "roughness": 0.6,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-base"
+   ],
+   "frameId": null,
+   "index": "aH",
+   "roundness": null,
+   "seed": 970360817,
+   "version": 1,
+   "versionNonce": 1589104535,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "05-takeaway-logo-0",
+   "type": "line",
+   "x": 151.2,
+   "y": 268.65999999999997,
+   "width": 132.3,
+   "height": 137.2,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "#cceee7",
+   "fillStyle": "solid",
+   "strokeWidth": 3.92,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-logo"
+   ],
+   "frameId": null,
+   "index": "aI",
+   "roundness": null,
+   "seed": 1252890541,
+   "version": 1,
+   "versionNonce": 491099274,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     114.66,
+     -17.64
+    ],
+    [
+     132.3,
+     83.3
+    ],
+    [
+     89.17999999999999,
+     90.16
+    ],
+    [
+     68.6,
+     119.56
+    ],
+    [
+     61.74,
+     96.03999999999999
+    ],
+    [
+     15.68,
+     103.88
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "05-takeaway-logo-1",
+   "type": "line",
+   "x": 178.64,
+   "y": 307.86,
+   "width": 57.82,
+   "height": 43.12,
+   "angle": 0,
+   "strokeColor": "#007f88",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 8.82,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-logo"
+   ],
+   "frameId": null,
+   "index": "aJ",
+   "roundness": null,
+   "seed": 1236112922,
+   "version": 1,
+   "versionNonce": 893615035,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     23.52,
+     18.62
+    ],
+    [
+     57.82,
+     -24.5
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "05-takeaway-logo-2",
+   "type": "line",
+   "x": 259,
+   "y": 301.98,
+   "width": 131.32,
+   "height": 135.24,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "#ffb9d7",
+   "fillStyle": "solid",
+   "strokeWidth": 3.92,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-logo"
+   ],
+   "frameId": null,
+   "index": "aK",
+   "roundness": null,
+   "seed": 1219335303,
+   "version": 1,
+   "versionNonce": 222363180,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     118.58,
+     14.7
+    ],
+    [
+     105.84,
+     118.58
+    ],
+    [
+     66.64,
+     113.67999999999999
+    ],
+    [
+     39.2,
+     135.24
+    ],
+    [
+     40.18,
+     109.75999999999999
+    ],
+    [
+     -12.74,
+     102.89999999999999
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "05-takeaway-logo-3",
+   "type": "line",
+   "x": 293.29999999999995,
+   "y": 334.32,
+   "width": 43.12,
+   "height": 46.06,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 8.82,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-logo"
+   ],
+   "frameId": null,
+   "index": "aL",
+   "roundness": null,
+   "seed": 1202557684,
+   "version": 1,
+   "versionNonce": 759048310,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     43.12,
+     46.06
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "05-takeaway-logo-4",
+   "type": "line",
+   "x": 338.38,
+   "y": 339.22,
+   "width": 49,
+   "height": 37.24,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 8.82,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-logo"
+   ],
+   "frameId": null,
+   "index": "aM",
+   "roundness": null,
+   "seed": 1185780065,
+   "version": 1,
+   "versionNonce": 87796455,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     -49,
+     37.24
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "05-takeaway-logo-5",
+   "type": "arrow",
+   "x": 223.72,
+   "y": 229.45999999999998,
+   "width": 129.35999999999999,
+   "height": 55.86,
+   "angle": 0,
+   "strokeColor": "#007f88",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 5.39,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-logo"
+   ],
+   "frameId": null,
+   "index": "aN",
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1169002446,
+   "version": 1,
+   "versionNonce": 490312216,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.5,
+     0.5
+    ],
+    [
+     49,
+     -22.54
+    ],
+    [
+     105.84,
+     -6.859999999999999
+    ],
+    [
+     128.85999999999999,
+     32.82
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "05-takeaway-logo-6",
+   "type": "text",
+   "x": 442.26,
+   "y": 268.65999999999997,
+   "width": 206.70550537109375,
+   "height": 132.3,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 0,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-logo"
+   ],
+   "frameId": null,
+   "index": "aO",
+   "roundness": null,
+   "seed": 1152224827,
+   "version": 1,
+   "versionNonce": 892776392,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Who",
+   "fontSize": 105.84,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "originalText": "Who",
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "05-takeaway-logo-7",
+   "type": "text",
+   "x": 669.62,
+   "y": 268.65999999999997,
+   "width": 283.227783203125,
+   "height": 132.3,
+   "angle": 0,
+   "strokeColor": "#007f88",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 0,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-logo"
+   ],
+   "frameId": null,
+   "index": "aP",
+   "roundness": null,
+   "seed": 1135447208,
+   "version": 1,
+   "versionNonce": 355745489,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Flips?",
+   "fontSize": 105.84,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "originalText": "Flips?",
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "05-takeaway-title-0",
+   "type": "text",
+   "x": 243.87,
+   "y": 482,
+   "width": 592.265625,
+   "height": 73.6,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 0,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-title"
+   ],
+   "frameId": null,
+   "index": "aQ",
+   "roundness": null,
+   "seed": 779425186,
+   "version": 1,
+   "versionNonce": 592501268,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Self- and Cross-Model Counterarguments\nReveal Answer Instability in LLMs",
+   "fontSize": 32,
+   "fontFamily": 2,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "originalText": "Self- and Cross-Model Counterarguments\nReveal Answer Instability in LLMs",
+   "autoResize": true,
+   "lineHeight": 1.15
+  },
+  {
+   "id": "05-takeaway-cloud-0",
+   "type": "rectangle",
+   "x": 94,
+   "y": 609,
+   "width": 900,
+   "height": 247,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "#142d32",
+   "fillStyle": "solid",
+   "strokeWidth": 3,
+   "strokeStyle": "solid",
+   "roughness": 0.6,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-cloud"
+   ],
+   "frameId": null,
+   "index": "aR",
+   "roundness": {
+    "type": 3
+   },
+   "seed": 1439556433,
+   "version": 1,
+   "versionNonce": 85789815,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "05-takeaway-cloud-1",
+   "type": "rectangle",
+   "x": 82,
+   "y": 596,
+   "width": 900,
+   "height": 247,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "#ffe796",
+   "fillStyle": "solid",
+   "strokeWidth": 3,
+   "strokeStyle": "solid",
+   "roughness": 0.6,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-cloud"
+   ],
+   "frameId": null,
+   "index": "aS",
+   "roundness": {
+    "type": 3
+   },
+   "seed": 1422778814,
+   "version": 1,
+   "versionNonce": 488253991,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "05-takeaway-slogan-0",
+   "type": "text",
+   "x": 245.59,
+   "y": 632,
+   "width": 570.3378295898438,
+   "height": 155,
+   "angle": 0,
+   "strokeColor": "#142d32",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 0,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-slogan"
+   ],
+   "frameId": null,
+   "index": "aT",
+   "roundness": null,
+   "seed": 1904868004,
+   "version": 1,
+   "versionNonce": 1127572101,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Evaluate stability\nalongside accuracy.",
+   "fontSize": 62,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "originalText": "Evaluate stability\nalongside accuracy.",
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "05-takeaway-slogan-1",
+   "type": "line",
+   "x": 212,
+   "y": 789,
+   "width": 608,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#e16da5",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 6,
+   "strokeStyle": "solid",
+   "roughness": 0.65,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-slogan"
+   ],
+   "frameId": null,
+   "index": "aU",
+   "roundness": null,
+   "seed": 1921645623,
+   "version": 1,
+   "versionNonce": 1664603004,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     608,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "05-takeaway-link-0",
+   "type": "text",
+   "x": 253.84,
+   "y": 882,
+   "width": 568.048828125,
+   "height": 33.349999999999994,
+   "angle": 0,
+   "strokeColor": "#007f88",
+   "backgroundColor": "transparent",
+   "fillStyle": "solid",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 0,
+   "opacity": 100,
+   "groupIds": [
+    "05-takeaway-link"
+   ],
+   "frameId": null,
+   "index": "aV",
+   "roundness": null,
+   "seed": 131091063,
+   "version": 1,
+   "versionNonce": 568656847,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Read the paper → arxiv.org/abs/2606.16011",
+   "fontSize": 29,
+   "fontFamily": 2,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "originalText": "Read the paper → arxiv.org/abs/2606.16011",
+   "autoResize": true,
+   "lineHeight": 1.15
+  }
+ ],
+ "appState": {
+  "viewBackgroundColor": "#fffaf0",
+  "gridSize": null
+ },
+ "files": {}
+}

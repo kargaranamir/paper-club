@@ -13,6 +13,8 @@ A 16:9 presentation with **20 main slides and eight backups** using the same Pyt
 | PDF, 28 slides | [`slides/who-flips.pdf`](slides/who-flips.pdf) |
 | A0 portrait poster, HTML and editable sources | [`poster/`](poster/) |
 | Print-ready A0 poster PDF | [`poster/who-flips-a0.pdf`](poster/who-flips-a0.pdf) |
+| Narrated animation and editable video materials | [`video/`](video/) |
+| Final video / silent GIF | [`video/who-flips.mp4`](video/who-flips.mp4) · [`video/who-flips.gif`](video/who-flips.gif) |
 | Speaker notes | [`slides/speaker-notes.md`](slides/speaker-notes.md) |
 | All slides on one editable Excalidraw canvas | [`slides/all-slides.excalidraw`](slides/all-slides.excalidraw) |
 | Editable Excalidraw file per slide | [`slides/excalidraw/`](slides/excalidraw/) |

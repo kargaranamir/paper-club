@@ -1,0 +1,9 @@
+Which planet is known as the Red Planet? The model answers Mars. It gets the question right.
+
+Now, show it a confident but misleading argument for Venus. Does that challenge change its answer?
+
+Does the model hold on to Mars, or flip to a wrong answer? This is what we study in our paper, Who Flips.
+
+Across seven models, mean flip rates for eligible, initially correct answers ranged from seventeen point five to ninety-seven point three percent.
+
+Getting the first answer right is not the whole story. What matters is whether it survives a misleading challenge. Evaluate stability alongside accuracy.

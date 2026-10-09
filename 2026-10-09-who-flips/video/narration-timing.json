@@ -1,0 +1,57 @@
+[
+  {
+    "slug": "01-correct",
+    "text": "Which planet is known as the Red Planet? The model answers Mars. It gets the question right.",
+    "audio_duration": 6.426125,
+    "narration_offset": 0.3,
+    "start": 0,
+    "duration": 7.6,
+    "voice": "Hope - Natural, Clear and Calm",
+    "provider": "ElevenLabs",
+    "model": "eleven_v4"
+  },
+  {
+    "slug": "02-challenge",
+    "text": "Now, show it a confident but misleading argument for Venus. Does that challenge change its answer?",
+    "audio_duration": 6.426125,
+    "narration_offset": 0.3,
+    "start": 7.6,
+    "duration": 7.6,
+    "voice": "Hope - Natural, Clear and Calm",
+    "provider": "ElevenLabs",
+    "model": "eleven_v4"
+  },
+  {
+    "slug": "03-hold-or-flip",
+    "text": "Does the model hold on to Mars, or flip to a wrong answer? This is what we study in our paper, Who Flips.",
+    "audio_duration": 7.0791875,
+    "narration_offset": 0.3,
+    "start": 15.2,
+    "duration": 8.2,
+    "voice": "Hope - Natural, Clear and Calm",
+    "provider": "ElevenLabs",
+    "model": "eleven_v4"
+  },
+  {
+    "slug": "04-results",
+    "text": "Across seven models, mean flip rates for eligible, initially correct answers ranged from seventeen point five to ninety-seven point three percent.",
+    "audio_duration": 9.404083333333332,
+    "narration_offset": 0.3,
+    "start": 23.4,
+    "duration": 10.6,
+    "voice": "Hope - Natural, Clear and Calm",
+    "provider": "ElevenLabs",
+    "model": "eleven_v4"
+  },
+  {
+    "slug": "05-takeaway",
+    "text": "Getting the first answer right is not the whole story. What matters is whether it survives a misleading challenge. Evaluate stability alongside accuracy.",
+    "audio_duration": 9.952666666666667,
+    "narration_offset": 0.3,
+    "start": 34.0,
+    "duration": 11.1,
+    "voice": "Hope - Natural, Clear and Calm",
+    "provider": "ElevenLabs",
+    "model": "eleven_v4"
+  }
+]

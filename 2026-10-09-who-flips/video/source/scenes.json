@@ -1,0 +1,4175 @@
+[
+  {
+    "slug": "01-correct",
+    "duration": 7.6,
+    "base": [
+      {
+        "type": "rectangle",
+        "id": "01-correct-base-paper",
+        "x": 0,
+        "y": 0,
+        "width": 1080,
+        "height": 1080,
+        "strokeColor": "transparent",
+        "backgroundColor": "#fffaf0",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "rectangle",
+        "id": "01-correct-base-1",
+        "x": 22,
+        "y": 22,
+        "width": 1036,
+        "height": 1036,
+        "strokeColor": "#142d32",
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "strokeWidth": 2,
+        "roughness": 0.6,
+        "roundness": {
+          "type": 3
+        },
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "01-correct-base-2",
+        "x": 70.0,
+        "y": 63.949999999999996,
+        "width": 47.25,
+        "height": 49.0,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            40.949999999999996,
+            -6.3
+          ],
+          [
+            47.25,
+            29.749999999999996
+          ],
+          [
+            31.849999999999998,
+            32.199999999999996
+          ],
+          [
+            24.5,
+            42.699999999999996
+          ],
+          [
+            22.049999999999997,
+            34.3
+          ],
+          [
+            5.6,
+            37.099999999999994
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 1.4,
+        "roughness": 0.65,
+        "backgroundColor": "#cceee7",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "01-correct-base-3",
+        "x": 79.8,
+        "y": 77.94999999999999,
+        "width": 20.65,
+        "height": 15.399999999999999,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            8.399999999999999,
+            6.6499999999999995
+          ],
+          [
+            20.65,
+            -8.75
+          ]
+        ],
+        "strokeColor": "#007f88",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "01-correct-base-4",
+        "x": 108.5,
+        "y": 75.85,
+        "width": 46.9,
+        "height": 48.3,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            42.349999999999994,
+            5.25
+          ],
+          [
+            37.8,
+            42.349999999999994
+          ],
+          [
+            23.799999999999997,
+            40.599999999999994
+          ],
+          [
+            14.0,
+            48.3
+          ],
+          [
+            14.35,
+            39.199999999999996
+          ],
+          [
+            -4.55,
+            36.75
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 1.4,
+        "roughness": 0.65,
+        "backgroundColor": "#ffb9d7",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "01-correct-base-5",
+        "x": 120.75,
+        "y": 87.39999999999999,
+        "width": 15.399999999999999,
+        "height": 16.45,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            15.399999999999999,
+            16.45
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "01-correct-base-6",
+        "x": 136.85,
+        "y": 89.14999999999999,
+        "width": 17.5,
+        "height": 13.299999999999999,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -17.5,
+            13.299999999999999
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "arrow",
+        "id": "01-correct-base-7",
+        "x": 95.9,
+        "y": 49.95,
+        "width": 46.199999999999996,
+        "height": 19.95,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            17.5,
+            -8.049999999999999
+          ],
+          [
+            37.8,
+            -2.4499999999999997
+          ],
+          [
+            46.199999999999996,
+            11.899999999999999
+          ]
+        ],
+        "strokeColor": "#007f88",
+        "strokeWidth": 1.9249999999999998,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": "arrow",
+        "groupIds": [
+          "01-correct-base"
+        ],
+        "roundness": {
+          "type": 2
+        }
+      },
+      {
+        "type": "text",
+        "id": "01-correct-base-8",
+        "x": 173.95,
+        "y": 63.949999999999996,
+        "text": "Who",
+        "fontSize": 37.8,
+        "fontFamily": 5,
+        "strokeColor": "#142d32",
+        "roughness": 0,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "01-correct-base-9",
+        "x": 255.14999999999998,
+        "y": 63.949999999999996,
+        "text": "Flips?",
+        "fontSize": 37.8,
+        "fontFamily": 5,
+        "strokeColor": "#007f88",
+        "roughness": 0,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "01-correct-base-10",
+        "x": 813.33984375,
+        "y": 82,
+        "text": "CORRECT FIRST",
+        "fontSize": 24,
+        "fontFamily": 2,
+        "strokeColor": "#007f88",
+        "roughness": 0,
+        "textAlign": "left",
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "01-correct-base-11",
+        "x": 62,
+        "y": 158,
+        "width": 956,
+        "height": 0,
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            956,
+            0
+          ]
+        ],
+        "strokeColor": "#d9ded4",
+        "strokeWidth": 1.5,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "01-correct-base-12",
+        "x": 249.57,
+        "y": 944,
+        "text": "Illustrative example \u00b7 not a recorded model response",
+        "fontSize": 25,
+        "fontFamily": 2,
+        "strokeColor": "#51666a",
+        "roughness": 0,
+        "textAlign": "left",
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "01-correct-base-13",
+        "x": 470,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#007f88",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "01-correct-base-14",
+        "x": 502,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "01-correct-base-15",
+        "x": 534,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "01-correct-base-16",
+        "x": 566,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "01-correct-base-17",
+        "x": 598,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "01-correct-base"
+        ]
+      }
+    ],
+    "layers": [
+      {
+        "name": "heading",
+        "at": -0.4,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "01-correct-heading-0",
+            "x": 68,
+            "y": 207,
+            "text": "The model gets it right.",
+            "fontSize": 62,
+            "fontFamily": 5,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "01-correct-heading"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "01-correct-heading-1",
+            "x": 70,
+            "y": 293,
+            "text": "It starts with a correct answer.",
+            "fontSize": 32,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "01-correct-heading"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "question",
+        "at": 0.17,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "rectangle",
+            "id": "01-correct-question-0",
+            "x": 80,
+            "y": 382,
+            "width": 920,
+            "height": 166,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#ffffff",
+            "fillStyle": "solid",
+            "strokeWidth": 3,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "01-correct-question"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "01-correct-question-1",
+            "x": 321.12,
+            "y": 414,
+            "text": "Which planet is known\nas the Red Planet?",
+            "fontSize": 44,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "01-correct-question"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "target",
+        "at": 0.39,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "line",
+            "id": "01-correct-target-0",
+            "x": 178.5,
+            "y": 613.25,
+            "width": 0.0,
+            "height": 24.150000000000002,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                24.150000000000002
+              ]
+            ],
+            "strokeColor": "#007f88",
+            "strokeWidth": 4.2,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "01-correct-target"
+            ]
+          },
+          {
+            "type": "ellipse",
+            "id": "01-correct-target-1",
+            "x": 171.15,
+            "y": 608.0,
+            "width": 14.700000000000001,
+            "height": 14.700000000000001,
+            "strokeColor": "#007f88",
+            "backgroundColor": "#007f88",
+            "fillStyle": "solid",
+            "strokeWidth": 3.1500000000000004,
+            "roughness": 0.6,
+            "groupIds": [
+              "01-correct-target"
+            ]
+          },
+          {
+            "type": "rectangle",
+            "id": "01-correct-target-2",
+            "x": 133.35,
+            "y": 722.45,
+            "width": 90.3,
+            "height": 68.25,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#cceee7",
+            "fillStyle": "solid",
+            "strokeWidth": 3.1500000000000004,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "01-correct-target"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "01-correct-target-3",
+            "x": 132.3,
+            "y": 738.2,
+            "width": 22.05,
+            "height": 28.35,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                -22.05,
+                28.35
+              ]
+            ],
+            "strokeColor": "#142d32",
+            "strokeWidth": 5.25,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "01-correct-target"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "01-correct-target-4",
+            "x": 223.65,
+            "y": 738.2,
+            "width": 23.1,
+            "height": 28.35,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                23.1,
+                28.35
+              ]
+            ],
+            "strokeColor": "#142d32",
+            "strokeWidth": 5.25,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "01-correct-target"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "01-correct-target-5",
+            "x": 155.4,
+            "y": 790.7,
+            "width": 3.1500000000000004,
+            "height": 18.900000000000002,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                -3.1500000000000004,
+                18.900000000000002
+              ]
+            ],
+            "strokeColor": "#142d32",
+            "strokeWidth": 5.25,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "01-correct-target"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "01-correct-target-6",
+            "x": 201.60000000000002,
+            "y": 790.7,
+            "width": 4.2,
+            "height": 18.900000000000002,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                4.2,
+                18.900000000000002
+              ]
+            ],
+            "strokeColor": "#142d32",
+            "strokeWidth": 5.25,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "01-correct-target"
+            ]
+          },
+          {
+            "type": "rectangle",
+            "id": "01-correct-target-7",
+            "x": 112.35,
+            "y": 636.35,
+            "width": 132.3,
+            "height": 95.55,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#cceee7",
+            "fillStyle": "solid",
+            "strokeWidth": 3.1500000000000004,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "01-correct-target"
+            ]
+          },
+          {
+            "type": "rectangle",
+            "id": "01-correct-target-8",
+            "x": 126.0,
+            "y": 652.1,
+            "width": 105.0,
+            "height": 58.800000000000004,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#142d32",
+            "fillStyle": "solid",
+            "strokeWidth": 2.1,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "01-correct-target"
+            ]
+          },
+          {
+            "type": "ellipse",
+            "id": "01-correct-target-9",
+            "x": 147.0,
+            "y": 666.8,
+            "width": 17.85,
+            "height": 22.05,
+            "strokeColor": "#fffaf0",
+            "backgroundColor": "#fffaf0",
+            "fillStyle": "solid",
+            "strokeWidth": 1.05,
+            "roughness": 0.6,
+            "groupIds": [
+              "01-correct-target"
+            ]
+          },
+          {
+            "type": "ellipse",
+            "id": "01-correct-target-10",
+            "x": 191.10000000000002,
+            "y": 666.8,
+            "width": 17.85,
+            "height": 22.05,
+            "strokeColor": "#fffaf0",
+            "backgroundColor": "#fffaf0",
+            "fillStyle": "solid",
+            "strokeWidth": 1.05,
+            "roughness": 0.6,
+            "groupIds": [
+              "01-correct-target"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "01-correct-target-11",
+            "x": 166.95,
+            "y": 694.1,
+            "width": 23.1,
+            "height": 4.2,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                11.55,
+                4.2
+              ],
+              [
+                23.1,
+                0.0
+              ]
+            ],
+            "strokeColor": "#fffaf0",
+            "strokeWidth": 2.1,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "roundness": {
+              "type": 2
+            },
+            "groupIds": [
+              "01-correct-target"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "01-correct-target-12",
+            "x": 129.33,
+            "y": 827,
+            "text": "MODEL",
+            "fontSize": 24,
+            "fontFamily": 2,
+            "strokeColor": "#007f88",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "01-correct-target"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "correct",
+        "at": 3.47,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "rectangle",
+            "id": "01-correct-correct-0",
+            "x": 321,
+            "y": 618,
+            "width": 677,
+            "height": 157,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#cceee7",
+            "fillStyle": "solid",
+            "strokeWidth": 3,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "01-correct-correct"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "01-correct-correct-1",
+            "x": 353,
+            "y": 638,
+            "text": "INITIAL ANSWER",
+            "fontSize": 23,
+            "fontFamily": 2,
+            "strokeColor": "#007f88",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "01-correct-correct"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "01-correct-correct-2",
+            "x": 380,
+            "y": 679,
+            "text": "Mars",
+            "fontSize": 57,
+            "fontFamily": 5,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "01-correct-correct"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "01-correct-correct-3",
+            "x": 896,
+            "y": 704.5,
+            "width": 55.0,
+            "height": 44.0,
+            "points": [
+              [
+                0,
+                0.0
+              ],
+              [
+                19.799999999999955,
+                17.600000000000023
+              ],
+              [
+                55.0,
+                -26.399999999999977
+              ]
+            ],
+            "strokeColor": "#007f88",
+            "strokeWidth": 6.6000000000000005,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "01-correct-correct"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "rule",
+        "at": 5.07,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "01-correct-rule-0",
+            "x": 259.82666015625,
+            "y": 872,
+            "text": "Correct once. But stable under challenge?",
+            "fontSize": 30,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "01-correct-rule"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "02-challenge",
+    "duration": 7.6,
+    "base": [
+      {
+        "type": "rectangle",
+        "id": "02-challenge-base-paper",
+        "x": 0,
+        "y": 0,
+        "width": 1080,
+        "height": 1080,
+        "strokeColor": "transparent",
+        "backgroundColor": "#fffaf0",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "rectangle",
+        "id": "02-challenge-base-1",
+        "x": 22,
+        "y": 22,
+        "width": 1036,
+        "height": 1036,
+        "strokeColor": "#142d32",
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "strokeWidth": 2,
+        "roughness": 0.6,
+        "roundness": {
+          "type": 3
+        },
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "02-challenge-base-2",
+        "x": 70.0,
+        "y": 63.949999999999996,
+        "width": 47.25,
+        "height": 49.0,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            40.949999999999996,
+            -6.3
+          ],
+          [
+            47.25,
+            29.749999999999996
+          ],
+          [
+            31.849999999999998,
+            32.199999999999996
+          ],
+          [
+            24.5,
+            42.699999999999996
+          ],
+          [
+            22.049999999999997,
+            34.3
+          ],
+          [
+            5.6,
+            37.099999999999994
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 1.4,
+        "roughness": 0.65,
+        "backgroundColor": "#cceee7",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "02-challenge-base-3",
+        "x": 79.8,
+        "y": 77.94999999999999,
+        "width": 20.65,
+        "height": 15.399999999999999,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            8.399999999999999,
+            6.6499999999999995
+          ],
+          [
+            20.65,
+            -8.75
+          ]
+        ],
+        "strokeColor": "#007f88",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "02-challenge-base-4",
+        "x": 108.5,
+        "y": 75.85,
+        "width": 46.9,
+        "height": 48.3,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            42.349999999999994,
+            5.25
+          ],
+          [
+            37.8,
+            42.349999999999994
+          ],
+          [
+            23.799999999999997,
+            40.599999999999994
+          ],
+          [
+            14.0,
+            48.3
+          ],
+          [
+            14.35,
+            39.199999999999996
+          ],
+          [
+            -4.55,
+            36.75
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 1.4,
+        "roughness": 0.65,
+        "backgroundColor": "#ffb9d7",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "02-challenge-base-5",
+        "x": 120.75,
+        "y": 87.39999999999999,
+        "width": 15.399999999999999,
+        "height": 16.45,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            15.399999999999999,
+            16.45
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "02-challenge-base-6",
+        "x": 136.85,
+        "y": 89.14999999999999,
+        "width": 17.5,
+        "height": 13.299999999999999,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -17.5,
+            13.299999999999999
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "arrow",
+        "id": "02-challenge-base-7",
+        "x": 95.9,
+        "y": 49.95,
+        "width": 46.199999999999996,
+        "height": 19.95,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            17.5,
+            -8.049999999999999
+          ],
+          [
+            37.8,
+            -2.4499999999999997
+          ],
+          [
+            46.199999999999996,
+            11.899999999999999
+          ]
+        ],
+        "strokeColor": "#007f88",
+        "strokeWidth": 1.9249999999999998,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": "arrow",
+        "groupIds": [
+          "02-challenge-base"
+        ],
+        "roundness": {
+          "type": 2
+        }
+      },
+      {
+        "type": "text",
+        "id": "02-challenge-base-8",
+        "x": 173.95,
+        "y": 63.949999999999996,
+        "text": "Who",
+        "fontSize": 37.8,
+        "fontFamily": 5,
+        "strokeColor": "#142d32",
+        "roughness": 0,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "02-challenge-base-9",
+        "x": 255.14999999999998,
+        "y": 63.949999999999996,
+        "text": "Flips?",
+        "fontSize": 37.8,
+        "fontFamily": 5,
+        "strokeColor": "#007f88",
+        "roughness": 0,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "02-challenge-base-10",
+        "x": 770.61328125,
+        "y": 82,
+        "text": "UNDER CHALLENGE",
+        "fontSize": 24,
+        "fontFamily": 2,
+        "strokeColor": "#007f88",
+        "roughness": 0,
+        "textAlign": "left",
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "02-challenge-base-11",
+        "x": 62,
+        "y": 158,
+        "width": 956,
+        "height": 0,
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            956,
+            0
+          ]
+        ],
+        "strokeColor": "#d9ded4",
+        "strokeWidth": 1.5,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "02-challenge-base-12",
+        "x": 249.57,
+        "y": 944,
+        "text": "Illustrative example \u00b7 not a recorded model response",
+        "fontSize": 25,
+        "fontFamily": 2,
+        "strokeColor": "#51666a",
+        "roughness": 0,
+        "textAlign": "left",
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "02-challenge-base-13",
+        "x": 470,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "02-challenge-base-14",
+        "x": 502,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#007f88",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "02-challenge-base-15",
+        "x": 534,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "02-challenge-base-16",
+        "x": 566,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "02-challenge-base-17",
+        "x": 598,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "02-challenge-base"
+        ]
+      }
+    ],
+    "layers": [
+      {
+        "name": "heading",
+        "at": 0,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "02-challenge-heading-0",
+            "x": 68,
+            "y": 207,
+            "text": "Then comes a challenge.",
+            "fontSize": 59,
+            "fontFamily": 5,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "02-challenge-heading"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "02-challenge-heading-1",
+            "x": 70,
+            "y": 292,
+            "text": "An argument confidently defends the wrong option.",
+            "fontSize": 30,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "02-challenge-heading"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "before",
+        "at": 0.2,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "rectangle",
+            "id": "02-challenge-before-0",
+            "x": 80,
+            "y": 381,
+            "width": 359,
+            "height": 99,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#cceee7",
+            "fillStyle": "solid",
+            "strokeWidth": 3,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "02-challenge-before"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "02-challenge-before-1",
+            "x": 111,
+            "y": 410,
+            "text": "Initially: Mars",
+            "fontSize": 36,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "02-challenge-before"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "02-challenge-before-2",
+            "x": 366,
+            "y": 427.5,
+            "width": 35.0,
+            "height": 28.0,
+            "points": [
+              [
+                0,
+                0.0
+              ],
+              [
+                12.600000000000023,
+                11.199999999999989
+              ],
+              [
+                35.0,
+                -16.80000000000001
+              ]
+            ],
+            "strokeColor": "#007f88",
+            "strokeWidth": 4.199999999999999,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "02-challenge-before"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "target",
+        "at": 0.26,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "line",
+            "id": "02-challenge-target-0",
+            "x": 882.8,
+            "y": 370.2,
+            "width": 0.0,
+            "height": 19.32,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                19.32
+              ]
+            ],
+            "strokeColor": "#007f88",
+            "strokeWidth": 3.36,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "02-challenge-target"
+            ]
+          },
+          {
+            "type": "ellipse",
+            "id": "02-challenge-target-1",
+            "x": 876.92,
+            "y": 366.0,
+            "width": 11.76,
+            "height": 11.76,
+            "strokeColor": "#007f88",
+            "backgroundColor": "#007f88",
+            "fillStyle": "solid",
+            "strokeWidth": 2.52,
+            "roughness": 0.6,
+            "groupIds": [
+              "02-challenge-target"
+            ]
+          },
+          {
+            "type": "rectangle",
+            "id": "02-challenge-target-2",
+            "x": 846.68,
+            "y": 457.56,
+            "width": 72.24,
+            "height": 54.6,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#cceee7",
+            "fillStyle": "solid",
+            "strokeWidth": 2.52,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "02-challenge-target"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "02-challenge-target-3",
+            "x": 845.84,
+            "y": 470.15999999999997,
+            "width": 17.64,
+            "height": 22.68,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                -17.64,
+                22.68
+              ]
+            ],
+            "strokeColor": "#142d32",
+            "strokeWidth": 4.2,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "02-challenge-target"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "02-challenge-target-4",
+            "x": 918.92,
+            "y": 470.15999999999997,
+            "width": 18.48,
+            "height": 22.68,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                18.48,
+                22.68
+              ]
+            ],
+            "strokeColor": "#142d32",
+            "strokeWidth": 4.2,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "02-challenge-target"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "02-challenge-target-5",
+            "x": 864.32,
+            "y": 512.16,
+            "width": 2.52,
+            "height": 15.12,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                -2.52,
+                15.12
+              ]
+            ],
+            "strokeColor": "#142d32",
+            "strokeWidth": 4.2,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "02-challenge-target"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "02-challenge-target-6",
+            "x": 901.28,
+            "y": 512.16,
+            "width": 3.36,
+            "height": 15.12,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                3.36,
+                15.12
+              ]
+            ],
+            "strokeColor": "#142d32",
+            "strokeWidth": 4.2,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "02-challenge-target"
+            ]
+          },
+          {
+            "type": "rectangle",
+            "id": "02-challenge-target-7",
+            "x": 829.88,
+            "y": 388.68,
+            "width": 105.83999999999999,
+            "height": 76.44,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#cceee7",
+            "fillStyle": "solid",
+            "strokeWidth": 2.52,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "02-challenge-target"
+            ]
+          },
+          {
+            "type": "rectangle",
+            "id": "02-challenge-target-8",
+            "x": 840.8,
+            "y": 401.28,
+            "width": 84.0,
+            "height": 47.04,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#142d32",
+            "fillStyle": "solid",
+            "strokeWidth": 1.68,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "02-challenge-target"
+            ]
+          },
+          {
+            "type": "ellipse",
+            "id": "02-challenge-target-9",
+            "x": 857.6,
+            "y": 413.04,
+            "width": 14.28,
+            "height": 17.64,
+            "strokeColor": "#fffaf0",
+            "backgroundColor": "#fffaf0",
+            "fillStyle": "solid",
+            "strokeWidth": 0.84,
+            "roughness": 0.6,
+            "groupIds": [
+              "02-challenge-target"
+            ]
+          },
+          {
+            "type": "ellipse",
+            "id": "02-challenge-target-10",
+            "x": 892.88,
+            "y": 413.04,
+            "width": 14.28,
+            "height": 17.64,
+            "strokeColor": "#fffaf0",
+            "backgroundColor": "#fffaf0",
+            "fillStyle": "solid",
+            "strokeWidth": 0.84,
+            "roughness": 0.6,
+            "groupIds": [
+              "02-challenge-target"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "02-challenge-target-11",
+            "x": 873.56,
+            "y": 434.88,
+            "width": 18.48,
+            "height": 3.36,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                9.24,
+                3.36
+              ],
+              [
+                18.48,
+                0.0
+              ]
+            ],
+            "strokeColor": "#fffaf0",
+            "strokeWidth": 1.68,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "roundness": {
+              "type": 2
+            },
+            "groupIds": [
+              "02-challenge-target"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "wrong",
+        "at": 0.82,
+        "duration": 0.4,
+        "kind": "slide",
+        "elements": [
+          {
+            "type": "rectangle",
+            "id": "02-challenge-wrong-0",
+            "x": 80,
+            "y": 549,
+            "width": 920,
+            "height": 212,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#ffb9d7",
+            "fillStyle": "solid",
+            "strokeWidth": 3,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "02-challenge-wrong"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "02-challenge-wrong-1",
+            "x": 115,
+            "y": 572,
+            "text": "WRONG-ANSWER ARGUMENT",
+            "fontSize": 24,
+            "fontFamily": 2,
+            "strokeColor": "#9d315e",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "02-challenge-wrong"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "02-challenge-wrong-2",
+            "x": 115,
+            "y": 622,
+            "text": "\u201cVenus looks reddish.\nSo Venus is the Red Planet.\u201d",
+            "fontSize": 42,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "02-challenge-wrong"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ask",
+        "at": 4.9,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "02-challenge-ask-0",
+            "x": 249.99,
+            "y": 810,
+            "text": "Keep your answer\u2014or change it?",
+            "fontSize": 37,
+            "fontFamily": 5,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "02-challenge-ask"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "roles",
+        "at": 2.86,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "02-challenge-roles-0",
+            "x": 200.1005859375,
+            "y": 877,
+            "text": "The argument is misleading. The initial answer was right.",
+            "fontSize": 27,
+            "fontFamily": 2,
+            "strokeColor": "#51666a",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "02-challenge-roles"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "03-hold-or-flip",
+    "duration": 8.2,
+    "base": [
+      {
+        "type": "rectangle",
+        "id": "03-hold-or-flip-base-paper",
+        "x": 0,
+        "y": 0,
+        "width": 1080,
+        "height": 1080,
+        "strokeColor": "transparent",
+        "backgroundColor": "#fffaf0",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "rectangle",
+        "id": "03-hold-or-flip-base-1",
+        "x": 22,
+        "y": 22,
+        "width": 1036,
+        "height": 1036,
+        "strokeColor": "#142d32",
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "strokeWidth": 2,
+        "roughness": 0.6,
+        "roundness": {
+          "type": 3
+        },
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "03-hold-or-flip-base-2",
+        "x": 70.0,
+        "y": 63.949999999999996,
+        "width": 47.25,
+        "height": 49.0,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            40.949999999999996,
+            -6.3
+          ],
+          [
+            47.25,
+            29.749999999999996
+          ],
+          [
+            31.849999999999998,
+            32.199999999999996
+          ],
+          [
+            24.5,
+            42.699999999999996
+          ],
+          [
+            22.049999999999997,
+            34.3
+          ],
+          [
+            5.6,
+            37.099999999999994
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 1.4,
+        "roughness": 0.65,
+        "backgroundColor": "#cceee7",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "03-hold-or-flip-base-3",
+        "x": 79.8,
+        "y": 77.94999999999999,
+        "width": 20.65,
+        "height": 15.399999999999999,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            8.399999999999999,
+            6.6499999999999995
+          ],
+          [
+            20.65,
+            -8.75
+          ]
+        ],
+        "strokeColor": "#007f88",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "03-hold-or-flip-base-4",
+        "x": 108.5,
+        "y": 75.85,
+        "width": 46.9,
+        "height": 48.3,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            42.349999999999994,
+            5.25
+          ],
+          [
+            37.8,
+            42.349999999999994
+          ],
+          [
+            23.799999999999997,
+            40.599999999999994
+          ],
+          [
+            14.0,
+            48.3
+          ],
+          [
+            14.35,
+            39.199999999999996
+          ],
+          [
+            -4.55,
+            36.75
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 1.4,
+        "roughness": 0.65,
+        "backgroundColor": "#ffb9d7",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "03-hold-or-flip-base-5",
+        "x": 120.75,
+        "y": 87.39999999999999,
+        "width": 15.399999999999999,
+        "height": 16.45,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            15.399999999999999,
+            16.45
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "03-hold-or-flip-base-6",
+        "x": 136.85,
+        "y": 89.14999999999999,
+        "width": 17.5,
+        "height": 13.299999999999999,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -17.5,
+            13.299999999999999
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "arrow",
+        "id": "03-hold-or-flip-base-7",
+        "x": 95.9,
+        "y": 49.95,
+        "width": 46.199999999999996,
+        "height": 19.95,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            17.5,
+            -8.049999999999999
+          ],
+          [
+            37.8,
+            -2.4499999999999997
+          ],
+          [
+            46.199999999999996,
+            11.899999999999999
+          ]
+        ],
+        "strokeColor": "#007f88",
+        "strokeWidth": 1.9249999999999998,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": "arrow",
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ],
+        "roundness": {
+          "type": 2
+        }
+      },
+      {
+        "type": "text",
+        "id": "03-hold-or-flip-base-8",
+        "x": 173.95,
+        "y": 63.949999999999996,
+        "text": "Who",
+        "fontSize": 37.8,
+        "fontFamily": 5,
+        "strokeColor": "#142d32",
+        "roughness": 0,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "03-hold-or-flip-base-9",
+        "x": 255.14999999999998,
+        "y": 63.949999999999996,
+        "text": "Flips?",
+        "fontSize": 37.8,
+        "fontFamily": 5,
+        "strokeColor": "#007f88",
+        "roughness": 0,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "03-hold-or-flip-base-10",
+        "x": 827.953125,
+        "y": 82,
+        "text": "HOLD OR FLIP?",
+        "fontSize": 24,
+        "fontFamily": 2,
+        "strokeColor": "#007f88",
+        "roughness": 0,
+        "textAlign": "left",
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "03-hold-or-flip-base-11",
+        "x": 62,
+        "y": 158,
+        "width": 956,
+        "height": 0,
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            956,
+            0
+          ]
+        ],
+        "strokeColor": "#d9ded4",
+        "strokeWidth": 1.5,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "03-hold-or-flip-base-12",
+        "x": 296.14,
+        "y": 944,
+        "text": "Illustrative example \u00b7 two possible outcomes",
+        "fontSize": 25,
+        "fontFamily": 2,
+        "strokeColor": "#51666a",
+        "roughness": 0,
+        "textAlign": "left",
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "03-hold-or-flip-base-13",
+        "x": 470,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "03-hold-or-flip-base-14",
+        "x": 502,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "03-hold-or-flip-base-15",
+        "x": 534,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#007f88",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "03-hold-or-flip-base-16",
+        "x": 566,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "03-hold-or-flip-base-17",
+        "x": 598,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "03-hold-or-flip-base"
+        ]
+      }
+    ],
+    "layers": [
+      {
+        "name": "heading",
+        "at": 0,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "03-hold-or-flip-heading-0",
+            "x": 68,
+            "y": 207,
+            "text": "Does it hold\u2014or flip?",
+            "fontSize": 62,
+            "fontFamily": 5,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "03-hold-or-flip-heading"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "03-hold-or-flip-heading-1",
+            "x": 70,
+            "y": 292,
+            "text": "The final answer is what matters.",
+            "fontSize": 32,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "03-hold-or-flip-heading"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "initial",
+        "at": 0.31,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "rectangle",
+            "id": "03-hold-or-flip-initial-0",
+            "x": 268,
+            "y": 379,
+            "width": 544,
+            "height": 102,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#ffffff",
+            "fillStyle": "solid",
+            "strokeWidth": 3,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "03-hold-or-flip-initial"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "03-hold-or-flip-initial-1",
+            "x": 370.38,
+            "y": 407,
+            "text": "Initially correct: Mars",
+            "fontSize": 37,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "03-hold-or-flip-initial"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "branches",
+        "at": 0.83,
+        "duration": 0.4,
+        "kind": "wipe",
+        "elements": [
+          {
+            "type": "arrow",
+            "id": "03-hold-or-flip-branches-0",
+            "x": 445,
+            "y": 491,
+            "width": 150,
+            "height": 89,
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                -150,
+                89
+              ]
+            ],
+            "strokeColor": "#007f88",
+            "strokeWidth": 4,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": "arrow",
+            "groupIds": [
+              "03-hold-or-flip-branches"
+            ]
+          },
+          {
+            "type": "arrow",
+            "id": "03-hold-or-flip-branches-1",
+            "x": 635,
+            "y": 491,
+            "width": 150,
+            "height": 89,
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                150,
+                89
+              ]
+            ],
+            "strokeColor": "#9d315e",
+            "strokeWidth": 4,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": "arrow",
+            "groupIds": [
+              "03-hold-or-flip-branches"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "hold",
+        "at": 0.93,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "rectangle",
+            "id": "03-hold-or-flip-hold-0",
+            "x": 80,
+            "y": 601,
+            "width": 430,
+            "height": 196,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#cceee7",
+            "fillStyle": "solid",
+            "strokeWidth": 3,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "03-hold-or-flip-hold"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "03-hold-or-flip-hold-1",
+            "x": 116,
+            "y": 624,
+            "text": "HOLD",
+            "fontSize": 27,
+            "fontFamily": 2,
+            "strokeColor": "#007f88",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "03-hold-or-flip-hold"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "03-hold-or-flip-hold-2",
+            "x": 137,
+            "y": 690,
+            "text": "Mars",
+            "fontSize": 64,
+            "fontFamily": 5,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "03-hold-or-flip-hold"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "03-hold-or-flip-hold-3",
+            "x": 396,
+            "y": 716.25,
+            "width": 57.5,
+            "height": 46.0,
+            "points": [
+              [
+                0,
+                0.0
+              ],
+              [
+                20.69999999999999,
+                18.399999999999977
+              ],
+              [
+                57.5,
+                -27.600000000000023
+              ]
+            ],
+            "strokeColor": "#007f88",
+            "strokeWidth": 6.8999999999999995,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "03-hold-or-flip-hold"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "flip",
+        "at": 2.38,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "rectangle",
+            "id": "03-hold-or-flip-flip-0",
+            "x": 570,
+            "y": 601,
+            "width": 430,
+            "height": 196,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#ffb9d7",
+            "fillStyle": "solid",
+            "strokeWidth": 3,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "03-hold-or-flip-flip"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "03-hold-or-flip-flip-1",
+            "x": 606,
+            "y": 624,
+            "text": "FLIP",
+            "fontSize": 27,
+            "fontFamily": 2,
+            "strokeColor": "#9d315e",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "03-hold-or-flip-flip"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "03-hold-or-flip-flip-2",
+            "x": 615,
+            "y": 690,
+            "text": "Venus",
+            "fontSize": 62,
+            "fontFamily": 5,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "03-hold-or-flip-flip"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "03-hold-or-flip-flip-3",
+            "x": 928,
+            "y": 714,
+            "width": 29.75,
+            "height": 29.75,
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                29.75,
+                29.75
+              ]
+            ],
+            "strokeColor": "#9d315e",
+            "strokeWidth": 5.1,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "03-hold-or-flip-flip"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "03-hold-or-flip-flip-4",
+            "x": 957.75,
+            "y": 714,
+            "width": 29.75,
+            "height": 29.75,
+            "points": [
+              [
+                0.0,
+                0
+              ],
+              [
+                -29.75,
+                29.75
+              ]
+            ],
+            "strokeColor": "#9d315e",
+            "strokeWidth": 5.1,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "03-hold-or-flip-flip"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "definition",
+        "at": 2.48,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "03-hold-or-flip-definition-0",
+            "x": 294.19,
+            "y": 838,
+            "text": "A flip ends with any wrong option.",
+            "fontSize": 33,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "03-hold-or-flip-definition"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "scope",
+        "at": 4.75,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "03-hold-or-flip-scope-0",
+            "x": 245.129150390625,
+            "y": 893,
+            "text": "We test self- and cross-model counterarguments.",
+            "fontSize": 27,
+            "fontFamily": 2,
+            "strokeColor": "#51666a",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "03-hold-or-flip-scope"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "04-results",
+    "duration": 10.6,
+    "base": [
+      {
+        "type": "rectangle",
+        "id": "04-results-base-paper",
+        "x": 0,
+        "y": 0,
+        "width": 1080,
+        "height": 1080,
+        "strokeColor": "transparent",
+        "backgroundColor": "#fffaf0",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "rectangle",
+        "id": "04-results-base-1",
+        "x": 22,
+        "y": 22,
+        "width": 1036,
+        "height": 1036,
+        "strokeColor": "#142d32",
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "strokeWidth": 2,
+        "roughness": 0.6,
+        "roundness": {
+          "type": 3
+        },
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "04-results-base-2",
+        "x": 70.0,
+        "y": 63.949999999999996,
+        "width": 47.25,
+        "height": 49.0,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            40.949999999999996,
+            -6.3
+          ],
+          [
+            47.25,
+            29.749999999999996
+          ],
+          [
+            31.849999999999998,
+            32.199999999999996
+          ],
+          [
+            24.5,
+            42.699999999999996
+          ],
+          [
+            22.049999999999997,
+            34.3
+          ],
+          [
+            5.6,
+            37.099999999999994
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 1.4,
+        "roughness": 0.65,
+        "backgroundColor": "#cceee7",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "04-results-base-3",
+        "x": 79.8,
+        "y": 77.94999999999999,
+        "width": 20.65,
+        "height": 15.399999999999999,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            8.399999999999999,
+            6.6499999999999995
+          ],
+          [
+            20.65,
+            -8.75
+          ]
+        ],
+        "strokeColor": "#007f88",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "04-results-base-4",
+        "x": 108.5,
+        "y": 75.85,
+        "width": 46.9,
+        "height": 48.3,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            42.349999999999994,
+            5.25
+          ],
+          [
+            37.8,
+            42.349999999999994
+          ],
+          [
+            23.799999999999997,
+            40.599999999999994
+          ],
+          [
+            14.0,
+            48.3
+          ],
+          [
+            14.35,
+            39.199999999999996
+          ],
+          [
+            -4.55,
+            36.75
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 1.4,
+        "roughness": 0.65,
+        "backgroundColor": "#ffb9d7",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "04-results-base-5",
+        "x": 120.75,
+        "y": 87.39999999999999,
+        "width": 15.399999999999999,
+        "height": 16.45,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            15.399999999999999,
+            16.45
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "04-results-base-6",
+        "x": 136.85,
+        "y": 89.14999999999999,
+        "width": 17.5,
+        "height": 13.299999999999999,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -17.5,
+            13.299999999999999
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "arrow",
+        "id": "04-results-base-7",
+        "x": 95.9,
+        "y": 49.95,
+        "width": 46.199999999999996,
+        "height": 19.95,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            17.5,
+            -8.049999999999999
+          ],
+          [
+            37.8,
+            -2.4499999999999997
+          ],
+          [
+            46.199999999999996,
+            11.899999999999999
+          ]
+        ],
+        "strokeColor": "#007f88",
+        "strokeWidth": 1.9249999999999998,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": "arrow",
+        "groupIds": [
+          "04-results-base"
+        ],
+        "roundness": {
+          "type": 2
+        }
+      },
+      {
+        "type": "text",
+        "id": "04-results-base-8",
+        "x": 173.95,
+        "y": 63.949999999999996,
+        "text": "Who",
+        "fontSize": 37.8,
+        "fontFamily": 5,
+        "strokeColor": "#142d32",
+        "roughness": 0,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "04-results-base-9",
+        "x": 255.14999999999998,
+        "y": 63.949999999999996,
+        "text": "Flips?",
+        "fontSize": 37.8,
+        "fontFamily": 5,
+        "strokeColor": "#007f88",
+        "roughness": 0,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "04-results-base-10",
+        "x": 757.2890625,
+        "y": 82,
+        "text": "REPORTED RESULTS",
+        "fontSize": 24,
+        "fontFamily": 2,
+        "strokeColor": "#007f88",
+        "roughness": 0,
+        "textAlign": "left",
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "04-results-base-11",
+        "x": 62,
+        "y": 158,
+        "width": 956,
+        "height": 0,
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            956,
+            0
+          ]
+        ],
+        "strokeColor": "#d9ded4",
+        "strokeWidth": 1.5,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "04-results-base-12",
+        "x": 200.22,
+        "y": 944,
+        "text": "Mean blind flip rates \u00b7 averaged over tested argument lengths",
+        "fontSize": 25,
+        "fontFamily": 2,
+        "strokeColor": "#51666a",
+        "roughness": 0,
+        "textAlign": "left",
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "04-results-base-13",
+        "x": 470,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "04-results-base-14",
+        "x": 502,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "04-results-base-15",
+        "x": 534,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "04-results-base-16",
+        "x": 566,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#007f88",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "04-results-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "04-results-base-17",
+        "x": 598,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "04-results-base"
+        ]
+      }
+    ],
+    "layers": [
+      {
+        "name": "heading",
+        "at": 0,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "04-results-heading-0",
+            "x": 68,
+            "y": 207,
+            "text": "Stability varies\nacross models.",
+            "fontSize": 67,
+            "fontFamily": 5,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "04-results-heading"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "intro",
+        "at": 0.35,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "04-results-intro-0",
+            "x": 256.87,
+            "y": 405,
+            "text": "Mean answer flip rates ranged from",
+            "fontSize": 36,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "04-results-intro"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "low",
+        "at": 3.75,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "rectangle",
+            "id": "04-results-low-0",
+            "x": 80,
+            "y": 492,
+            "width": 430,
+            "height": 242,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#cceee7",
+            "fillStyle": "solid",
+            "strokeWidth": 3,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "04-results-low"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "04-results-low-1",
+            "x": 156.15,
+            "y": 526,
+            "text": "17.5%",
+            "fontSize": 99,
+            "fontFamily": 5,
+            "strokeColor": "#007f88",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "04-results-low"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "04-results-low-2",
+            "x": 197.16,
+            "y": 669,
+            "text": "Qwen3.5-35B",
+            "fontSize": 32,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "04-results-low"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "high",
+        "at": 6.18,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "rectangle",
+            "id": "04-results-high-0",
+            "x": 570,
+            "y": 492,
+            "width": 430,
+            "height": 242,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#ffb9d7",
+            "fillStyle": "solid",
+            "strokeWidth": 3,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "04-results-high"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "04-results-high-1",
+            "x": 636.65,
+            "y": 526,
+            "text": "97.3%",
+            "fontSize": 99,
+            "fontFamily": 5,
+            "strokeColor": "#9d315e",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "04-results-high"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "04-results-high-2",
+            "x": 688.95,
+            "y": 669,
+            "text": "Llama-3.1-8B",
+            "fontSize": 32,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "04-results-high"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "eligible",
+        "at": 0.81,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "04-results-eligible-0",
+            "x": 258.28,
+            "y": 794,
+            "text": "Eligible questions: initially correct,\nwith a wrong-answer argument available.",
+            "fontSize": 31,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "04-results-eligible"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "04-results-eligible-1",
+            "x": 235.06,
+            "y": 887,
+            "text": "Seven models \u00b7 anonymous, same-model challenges",
+            "fontSize": 26,
+            "fontFamily": 2,
+            "strokeColor": "#51666a",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "04-results-eligible"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "05-takeaway",
+    "duration": 11.1,
+    "base": [
+      {
+        "type": "rectangle",
+        "id": "05-takeaway-base-paper",
+        "x": 0,
+        "y": 0,
+        "width": 1080,
+        "height": 1080,
+        "strokeColor": "transparent",
+        "backgroundColor": "#fffaf0",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "rectangle",
+        "id": "05-takeaway-base-1",
+        "x": 22,
+        "y": 22,
+        "width": 1036,
+        "height": 1036,
+        "strokeColor": "#142d32",
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "strokeWidth": 2,
+        "roughness": 0.6,
+        "roundness": {
+          "type": 3
+        },
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "05-takeaway-base-2",
+        "x": 70.0,
+        "y": 63.949999999999996,
+        "width": 47.25,
+        "height": 49.0,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            40.949999999999996,
+            -6.3
+          ],
+          [
+            47.25,
+            29.749999999999996
+          ],
+          [
+            31.849999999999998,
+            32.199999999999996
+          ],
+          [
+            24.5,
+            42.699999999999996
+          ],
+          [
+            22.049999999999997,
+            34.3
+          ],
+          [
+            5.6,
+            37.099999999999994
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 1.4,
+        "roughness": 0.65,
+        "backgroundColor": "#cceee7",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "05-takeaway-base-3",
+        "x": 79.8,
+        "y": 77.94999999999999,
+        "width": 20.65,
+        "height": 15.399999999999999,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            8.399999999999999,
+            6.6499999999999995
+          ],
+          [
+            20.65,
+            -8.75
+          ]
+        ],
+        "strokeColor": "#007f88",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "05-takeaway-base-4",
+        "x": 108.5,
+        "y": 75.85,
+        "width": 46.9,
+        "height": 48.3,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            42.349999999999994,
+            5.25
+          ],
+          [
+            37.8,
+            42.349999999999994
+          ],
+          [
+            23.799999999999997,
+            40.599999999999994
+          ],
+          [
+            14.0,
+            48.3
+          ],
+          [
+            14.35,
+            39.199999999999996
+          ],
+          [
+            -4.55,
+            36.75
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 1.4,
+        "roughness": 0.65,
+        "backgroundColor": "#ffb9d7",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "05-takeaway-base-5",
+        "x": 120.75,
+        "y": 87.39999999999999,
+        "width": 15.399999999999999,
+        "height": 16.45,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            15.399999999999999,
+            16.45
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "05-takeaway-base-6",
+        "x": 136.85,
+        "y": 89.14999999999999,
+        "width": 17.5,
+        "height": 13.299999999999999,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -17.5,
+            13.299999999999999
+          ]
+        ],
+        "strokeColor": "#142d32",
+        "strokeWidth": 3.15,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "arrow",
+        "id": "05-takeaway-base-7",
+        "x": 95.9,
+        "y": 49.95,
+        "width": 46.199999999999996,
+        "height": 19.95,
+        "points": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            17.5,
+            -8.049999999999999
+          ],
+          [
+            37.8,
+            -2.4499999999999997
+          ],
+          [
+            46.199999999999996,
+            11.899999999999999
+          ]
+        ],
+        "strokeColor": "#007f88",
+        "strokeWidth": 1.9249999999999998,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "fillStyle": "solid",
+        "startArrowhead": null,
+        "endArrowhead": "arrow",
+        "groupIds": [
+          "05-takeaway-base"
+        ],
+        "roundness": {
+          "type": 2
+        }
+      },
+      {
+        "type": "text",
+        "id": "05-takeaway-base-8",
+        "x": 173.95,
+        "y": 63.949999999999996,
+        "text": "Who",
+        "fontSize": 37.8,
+        "fontFamily": 5,
+        "strokeColor": "#142d32",
+        "roughness": 0,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "05-takeaway-base-9",
+        "x": 255.14999999999998,
+        "y": 63.949999999999996,
+        "text": "Flips?",
+        "fontSize": 37.8,
+        "fontFamily": 5,
+        "strokeColor": "#007f88",
+        "roughness": 0,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "05-takeaway-base-10",
+        "x": 866.63671875,
+        "y": 82,
+        "text": "OUR PAPER",
+        "fontSize": 24,
+        "fontFamily": 2,
+        "strokeColor": "#007f88",
+        "roughness": 0,
+        "textAlign": "left",
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "line",
+        "id": "05-takeaway-base-11",
+        "x": 62,
+        "y": 158,
+        "width": 956,
+        "height": 0,
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            956,
+            0
+          ]
+        ],
+        "strokeColor": "#d9ded4",
+        "strokeWidth": 1.5,
+        "roughness": 0.65,
+        "backgroundColor": "transparent",
+        "startArrowhead": null,
+        "endArrowhead": null,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "text",
+        "id": "05-takeaway-base-12",
+        "x": 218.29,
+        "y": 944,
+        "text": "An evaluation of answer stability under counterarguments.",
+        "fontSize": 25,
+        "fontFamily": 2,
+        "strokeColor": "#51666a",
+        "roughness": 0,
+        "textAlign": "left",
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "05-takeaway-base-13",
+        "x": 470,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "05-takeaway-base-14",
+        "x": 502,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "05-takeaway-base-15",
+        "x": 534,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "05-takeaway-base-16",
+        "x": 566,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#d6ddd6",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      },
+      {
+        "type": "ellipse",
+        "id": "05-takeaway-base-17",
+        "x": 598,
+        "y": 1012,
+        "width": 12,
+        "height": 12,
+        "strokeColor": "transparent",
+        "backgroundColor": "#007f88",
+        "fillStyle": "solid",
+        "strokeWidth": 0,
+        "roughness": 0.6,
+        "groupIds": [
+          "05-takeaway-base"
+        ]
+      }
+    ],
+    "layers": [
+      {
+        "name": "logo",
+        "at": 0,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "line",
+            "id": "05-takeaway-logo-0",
+            "x": 151.2,
+            "y": 268.65999999999997,
+            "width": 132.3,
+            "height": 137.2,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                114.66,
+                -17.64
+              ],
+              [
+                132.3,
+                83.3
+              ],
+              [
+                89.17999999999999,
+                90.16
+              ],
+              [
+                68.6,
+                119.56
+              ],
+              [
+                61.74,
+                96.03999999999999
+              ],
+              [
+                15.68,
+                103.88
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "strokeColor": "#142d32",
+            "strokeWidth": 3.92,
+            "roughness": 0.65,
+            "backgroundColor": "#cceee7",
+            "fillStyle": "solid",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "05-takeaway-logo"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "05-takeaway-logo-1",
+            "x": 178.64,
+            "y": 307.86,
+            "width": 57.82,
+            "height": 43.12,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                23.52,
+                18.62
+              ],
+              [
+                57.82,
+                -24.5
+              ]
+            ],
+            "strokeColor": "#007f88",
+            "strokeWidth": 8.82,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "fillStyle": "solid",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "05-takeaway-logo"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "05-takeaway-logo-2",
+            "x": 259.0,
+            "y": 301.98,
+            "width": 131.32,
+            "height": 135.24,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                118.58,
+                14.7
+              ],
+              [
+                105.84,
+                118.58
+              ],
+              [
+                66.64,
+                113.67999999999999
+              ],
+              [
+                39.2,
+                135.24
+              ],
+              [
+                40.18,
+                109.75999999999999
+              ],
+              [
+                -12.74,
+                102.89999999999999
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "strokeColor": "#142d32",
+            "strokeWidth": 3.92,
+            "roughness": 0.65,
+            "backgroundColor": "#ffb9d7",
+            "fillStyle": "solid",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "05-takeaway-logo"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "05-takeaway-logo-3",
+            "x": 293.29999999999995,
+            "y": 334.32,
+            "width": 43.12,
+            "height": 46.06,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                43.12,
+                46.06
+              ]
+            ],
+            "strokeColor": "#142d32",
+            "strokeWidth": 8.82,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "fillStyle": "solid",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "05-takeaway-logo"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "05-takeaway-logo-4",
+            "x": 338.38,
+            "y": 339.22,
+            "width": 49.0,
+            "height": 37.24,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                -49.0,
+                37.24
+              ]
+            ],
+            "strokeColor": "#142d32",
+            "strokeWidth": 8.82,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "fillStyle": "solid",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "05-takeaway-logo"
+            ]
+          },
+          {
+            "type": "arrow",
+            "id": "05-takeaway-logo-5",
+            "x": 223.72,
+            "y": 229.45999999999998,
+            "width": 129.35999999999999,
+            "height": 55.86,
+            "points": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                49.0,
+                -22.54
+              ],
+              [
+                105.84,
+                -6.859999999999999
+              ],
+              [
+                129.35999999999999,
+                33.32
+              ]
+            ],
+            "strokeColor": "#007f88",
+            "strokeWidth": 5.39,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "fillStyle": "solid",
+            "startArrowhead": null,
+            "endArrowhead": "arrow",
+            "groupIds": [
+              "05-takeaway-logo"
+            ],
+            "roundness": {
+              "type": 2
+            }
+          },
+          {
+            "type": "text",
+            "id": "05-takeaway-logo-6",
+            "x": 442.26,
+            "y": 268.65999999999997,
+            "text": "Who",
+            "fontSize": 105.84,
+            "fontFamily": 5,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "groupIds": [
+              "05-takeaway-logo"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "05-takeaway-logo-7",
+            "x": 669.62,
+            "y": 268.65999999999997,
+            "text": "Flips?",
+            "fontSize": 105.84,
+            "fontFamily": 5,
+            "strokeColor": "#007f88",
+            "roughness": 0,
+            "groupIds": [
+              "05-takeaway-logo"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "title",
+        "at": 0.43,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "05-takeaway-title-0",
+            "x": 243.87,
+            "y": 482,
+            "text": "Self- and Cross-Model Counterarguments\nReveal Answer Instability in LLMs",
+            "fontSize": 32,
+            "fontFamily": 2,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "05-takeaway-title"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "cloud",
+        "at": 3.75,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "rectangle",
+            "id": "05-takeaway-cloud-0",
+            "x": 94,
+            "y": 609,
+            "width": 900,
+            "height": 247,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#142d32",
+            "fillStyle": "solid",
+            "strokeWidth": 3,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "05-takeaway-cloud"
+            ]
+          },
+          {
+            "type": "rectangle",
+            "id": "05-takeaway-cloud-1",
+            "x": 82,
+            "y": 596,
+            "width": 900,
+            "height": 247,
+            "strokeColor": "#142d32",
+            "backgroundColor": "#ffe796",
+            "fillStyle": "solid",
+            "strokeWidth": 3,
+            "roughness": 0.6,
+            "roundness": {
+              "type": 3
+            },
+            "groupIds": [
+              "05-takeaway-cloud"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "slogan",
+        "at": 4.18,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "05-takeaway-slogan-0",
+            "x": 245.59,
+            "y": 632,
+            "text": "Evaluate stability\nalongside accuracy.",
+            "fontSize": 62,
+            "fontFamily": 5,
+            "strokeColor": "#142d32",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "05-takeaway-slogan"
+            ]
+          },
+          {
+            "type": "line",
+            "id": "05-takeaway-slogan-1",
+            "x": 212,
+            "y": 789,
+            "width": 608,
+            "height": 0,
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                608,
+                0
+              ]
+            ],
+            "strokeColor": "#e16da5",
+            "strokeWidth": 6,
+            "roughness": 0.65,
+            "backgroundColor": "transparent",
+            "startArrowhead": null,
+            "endArrowhead": null,
+            "groupIds": [
+              "05-takeaway-slogan"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "link",
+        "at": 7.29,
+        "duration": 0.4,
+        "kind": "rise",
+        "elements": [
+          {
+            "type": "text",
+            "id": "05-takeaway-link-0",
+            "x": 253.84,
+            "y": 882,
+            "text": "Read the paper \u2192 arxiv.org/abs/2606.16011",
+            "fontSize": 29,
+            "fontFamily": 2,
+            "strokeColor": "#007f88",
+            "roughness": 0,
+            "textAlign": "left",
+            "groupIds": [
+              "05-takeaway-link"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
