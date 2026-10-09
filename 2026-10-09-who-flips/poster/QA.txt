@@ -1,0 +1,43 @@
+FINAL HTML / PRINT CHECKS — SUBJECT-DOMAIN REVISION
+
+Standalone HTML: 425661 bytes; all assets embedded.
+Offline print export with HTTP and HTTPS assets blocked.
+All five embedded font faces loaded; all PDF fonts embedded.
+One page, 841.000001 x 1189.000000 mm, exact ISO A0 portrait.
+No card-content overflow or out-of-page extracted words (632 words).
+Eight vector figures; 502 native objects on the combined Excalidraw canvas.
+No raster images in the PDF. All three QR codes decode from the 120 dpi render.
+All seven previous figure sources are unchanged, including baseline and length.
+New subject-domain values and uncertainty match Table 5 exactly; the panel
+explicitly identifies three highest and three lowest subjects, not broad-domain
+averages. Means across models, lengths and attribution conditions are stated.
+The requested footer paragraph, bootstrap note and dated source line are absent
+from visible HTML and final PDF. Research links are retained in the header.
+Browser ordering confirmed: baseline/length, subject-domain strip,
+source-target/EA-EP, then MaxFlip results/pooling. Full-page and domain-panel
+renderings visually reviewed.
+
+No experiments rerun; A0 portrait size and the established theme retained.
+
+Caption revision: removed the explanatory paragraph below the baseline plot.
+Removal verified in HTML and final PDF; one-page A0 layout visually checked.
+
+Wording revision: removed the table reference in the domain caption and
+argument-length notes in the matrix and MaxFlip captions. Graphics unchanged.
+Removal verified in the standalone HTML and final PDF.
+
+Reference cleanup: figure/table source references and citation wording are
+omitted from the poster text. The arXiv paper, GitHub code and Hugging Face
+data QR links are present and decode correctly. Final text/layout checks passed.
+
+Attribution revision: removed the entire yellow +7.1 callout and renamed
+the section Argument Length. Removal verified in HTML and PDF; final render
+inspected. The charts and three research QR links are unchanged.
+
+Headings revised to explicitly name arguments and model variation.
+Both revised headings verified in final PDF and visually checked at A0.
+
+Slogan revision: pale-yellow vector speech cloud with an offset ink shadow,
+a slight rotation, and a pink underline under stability. Wording unchanged.
+Final one-page A0 export checked for font embedding, vector content and
+container overflow; full-poster and enlarged callout renderings inspected.

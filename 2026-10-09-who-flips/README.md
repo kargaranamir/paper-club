@@ -10,6 +10,8 @@ A 28-slide, 16:9 presentation using the same Python → Excalidraw → SVG → H
 |---|---|
 | Self-contained clickable deck | [`slides/index.html`](slides/index.html) |
 | PDF, 28 slides | [`slides/who-flips.pdf`](slides/who-flips.pdf) |
+| A0 portrait poster, HTML and editable sources | [`poster/`](poster/) |
+| Print-ready A0 poster PDF | [`poster/who-flips-a0.pdf`](poster/who-flips-a0.pdf) |
 | Speaker notes | [`slides/speaker-notes.md`](slides/speaker-notes.md) |
 | Editable Excalidraw file per slide | [`slides/excalidraw/`](slides/excalidraw/) |
 | Vector exports | [`slides/svg/`](slides/svg/) |

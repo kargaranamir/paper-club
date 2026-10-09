@@ -1,0 +1,45 @@
+{
+  "source": "arXiv:2606.16011v2, Table 5 (subject-afr.tex)",
+  "selection": "Three lowest and three highest subject-level AFRs",
+  "aggregation": "Averaged across models, argument lengths and attribution conditions",
+  "units": "percent",
+  "uncertainty": "Reported 95% confidence interval half-width",
+  "points": [
+    {
+      "subject": "Moral disputes",
+      "afr": 80.8,
+      "ci_half_width": 2.1,
+      "category": "Humanities"
+    },
+    {
+      "subject": "Security studies",
+      "afr": 80.6,
+      "ci_half_width": 2.1,
+      "category": "Social sciences"
+    },
+    {
+      "subject": "Professional law",
+      "afr": 74.7,
+      "ci_half_width": 2.4,
+      "category": "Humanities"
+    },
+    {
+      "subject": "College mathematics",
+      "afr": 30.4,
+      "ci_half_width": 2.6,
+      "category": "STEM"
+    },
+    {
+      "subject": "HS mathematics",
+      "afr": 25.8,
+      "ci_half_width": 2.2,
+      "category": "STEM"
+    },
+    {
+      "subject": "Elementary mathematics",
+      "afr": 20.9,
+      "ci_half_width": 1.9,
+      "category": "STEM"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+tools/node_modules/
+tools/dist/
+__pycache__/
+.DS_Store
