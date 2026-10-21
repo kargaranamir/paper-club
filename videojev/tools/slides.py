@@ -331,16 +331,18 @@ def s_grounding(n):
               fill=P["purple"]["fill"] if inside else "#ffffff", round_=False, sw=1, roughness=0)
     s.text(x0 - 15, y0 + 10, "", 18)
     s.text(70, y0 - 32, "candidates: timestamp text of each frame pair (copied from the video prefix)", 19, P["muted"])
-    s.text(70, y0 + 108, "label yᵢ = 1 if the pair's middle time lies inside the annotated event (here 11–19 s)", 19,
+    s.text(70, y0 + 106, "label yᵢ = 1 if the pair's middle time lies inside the annotated event (here 11–19 s)", 19,
            P["purple"]["text"])
-    s.box(70, 370, 715, 300, None, "blue", fill=P["blue"]["soft"])
-    s.text(95, 388, "Loss 1: binary cross-entropy", 25, P["blue"]["text"])
-    s.text(95, 435, "each interval judged on its own,\nmulti-label (several can be positive):\n\n"
-                    "L_BCE = mean over i of BCE(pᵢ, yᵢ)\n\njudges every interval locally", 21)
-    s.box(815, 370, 715, 300, None, "blue", fill=P["blue"]["soft"])
-    s.text(840, 388, "Loss 2: soft IoU (stage 2, weight 2)", 25, P["blue"]["text"])
-    s.text(840, 435, "rewards covering the whole event,\npenalises probability outside it:\n\n"
-                    "L_IoU = 1 − Σ dᵢpᵢyᵢ / Σ dᵢ[yᵢ + pᵢ(1−yᵢ)]\n\nweighted by interval duration dᵢ", 21)
+    s.box(70, 345, 1460, 92, None, "gray", fill=P["paper"])
+    s.text(92, 356, "Why pairs? The backbone merges every 2 consecutive frames into one set of visual tokens, so a pair is the finest "
+                    "unit the\nLLM sees. One candidate = 2 / fps seconds: 0.5 s at 4 fps (evaluation), 1 s at 2 fps (training). "
+                    "A 2-min video at 4 fps → 240 candidates.", 19)
+    s.box(70, 455, 715, 225, None, "blue", fill=P["blue"]["soft"])
+    s.text(95, 468, "Loss 1: binary cross-entropy", 25, P["blue"]["text"])
+    s.text(95, 510, "each interval judged on its own, multi-label\n(several can be positive):\n\nL_BCE = mean over i of BCE(pᵢ, yᵢ)", 21)
+    s.box(815, 455, 715, 225, None, "blue", fill=P["blue"]["soft"])
+    s.text(840, 468, "Loss 2: soft IoU (stage 2, weight 2)", 25, P["blue"]["text"])
+    s.text(840, 510, "rewards covering the whole event, penalises\nprobability outside it, weighted by duration dᵢ:\n\nL_IoU = 1 − Σ dᵢpᵢyᵢ / Σ dᵢ[yᵢ + pᵢ(1−yᵢ)]", 21)
     s.takeaway("Soft IoU matters: without it, mean grounding mIoU drops from 65.3 to 60.7.", y=700)
     s.footer(SRC + ", §2.2, Eq. (2)–(3) and Table 6; 20 intervals drawn for illustration")
     return s

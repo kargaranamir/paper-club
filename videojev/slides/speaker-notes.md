@@ -153,7 +153,7 @@ Bridge: Grounding in more detail.
 
 Terms: frame pair = the backbone merges two frames into one visual unit, so each candidate interval covers two frames. BCE = binary cross-entropy. Soft IoU = a differentiable version of the overlap measure.
 
-Say: Every frame pair is one candidate, written as its timestamp text. The label is 1 if the middle of the pair falls inside the annotated event. So grounding becomes many small yes/no decisions.
+Say: Every frame pair is one candidate, written as its timestamp text. Why pairs? The backbone compresses video twofold in time: its vision encoder merges every two consecutive frames into one set of visual tokens, so a pair is the finest unit the language model can see. Point to the gray box: that sets the time resolution, 2 / fps seconds per candidate: half a second at the 4 fps used for evaluation, one second at 2 fps in training and in the README demo. Predicted boundaries can only fall on these steps. It also sets the number of candidates: a two-minute video at 4 fps has 240 candidates, each with its own readout token. The label is 1 if the middle of the pair falls inside the annotated event. So grounding becomes many small yes/no decisions.
 
 Two losses. Binary cross-entropy judges each interval on its own. Soft IoU looks at the whole event: it rewards probability inside the event and penalises probability outside, weighted by interval length.
 
