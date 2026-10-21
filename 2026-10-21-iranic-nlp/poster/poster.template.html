@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="An A0 portrait research poster for Computationally Invisible: Charting the NLP Landscape of Iranic Languages.">
+<title>Computationally Invisible — A0 Research Poster</title>
+<style>
+__FONT_CSS__
+:root{--paper:#fbf7ef;--card:#ffffff;--ink:#17201f;--muted:#55605e;--main:#0e5458;--main2:#0a3f42;--sun:#ffc94a;--pom:#c0392b;--lapis:#1f5aa6;font-synthesis:none;color-scheme:light}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:'Bricolage Grotesque',Arial,sans-serif;background:#d9d4ca;color:var(--ink)}
+.toolbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 22px;background:#fff;border-bottom:2px solid var(--ink);font-size:16px}
+.toolbar strong{font-weight:800}.toolbar small{color:var(--muted);margin-left:12px}.toolbar .actions{display:flex;gap:10px}
+.toolbar button{font:700 14px 'Bricolage Grotesque',sans-serif;border:2px solid var(--ink);background:#fff;padding:8px 15px;border-radius:6px;cursor:pointer}
+.toolbar button:last-child{background:var(--sun)}.toolbar button[aria-pressed="true"]{background:#cfe6e4}
+#stage{position:relative;margin:24px auto 40px}
+.poster{width:841mm;height:1189mm;position:absolute;left:0;top:0;overflow:hidden;transform-origin:top left;background:var(--paper);print-color-adjust:exact;-webkit-print-color-adjust:exact}
+/* header */
+.masthead{position:absolute;left:24mm;right:24mm;top:16mm;height:104mm}
+.masthead h1{margin:0;font-size:96pt;line-height:.95;font-weight:800;letter-spacing:-.04em;color:var(--main2)}
+.masthead .subtitle{margin:2mm 0 0;font-size:40pt;font-weight:700;letter-spacing:-.015em}
+.authors{font-size:24pt;line-height:1.3;margin:4mm 0 1mm}.authors sup{font-size:60%}
+.affiliations{font-size:18.5pt;line-height:1.3;margin:0;color:var(--muted)}.affiliations sup{font-size:68%}
+.eyebrow{position:absolute;right:0;top:4mm;font:700 18pt/1.3 'Space Mono',monospace;letter-spacing:.05em;padding:2mm 5mm;border:.6mm solid var(--main2);border-radius:10mm;color:var(--main2)}
+/* main finding */
+.main{position:absolute;left:0;right:0;top:108mm;height:372mm;background:var(--main);color:#fff}
+.main .finding{position:absolute;left:24mm;top:22mm;width:440mm;font-size:104pt;line-height:1.04;font-weight:700;letter-spacing:-.035em;margin:0}
+.main .finding b{color:var(--sun);font-weight:800}
+.main .sub{position:absolute;left:24mm;top:180mm;width:430mm;font-size:30pt;line-height:1.25;margin:0;color:#e3f1ef}
+.main .sub b{color:#fff}
+.main .scan{position:absolute;left:505mm;bottom:18mm;display:flex;gap:7mm;align-items:center}
+.qr{display:block;background:#fff;padding:2mm;border-radius:2mm;line-height:0}.qr svg{width:52mm;height:52mm}
+.scan p{margin:0;font-size:23pt;line-height:1.25;color:#e3f1ef}.scan p b{color:#fff;font-size:28pt;display:block}
+.scan .url{font:700 22pt/1.3 'Space Mono',monospace;color:var(--sun)}
+.mapcard{position:absolute;left:24mm;top:218mm;width:456mm;height:136mm;box-sizing:border-box;background:#fff;color:var(--ink);border-radius:4mm;padding:6mm;display:flex;gap:7mm}
+.mapcard img{height:124mm;width:auto;border-radius:2mm;display:block}
+.mtxt h3{margin:1mm 0 0;font-size:28pt;line-height:1.1;font-weight:800}
+.mleg{list-style:none;margin:5mm 0 0;padding:0;font-size:21pt;line-height:1.45}
+.mleg i{display:inline-block;width:6mm;height:6mm;border-radius:50%;margin-right:3mm;vertical-align:-0.5mm}
+.mtxt .note{margin:4mm 0 0;font-size:17pt;line-height:1.22;color:var(--muted)}
+.keyfig{position:absolute;right:24mm;top:22mm;width:312mm;background:#fff;color:var(--ink);border-radius:4mm;padding:8mm 9mm}
+.keyfig h3{margin:0;font-size:28pt;line-height:1.1;font-weight:800}
+.keyfig .note{margin:3mm 0 0;font-size:18pt;line-height:1.2;color:var(--muted)}
+.chart{margin:0;line-height:0}.chart svg{display:block;width:100%;height:auto}
+.keyfig .chart{margin-top:5mm}
+/* silent presenter */
+.sec{position:absolute;background:var(--card);border-top:2.2mm solid var(--main);padding:7mm 8mm 6mm}
+.sec .lab{margin:0;font:700 17pt/1.2 'Space Mono',monospace;letter-spacing:.05em;color:var(--main)}
+.sec h2{margin:1.5mm 0 0;font-size:31pt;line-height:1.1;font-weight:800;letter-spacing:-.02em}
+.sec .lead{margin:2mm 0 0;font-size:17pt;line-height:1.22}
+.sec .caption{margin:3mm 0 0;font-size:19pt;line-height:1.22;color:var(--muted)}
+.sec .chart{margin-top:4mm}
+.hl{background:#ffe9b0;padding:0 1mm;font-weight:800;white-space:nowrap}
+.family{left:24mm;top:494mm;width:793mm;height:226mm}
+.stats{position:absolute;left:8mm;top:7mm;width:170mm;display:flex;flex-direction:column;gap:4mm}
+.stat{border-left:2mm solid var(--main);padding:1mm 0 1mm 5mm}
+.stat b{display:block;font-size:50pt;line-height:1;font-weight:800;letter-spacing:-.04em;color:var(--main2)}
+.stat span{display:block;font-size:18.5pt;line-height:1.18;margin-top:1mm}
+.family .right{position:absolute;left:186mm;right:8mm;top:7mm}
+.legend{display:flex;gap:4mm;align-items:center;font:400 15pt/1.2 'Space Mono',monospace;color:var(--muted);margin-top:2mm}
+.legend i{display:inline-block;width:9mm;height:4.5mm;border:.4mm solid var(--ink);border-radius:1mm;vertical-align:middle;margin-right:1.5mm}
+.q1{left:24mm}.q2{left:294.5mm}.q3{left:565mm}
+.rowc{top:726mm;width:252mm;height:214mm}
+.gaps{left:24mm;top:950mm;width:793mm;height:204mm}
+.gapgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7mm 9mm;margin-top:5mm}
+.gap{border-left:1.4mm solid var(--pom);padding:.5mm 0 .5mm 4mm}
+.gap h3{margin:0;font-size:30pt;line-height:1.1;font-weight:800}
+.gap p{margin:1.2mm 0 0;font-size:23.5pt;line-height:1.22}
+.gap p.pr{color:var(--pom);font-weight:700}
+.cta{position:absolute;left:8mm;right:8mm;bottom:7mm;display:grid;grid-template-columns:58mm 1fr 1fr 1fr;gap:4mm}
+.cta .tag{background:var(--main2);color:#fff;border-radius:2mm;display:flex;align-items:center;justify-content:center;text-align:center;font:700 21pt/1.15 'Space Mono',monospace}
+.cta div.p{background:#fff3cf;border-radius:2mm;padding:4mm 5mm;font-size:23pt;line-height:1.18}
+.cta div.p b{display:block;font-size:27pt;font-weight:800}
+.footer-end{position:absolute;bottom:12mm;left:24mm;right:24mm;display:flex;justify-content:space-between;font:400 15pt/1.2 'Space Mono',monospace;color:var(--muted)}
+@page{size:841mm 1189mm;margin:0}
+@media print{html,body{width:841mm;height:1189mm;margin:0!important;padding:0!important;background:var(--paper)}.toolbar{display:none!important}#stage{width:841mm!important;height:1189mm!important;margin:0!important}.poster{position:relative;transform:none!important}a{text-decoration:none}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<nav class="toolbar" aria-label="Poster view and print controls"><div><strong>Computationally Invisible</strong><small>A0 portrait · 841 × 1189 mm · #betterposter layout</small></div><div class="actions"><button id="fit" type="button" aria-pressed="true">Fit width</button><button id="actual" type="button" aria-pressed="false">100%</button><button id="print" type="button">Print A0</button></div></nav>
+<div id="stage">
+<article class="poster" id="poster" aria-label="Computationally Invisible research poster">
+
+<header class="masthead">
+<p class="eyebrow">SURVEY · 495 PAPERS · 2020–2026</p>
+<h1>Computationally Invisible</h1>
+<p class="subtitle">Charting the NLP Landscape of Iranic Languages</p>
+<p class="authors">Hojjat Mokhtarabadi<sup>1*</sup> · Amir Hossein Kargaran<sup>2*</sup> · Ali Shakeri<sup>1</sup> · Saba Shafiei<sup>1</sup> · Nafiseh Nikeghbal<sup>3</sup> · Mohammad Hossein Manshaei<sup>4</sup></p>
+<p class="affiliations"><sup>1</sup>Isfahan University of Technology &nbsp; <sup>2</sup>LMU Munich &nbsp; <sup>3</sup>TU Munich &nbsp; <sup>4</sup>Hunter College and Graduate Center, City University of New York &nbsp; <sup>*</sup>Equal contribution</p>
+</header>
+
+<section class="main" aria-label="Main finding">
+<p class="finding"><b>80%</b> of surveyed Iranic NLP papers (394 of 495) address <b>one</b> of <b>101</b> varieties: Iranian Persian.</p>
+<p class="sub">Pashto (<b>51M speakers</b>) is covered by 29 papers and Balochi (<b>9M</b>) by 4. For most other varieties, no dedicated paper, benchmark or tool was found.</p>
+<div class="scan"><span class="qr">__QR_SITE__</span><p><b>Scan for the companion website</b>language maps · resource browser · live paper index<br><span class="url">sigiranic.github.io</span></p></div>
+<div class="mapcard"><img src="__IMG_MAP__" alt="Map of the 101 Iranic varieties at Glottolog centroid coordinates, coloured by branch">
+<div class="mtxt"><h3>Where Iranic languages are spoken</h3>
+<ul class="mleg"><li><i style="background:#ba5226"></i>Southwestern</li><li><i style="background:#233968"></i>Northwestern</li><li><i style="background:#3d6d4d"></i>Eastern</li><li><i style="background:#7551a3"></i>Ossetic</li><li><i style="background:#a69983"></i>Historical</li></ul>
+<p class="note">All 101 ISO 639-3 coded varieties at Glottolog centroid coordinates; dot size reflects speaker population. From the Caucasus to Xinjiang and from the North Caucasus to Oman. Cropped view: two historical varieties in Hungary and Ukraine lie outside it.</p></div></div>
+<div class="keyfig"><h3>Paper count and speaker population</h3>
+<figure class="chart" aria-label="Paper count and speaker population for six major Iranic languages, with papers per million speakers.">__SVG_PAPERS_SPEAKERS__</figure>
+<p class="note">495 papers, 2020 – May 2026. Papers covering several languages count once per language. Red: fewer than one paper per million speakers.</p></div>
+</section>
+
+<section class="sec family" aria-labelledby="t1">
+<div class="stats">
+<p class="lab">THE SURVEY</p>
+<div class="stat"><b>101</b><span>ISO 639-3 coded varieties in 4 living branches</span></div>
+<div class="stat"><b>200M+</b><span>speakers, Caucasus to Xinjiang, Russia to Oman</span></div>
+<div class="stat"><b>5,878 → 495</b><span>candidates filtered and annotated with Qwen3.5-9B, every label checked by two authors</span></div>
+</div>
+<div class="right"><p class="lab">01 · THE FAMILY</p>
+<h2 id="t1">Major Iranic languages by branch: L1 speakers and NLP resource level</h2>
+<figure class="chart" aria-label="Iranic family tree: four branches with major languages, their L1 speakers and NLP resource level.">__SVG_FAMILY__</figure>
+<div class="legend"><span>L1 speakers · NLP resource level:</span><span><i style="background:#2E7A57"></i>high</span><span><i style="background:#7FA35A"></i>medium</span><span><i style="background:#E3A23A"></i>low</span><span><i style="background:#B8323E"></i>very low</span></div></div>
+</section>
+
+<section class="sec rowc q1" aria-labelledby="t2"><p class="lab">02 · PUBLICATIONS</p>
+<h2 id="t2">Publications per year, 2020–2026</h2>
+<figure class="chart" aria-label="Papers per year 2020–2026.">__SVG_TIMELINE__</figure>
+<p class="caption">Kurdish and Pashto grow modestly; other varieties stay near zero. 2026 is partial (search cut-off May 2026).</p></section>
+
+<section class="sec rowc q2" aria-labelledby="t3"><p class="lab">03 · TASKS</p>
+<h2 id="t3">Publications by NLP task</h2>
+<figure class="chart" aria-label="Paper counts by NLP task.">__SVG_TASKS__</figure>
+<p class="caption">Papers spanning several tasks count once per task.</p></section>
+
+<section class="sec rowc q3" aria-labelledby="t4"><p class="lab">04 · PARALLEL DATA</p>
+<h2 id="t4">Parallel sentence pairs with English</h2>
+<figure class="chart" aria-label="Sentence pairs with English, log scale.">__SVG_PARALLEL__</figure>
+<p class="caption">Between regional varieties: a few thousand pairs at most. Transfer runs through Persian or English.</p></section>
+
+<section class="sec gaps" aria-labelledby="t6"><p class="lab">05 · OPEN CHALLENGES</p>
+<h2 id="t6">Open challenges and research priorities</h2>
+<div class="gapgrid">
+<div class="gap"><h3>Resource concentration</h3><p>Persian ≈ 80% of papers; Pashto (51M) has fewer resources than Kurdish.</p><p class="pr">Priority: shared tasks and central data hubs</p></div>
+<div class="gap"><h3>Script heterogeneity</h3><p>Perso-Arabic, Latin, Cyrillic; inconsistent ya/kaf code points; ZWNJ bugs.</p><p class="pr">Priority: a unified Iranic normalization library</p></div>
+<div class="gap"><h3>Dialectal fragmentation</h3><p>Most benchmarks evaluate only standard written forms.</p><p class="pr">Priority: colloquial and regional benchmarks</p></div>
+<div class="gap"><h3>Cultural misalignment and saturation</h3><p>Persian sentiment, QA, NER near saturation; many benchmarks translated from English.</p><p class="pr">Priority: benchmarks co-created with native speakers</p></div>
+<div class="gap"><h3>Endangered varieties</h3><p>Pamir and Central Plateau varieties may disappear within decades.</p><p class="pr">Priority: multilingual speech models, community recording</p></div>
+<div class="gap"><h3>Structural inequity</h3><p>Sanctions limit compute, API access and travel for many researchers.</p><p class="pr">Priority: compute and access programs</p></div>
+</div>
+<div class="cta"><div class="tag">IMMEDIATE<br>PRIORITIES</div>
+<div class="p"><b>Raw text</b>Iranic text on the open web, with correct language tags.</div>
+<div class="p"><b>Translation benchmarks</b>FLORES+ still covers the same 6 Iranic varieties as <span style="white-space:nowrap">FLORES-200</span>.</div>
+<div class="p"><b>Evaluation beyond translation</b>At least one natively authored benchmark per variety.</div>
+</div></section>
+
+<div class="footer-end"><span>Code and prompts: github.com/sigiranic/sigiranic.github.io</span><span>Companion website: sigiranic.github.io</span></div>
+</article>
+</div>
+<script>
+(()=>{const poster=document.getElementById('poster'),stage=document.getElementById('stage');let mode='fit';function size(){const scale=mode==='actual'?1:Math.min(1,(innerWidth-(innerWidth<560?16:48))/poster.offsetWidth);poster.style.transform=`scale(${scale})`;stage.style.width=poster.offsetWidth*scale+'px';stage.style.height=poster.offsetHeight*scale+'px';document.getElementById('fit').setAttribute('aria-pressed',mode==='fit');document.getElementById('actual').setAttribute('aria-pressed',mode==='actual');}document.getElementById('fit').onclick=()=>{mode='fit';size()};document.getElementById('actual').onclick=()=>{mode='actual';size()};document.getElementById('print').onclick=()=>print();addEventListener('resize',size);document.fonts.ready.then(size);size();})();
+</script>
+</body>
+</html>
