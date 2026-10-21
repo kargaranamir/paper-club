@@ -26,7 +26,7 @@
   23 System 2 asks, System 1 checks
 - **Part IV, discussion:** 24 strengths and weaknesses · 25 takeaways
 
-All figures are redrawn in Excalidraw; the paper's own figures are not copied. Slide 11 uses the recorded output
+All figures are redrawn in Excalidraw; the paper's own figures are not copied. Slide 12 uses the recorded output
 from the repository README.
 
 ## Editing
