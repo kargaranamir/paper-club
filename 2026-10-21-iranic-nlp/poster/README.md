@@ -12,8 +12,8 @@ Layout follows the #betterposter style: one main finding in plain language with 
 Print at **A0 portrait, 841 × 1189 mm**, actual size, without margins or browser headers and footers.
 Fonts (Bricolage Grotesque, Space Mono; SIL OFL, see [`licenses/`](licenses)), vector charts and the QR code are embedded.
 
-All numbers come from the paper's tables and text. The map is the paper's `map.png` (Glottolog centroids), cropped to the main
-area; two historical varieties in Hungary and Ukraine fall outside the crop.
+All numbers come from the paper's tables and text. The map is the paper's `map.png` (Glottolog centroids), cropped to
+the area with data (all 101 varieties, including the historical ones in Hungary and Ukraine, stay visible).
 
 ![Poster preview](preview.png)
 
