@@ -315,9 +315,57 @@ def s_scorer(n):
     return s
 
 
+def s_frame_pairs(n):
+    s = Slide("11-frame-pairs", n)
+    s.title("Why one candidate = two frames", "The backbone compresses video twofold in time", part=PART2, pc="blue")
+    fps = 4
+    times = [k / fps for k in range(8)]
+    x0, fw, gap = 90, 150, 30
+    # frames
+    s.text(70, 160, "frames sampled at 4 fps (as in evaluation)", 20, P["muted"])
+    for k, tt in enumerate(times):
+        pair = k // 2
+        x = x0 + pair * (2 * fw + gap + 52) + (k % 2) * (fw + 6)
+        s.box(x, 195, fw, 86, None, "gray", fill="#ffffff", round_=False, sw=1, roughness=0)
+        s.text(x + fw / 2, 225, f"frame {k + 1}", 19, P["ink"], "c")
+        s.text(x + fw / 2, 252, f"{tt:.2f} s", 17, P["muted"], "c")
+    # pair brackets → encoder
+    cands = []
+    for pr in range(4):
+        xa = x0 + pr * (2 * fw + gap + 52)
+        xb = xa + 2 * fw + 6
+        s.line([(xa, 292), (xa, 302), (xb, 302), (xb, 292)], P["purple"]["stroke"], 2, roughness=0)
+        varrow(s, (xa + xb) / 2, 304, 344)
+        cands.append((xa, xb))
+    s.box(70, 348, 1460, 58, "vision encoder: every visual patch spans 2 consecutive frames → one set of visual tokens per pair",
+          "blue", 21)
+    tok_mid = [(times[2 * p] + times[2 * p + 1]) / 2 for p in range(4)]
+    bounds = [0.0, 0.375, 0.875, 1.375, 2.0]
+    for pr, (xa, xb) in enumerate(cands):
+        cx = (xa + xb) / 2
+        varrow(s, cx, 410, 440)
+        for q in range(4):
+            s.box(cx - 70 + q * 36, 444, 30, 30, None, "purple", round_=False, sw=1, roughness=0)
+        varrow(s, cx, 478, 506)
+        s.box(cx - 110, 510, 220, 52, f"candidate <{tok_mid[pr]:.1f}s>", "green", 20)
+        s.text(cx, 570, f"t = {tok_mid[pr]:.3f} s\ninterval [{bounds[pr]:.3f}, {bounds[pr + 1]:.3f}]", 17, P["muted"], "c")
+    s.box(70, 640, 715, 150, None, "gray", fill=P["paper"])
+    s.text(92, 652, "Why not one candidate per frame?", 22)
+    s.text(92, 692, "frame 1 and frame 2 share their visual tokens:\nthe LLM never sees them apart, so a single-frame\n"
+                    "candidate would have nothing of its own to point to", 19)
+    s.box(815, 640, 715, 150, None, "yellow")
+    s.text(835, 652, "Consequences", 22)
+    s.text(835, 692, "one candidate = 2 / fps seconds: 0.5 s at 4 fps, 1 s at 2 fps\n"
+                     "boundaries fall halfway between neighbouring pairs\n"
+                     "a 2-minute video at 4 fps → 480 frames → 240 candidates", 19)
+    s.footer(SRC + ", §2.2 and Figure 2 (\"The backbone's twofold temporal compression groups frames into pairs.\"); "
+             "video of 2.0 s for illustration")
+    return s
+
+
 def s_grounding(n):
     s = Slide("10-grounding", n)
-    s.title("Grounding as many small yes/no decisions", "One candidate per pair of frames: is this interval inside the event?",
+    s.title("Grounding as many small yes/no decisions", "One candidate per frame pair (previous slide): is this interval inside the event?",
             part=PART2, pc="blue")
     K = 20
     x0, y0, cw = 90, 200, 66
@@ -330,19 +378,15 @@ def s_grounding(n):
         s.box(x, y0 + 60, cw - 6, 40, "1" if inside else "0", "purple" if inside else "gray", 18,
               fill=P["purple"]["fill"] if inside else "#ffffff", round_=False, sw=1, roughness=0)
     s.text(x0 - 15, y0 + 10, "", 18)
-    s.text(70, y0 - 32, "candidates: timestamp text of each frame pair (copied from the video prefix)", 19, P["muted"])
+    s.text(70, y0 - 32, "candidates: timestamp text of each frame pair (copied from the video prefix); here 2 fps, so 1 s per candidate", 19, P["muted"])
     s.text(70, y0 + 106, "label yᵢ = 1 if the pair's middle time lies inside the annotated event (here 11–19 s)", 19,
            P["purple"]["text"])
-    s.box(70, 345, 1460, 92, None, "gray", fill=P["paper"])
-    s.text(92, 356, "Why pairs? The backbone merges every 2 consecutive frames into one set of visual tokens, so a pair is the finest "
-                    "unit the\nLLM sees. One candidate = 2 / fps seconds: 0.5 s at 4 fps (evaluation), 1 s at 2 fps (training). "
-                    "A 2-min video at 4 fps → 240 candidates.", 19)
-    s.box(70, 455, 715, 225, None, "blue", fill=P["blue"]["soft"])
-    s.text(95, 468, "Loss 1: binary cross-entropy", 25, P["blue"]["text"])
-    s.text(95, 510, "each interval judged on its own, multi-label\n(several can be positive):\n\nL_BCE = mean over i of BCE(pᵢ, yᵢ)", 21)
-    s.box(815, 455, 715, 225, None, "blue", fill=P["blue"]["soft"])
-    s.text(840, 468, "Loss 2: soft IoU (stage 2, weight 2)", 25, P["blue"]["text"])
-    s.text(840, 510, "rewards covering the whole event, penalises\nprobability outside it, weighted by duration dᵢ:\n\nL_IoU = 1 − Σ dᵢpᵢyᵢ / Σ dᵢ[yᵢ + pᵢ(1−yᵢ)]", 21)
+    s.box(70, 370, 715, 290, None, "blue", fill=P["blue"]["soft"])
+    s.text(95, 388, "Loss 1: binary cross-entropy", 25, P["blue"]["text"])
+    s.text(95, 440, "each interval judged on its own, multi-label\n(several can be positive):\n\nL_BCE = mean over i of BCE(pᵢ, yᵢ)", 21)
+    s.box(815, 370, 715, 290, None, "blue", fill=P["blue"]["soft"])
+    s.text(840, 388, "Loss 2: soft IoU (stage 2, weight 2)", 25, P["blue"]["text"])
+    s.text(840, 440, "rewards covering the whole event, penalises\nprobability outside it, weighted by duration dᵢ:\n\nL_IoU = 1 − Σ dᵢpᵢyᵢ / Σ dᵢ[yᵢ + pᵢ(1−yᵢ)]", 21)
     s.takeaway("Soft IoU matters: without it, mean grounding mIoU drops from 65.3 to 60.7.", y=700)
     s.footer(SRC + ", §2.2, Eq. (2)–(3) and Table 6; 20 intervals drawn for illustration")
     return s
@@ -725,6 +769,6 @@ def s_takeaways(n):
 
 SLIDES = [s_title, s_tldr, s_glossary,
           s_tasks, s_generate, s_kahneman, s_system_one, s_why_video,
-          s_architecture, s_scorer, s_grounding, s_decoding, s_qa, s_inference, s_training,
+          s_architecture, s_scorer, s_frame_pairs, s_grounding, s_decoding, s_qa, s_inference, s_training,
           s_grounding_results, s_qa_results, s_tradeoff, s_scaling, s_ar_control, s_ablations, s_calibration, s_system2,
           s_critique, s_takeaways]

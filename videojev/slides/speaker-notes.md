@@ -145,15 +145,33 @@ Say: The decision state goes through a Q projection, the candidate state through
 
 Point to the two purple boxes: the same head serves both tasks; only the output rule differs. Grounding uses a sigmoid per interval, because several intervals can belong to the event. QA uses a softmax over the options, because exactly one is right.
 
-Bridge: Grounding in more detail.
+Bridge: Before grounding, one detail decides what a candidate is: frame pairs.
 
-## 11. grounding
+## 11. frame pairs
 
-![slide 11](svg/11-grounding.svg)
+![slide 11](svg/11-frame-pairs.svg)
 
-Terms: frame pair = the backbone merges two frames into one visual unit, so each candidate interval covers two frames. BCE = binary cross-entropy. Soft IoU = a differentiable version of the overlap measure.
+Terms: twofold temporal compression = the backbone's vision encoder turns every two consecutive frames into one set of visual tokens. fps = frames per second. Candidate interval = one time interval the model scores.
 
-Say: Every frame pair is one candidate, written as its timestamp text. Why pairs? The backbone compresses video twofold in time: its vision encoder merges every two consecutive frames into one set of visual tokens, so a pair is the finest unit the language model can see. Point to the gray box: that sets the time resolution, 2 / fps seconds per candidate: half a second at the 4 fps used for evaluation, one second at 2 fps in training and in the README demo. Predicted boundaries can only fall on these steps. It also sets the number of candidates: a two-minute video at 4 fps has 240 candidates, each with its own readout token. The label is 1 if the middle of the pair falls inside the annotated event. So grounding becomes many small yes/no decisions.
+Say: Why does a grounding candidate cover two frames? Because of the backbone. Qwen3.5 and Qwen3.6 compress video twofold in time: in the vision encoder, every visual patch spans two consecutive frames, so each pair of frames becomes one set of visual tokens. The language model never sees frame 1 and frame 2 apart, only the pair.
+
+A candidate smaller than a pair would have no visual tokens of its own to point to. So the paper makes each frame pair one candidate. In their words (§2.2): "The backbone's twofold temporal compression groups frames into pairs. We partition the timeline into K candidate intervals, one per pair."
+
+Point to the top row: at 4 fps the frames are 0.25 s apart. Frames 1 and 2, at 0.00 and 0.25 s, form the first pair, frames 3 and 4 the second, and so on. This is exactly what the paper's Figure 2 shows: 00:00.00 with 00:00.25, 00:12.00 with 00:12.25.
+
+Point to the green boxes: each pair becomes one candidate. Its time t is the mean of its two frame times, 0.125 s for the first pair, and the candidate text is that timestamp, here <0.1s>; labels and boundaries use the unrounded times. The interval of a candidate runs to halfway between neighbouring pairs: from 0.25 to 0.5 the boundary is 0.375. The first interval starts at 0 and the last ends at the end of the video.
+
+Point to the yellow box: this fixes the time resolution, 2 / fps seconds per candidate: half a second at the 4 fps used in evaluation, one second at 2 fps in training and in the README demo. Predicted start and end times can only fall on these steps. It also fixes the number of candidates: a two-minute video at 4 fps has 480 frames, so 240 candidates, each with its own readout token.
+
+Bridge: Now, how is each candidate trained?
+
+## 12. grounding
+
+![slide 12](svg/12-grounding.svg)
+
+Terms: frame pair (previous slide). BCE = binary cross-entropy. Soft IoU = a differentiable version of the overlap measure.
+
+Say: Every frame pair is one candidate, written as its timestamp text. The label is 1 if the middle of the pair falls inside the annotated event. So grounding becomes many small yes/no decisions.
 
 Two losses. Binary cross-entropy judges each interval on its own. Soft IoU looks at the whole event: it rewards probability inside the event and penalises probability outside, weighted by interval length.
 
@@ -161,9 +179,9 @@ Point to the yellow line: soft IoU matters a lot; without it mean mIoU drops fro
 
 Bridge: How do the interval scores become one span?
 
-## 12. decoding
+## 13. decoding
 
-![slide 12](svg/12-decoding.svg)
+![slide 13](svg/13-decoding.svg)
 
 Terms: logit = score before the sigmoid. Threshold τ. Kadane's algorithm = finds the contiguous range with the largest sum in one pass.
 
@@ -175,9 +193,9 @@ Point to the last bar: its probability is only 0.33, but still above the thresho
 
 Bridge: QA is simpler.
 
-## 13. qa
+## 14. qa
 
-![slide 13](svg/13-qa.svg)
+![slide 14](svg/14-qa.svg)
 
 Terms: softmax, cross-entropy, position bias = a model learning that some option position (say A) is often right.
 
@@ -189,9 +207,9 @@ Point to the orange box: options are shuffled during training so the model canno
 
 Bridge: Now the second idea: reuse the video.
 
-## 14. inference
+## 15. inference
 
-![slide 14](svg/14-inference.svg)
+![slide 15](svg/15-inference.svg)
 
 Terms: prefill = processing the prompt once. KV cache = the stored result. Cached inference, Joint inference.
 
@@ -205,9 +223,9 @@ Point to the bottom box: generative baselines can reuse the video cache too, and
 
 Bridge: How is it trained?
 
-## 15. training
+## 16. training
 
-![slide 15](svg/15-training.svg)
+![slide 16](svg/16-training.svg)
 
 Terms: head alignment = train only the new head first. Learning rate (LR).
 
@@ -219,9 +237,9 @@ Why two stages? Like LLaVA's projector alignment: give the new head a stable fea
 
 Bridge: Results, starting with grounding.
 
-## 16. grounding results
+## 17. grounding results
 
-![slide 16](svg/16-grounding-results.svg)
+![slide 17](svg/17-grounding-results.svg)
 
 Terms: mIoU per benchmark, TimeLens-refined annotations = cleaned labels of the three benchmarks.
 
@@ -233,9 +251,9 @@ Point to the yellow box: the gains are largest at the strict overlap threshold, 
 
 Bridge: Now video QA.
 
-## 17. qa results
+## 18. qa results
 
-![slide 17](svg/17-qa-results.svg)
+![slide 18](svg/18-qa-results.svg)
 
 Terms: accuracy, M-Avg (MLVU's mean over its tasks), Instruct / Thinking.
 
@@ -247,9 +265,9 @@ Right box: against Thinking, the 4B model is 0.6 points behind and the 35B model
 
 Bridge: The same in one picture.
 
-## 18. quality vs latency
+## 19. quality vs latency
 
-![slide 18](svg/18-quality-vs-latency.svg)
+![slide 19](svg/19-quality-vs-latency.svg)
 
 Terms: log scale = each tick is a multiple, not a fixed step.
 
@@ -257,9 +275,9 @@ Say: Quality against latency; upper left is better. On the left, grounding: the 
 
 Bridge: So far one question at a time. What about many questions about the same video?
 
-## 19. many queries
+## 20. many queries
 
-![slide 19](svg/19-many-queries.svg)
+![slide 20](svg/20-many-queries.svg)
 
 Terms: Joint / Cached inference; Qwen Direct = the autoregressive model answering with exactly one option letter.
 
@@ -271,9 +289,9 @@ Point to the yellow line: with Joint inference, going from one to ten questions 
 
 Bridge: Are the gains from the architecture or just from the training data?
 
-## 20. architecture or data
+## 21. architecture or data
 
-![slide 20](svg/20-architecture-or-data.svg)
+![slide 21](svg/21-architecture-or-data.svg)
 
 Terms: autoregressive SFT = ordinary fine-tuning to generate the answer text. Single-stage = training everything at once.
 
@@ -285,9 +303,9 @@ Point to the orange box: but be honest about the size. Most of the improvement o
 
 Bridge: What else matters? The ablations.
 
-## 21. ablations
+## 22. ablations
 
-![slide 21](svg/21-ablations.svg)
+![slide 22](svg/22-ablations.svg)
 
 Terms: ablation = remove one part and measure the change.
 
@@ -299,9 +317,9 @@ Point to the last row: single-stage training is actually slightly better; they k
 
 Bridge: One more output: confidence.
 
-## 22. calibration
+## 23. calibration
 
-![slide 22](svg/22-calibration.svg)
+![slide 23](svg/23-calibration.svg)
 
 Terms: calibration = when the model says 90%, it is right 90% of the time. ECE = expected calibration error, the average gap.
 
@@ -311,9 +329,9 @@ Right: but the probabilities are too high on average, by about 8 points. Unlike 
 
 Bridge: Where would such a model be used?
 
-## 23. system two
+## 24. system two
 
-![slide 23](svg/23-system-two.svg)
+![slide 24](svg/24-system-two.svg)
 
 Terms: System 2 planner = an LLM agent or fixed procedure. Escalate = hand an uncertain case to slower reasoning.
 
@@ -323,9 +341,9 @@ This is a vision; it is not evaluated in the paper.
 
 Bridge: Time to be critical.
 
-## 24. critique
+## 25. critique
 
-![slide 24](svg/24-critique.svg)
+![slide 25](svg/25-critique.svg)
 
 Say: Strong: one simple head for two task types; a careful latency protocol where the generative baselines also reuse the video; the controlled comparison with autoregressive fine-tuning; and released models and code.
 
@@ -333,9 +351,9 @@ Weak or unclear: someone must supply the candidates, and grounding returns one c
 
 Bridge: To close, five takeaways.
 
-## 25. takeaways
+## 26. takeaways
 
-![slide 25](svg/25-takeaways.svg)
+![slide 26](svg/26-takeaways.svg)
 
 Say: One: if the answer is a span or a choice, score it, don't write it. Two: encode the video once; ten questions cost almost the same as one. Three: close to Thinking quality without thinking, at about one hundredth of the time. Four: training choices matter, soft IoU most of all. Five: confidence comes for free but is not yet reliable.
 

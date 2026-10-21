@@ -9,24 +9,24 @@
 | What | Where |
 |---|---|
 | Clickable deck (arrow keys, `N` notes, `O` overview, `F` full screen) | [`slides/index.html`](slides/index.html) |
-| PDF (25 slides, 16:9) | [`slides/videojev.pdf`](slides/videojev.pdf) |
+| PDF (26 slides, 16:9) | [`slides/videojev.pdf`](slides/videojev.pdf) |
 | Speaker notes (six-sentence story first, then a script per slide) | [`slides/speaker-notes.md`](slides/speaker-notes.md) |
 | Editable Excalidraw file per slide | [`slides/excalidraw/`](slides/excalidraw), open on excalidraw.com (menu → Open) |
 | Every number used, with its table or section | [`references/digest.md`](references/digest.md) |
 
-## Outline (25 slides)
+## Outline (26 slides)
 
 1 Title · 2 The paper in one slide · 3 Glossary
 - **Part I, background:** 4 two tasks: When? and Which? · 5 today's MLLMs write their answers · 6 Thinking, Fast and Slow (Kahneman) · 7 the System One
   idea (Jev) · 8 why video is harder
-- **Part II, method:** 9 architecture · 10 the shared scorer · 11 grounding as many yes/no decisions · 12 decoding
-  one span (real README output) · 13 QA as option scoring · 14 Cached and Joint inference · 15 training recipe
-- **Part III, results:** 16 temporal grounding · 17 video QA vs Thinking · 18 quality against latency ·
-  19 ten questions about one video · 20 architecture or data? · 21 ablations · 22 confidence and calibration ·
-  23 System 2 asks, System 1 checks
-- **Part IV, discussion:** 24 strengths and weaknesses · 25 takeaways
+- **Part II, method:** 9 architecture · 10 the shared scorer · 11 why one candidate = two frames · 12 grounding as many yes/no decisions · 13 decoding
+  one span (real README output) · 14 QA as option scoring · 15 Cached and Joint inference · 16 training recipe
+- **Part III, results:** 17 temporal grounding · 18 video QA vs Thinking · 19 quality against latency ·
+  20 ten questions about one video · 21 architecture or data? · 22 ablations · 23 confidence and calibration ·
+  24 System 2 asks, System 1 checks
+- **Part IV, discussion:** 25 strengths and weaknesses · 26 takeaways
 
-All figures are redrawn in Excalidraw; the paper's own figures are not copied. Slide 12 uses the recorded output
+All figures are redrawn in Excalidraw; the paper's own figures are not copied. Slide 13 uses the recorded output
 from the repository README.
 
 ## Editing

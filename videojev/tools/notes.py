@@ -106,11 +106,25 @@ Say: The decision state goes through a Q projection, the candidate state through
 
 Point to the two purple boxes: the same head serves both tasks; only the output rule differs. Grounding uses a sigmoid per interval, because several intervals can belong to the event. QA uses a softmax over the options, because exactly one is right.
 
-Bridge: Grounding in more detail.""",
+Bridge: Before grounding, one detail decides what a candidate is: frame pairs.""",
 
-    "grounding": """Terms: frame pair = the backbone merges two frames into one visual unit, so each candidate interval covers two frames. BCE = binary cross-entropy. Soft IoU = a differentiable version of the overlap measure.
+    "frame-pairs": """Terms: twofold temporal compression = the backbone's vision encoder turns every two consecutive frames into one set of visual tokens. fps = frames per second. Candidate interval = one time interval the model scores.
 
-Say: Every frame pair is one candidate, written as its timestamp text. Why pairs? The backbone compresses video twofold in time: its vision encoder merges every two consecutive frames into one set of visual tokens, so a pair is the finest unit the language model can see. Point to the gray box: that sets the time resolution, 2 / fps seconds per candidate: half a second at the 4 fps used for evaluation, one second at 2 fps in training and in the README demo. Predicted boundaries can only fall on these steps. It also sets the number of candidates: a two-minute video at 4 fps has 240 candidates, each with its own readout token. The label is 1 if the middle of the pair falls inside the annotated event. So grounding becomes many small yes/no decisions.
+Say: Why does a grounding candidate cover two frames? Because of the backbone. Qwen3.5 and Qwen3.6 compress video twofold in time: in the vision encoder, every visual patch spans two consecutive frames, so each pair of frames becomes one set of visual tokens. The language model never sees frame 1 and frame 2 apart, only the pair.
+
+A candidate smaller than a pair would have no visual tokens of its own to point to. So the paper makes each frame pair one candidate. In their words (§2.2): "The backbone's twofold temporal compression groups frames into pairs. We partition the timeline into K candidate intervals, one per pair."
+
+Point to the top row: at 4 fps the frames are 0.25 s apart. Frames 1 and 2, at 0.00 and 0.25 s, form the first pair, frames 3 and 4 the second, and so on. This is exactly what the paper's Figure 2 shows: 00:00.00 with 00:00.25, 00:12.00 with 00:12.25.
+
+Point to the green boxes: each pair becomes one candidate. Its time t is the mean of its two frame times, 0.125 s for the first pair, and the candidate text is that timestamp, here <0.1s>; labels and boundaries use the unrounded times. The interval of a candidate runs to halfway between neighbouring pairs: from 0.25 to 0.5 the boundary is 0.375. The first interval starts at 0 and the last ends at the end of the video.
+
+Point to the yellow box: this fixes the time resolution, 2 / fps seconds per candidate: half a second at the 4 fps used in evaluation, one second at 2 fps in training and in the README demo. Predicted start and end times can only fall on these steps. It also fixes the number of candidates: a two-minute video at 4 fps has 480 frames, so 240 candidates, each with its own readout token.
+
+Bridge: Now, how is each candidate trained?""",
+
+    "grounding": """Terms: frame pair (previous slide). BCE = binary cross-entropy. Soft IoU = a differentiable version of the overlap measure.
+
+Say: Every frame pair is one candidate, written as its timestamp text. The label is 1 if the middle of the pair falls inside the annotated event. So grounding becomes many small yes/no decisions.
 
 Two losses. Binary cross-entropy judges each interval on its own. Soft IoU looks at the whole event: it rewards probability inside the event and penalises probability outside, weighted by interval length.
 
