@@ -10,4 +10,16 @@ A portrait research poster with a standalone HTML viewer, a vector PDF for print
 
 Print at **A0 portrait, 841 × 1189 mm**, actual size, without margins or browser headers and footers. Fonts, vector charts and the Paper / Code / Data QR codes are embedded.
 
-![Poster preview](preview.png)
+## #betterposter version
+
+The same content, colours, fonts and figures in the #betterposter layout: one main finding in plain language
+with the QR codes in a central band, the key chart beside it, and the supporting panels below.
+
+- [Download the A0 PDF (#betterposter)](who-flips-a0-betterposter.pdf)
+- [Standalone HTML (#betterposter)](who-flips-a0-betterposter.html)
+- Source: `poster.betterposter.template.html`; rebuild with `python tools/build_html.py betterposter` and
+  `node tools/print_poster.mjs betterposter`.
+
+| Original | #betterposter |
+|---|---|
+| ![Poster preview](preview.png) | ![#betterposter preview](preview-betterposter.png) |
