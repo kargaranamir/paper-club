@@ -73,15 +73,33 @@ Point to the orange box: that costs time per token, the text has to be parsed, t
 
 Point to the table: the numbers make it concrete. Qwen3.5-4B answers a long-video question in 1.4 seconds in Instruct mode and 145 seconds in Thinking mode. Thinking buys 8.6 accuracy points for about 107 times the time.
 
-Bridge: The System One idea is a different way out.
+Bridge: A detour through psychology explains the paper's name.
 
-## 6. system one
+## 6. fast and slow
 
-![slide 6](svg/06-system-one.svg)
+![slide 6](svg/06-fast-and-slow.svg)
+
+Terms: System 1 = fast, instinctive, emotional thinking. System 2 = slower, deliberative, logical thinking. Both from Daniel Kahneman's book Thinking, Fast and Slow (2011).
+
+Say: The name "System One model" comes from psychology. In Thinking, Fast and Slow, Daniel Kahneman, a Nobel laureate in economics, describes two modes of thought.
+
+Point to the blue panel: System 1 is fast, instinctive and emotional. Ask yourself 2 + 2: the answer arrives before you decide to think.
+
+Point to the orange panel: System 2 is slow, deliberative and logical. 17 times 24 (Kahneman's own example) needs effort, step by step: 408.
+
+Point to the table: the same split appears in AI. A chat LLM in Thinking mode is System 2: it reasons in text, then answers. A System One model like Jev or VideoJev is System 1: one forward pass, one decision with probabilities.
+
+Point to the yellow line: people use System 1 most of the time and call System 2 only when needed. The paper wants agents to work the same way: fast checks by default, slow reasoning when a check is uncertain.
+
+Bridge: Jev is the first model built on this idea.
+
+## 7. system one
+
+![slide 7](svg/07-system-one.svg)
 
 Terms: System 1 / System 2 = Kahneman's fast intuitive versus slow deliberate thinking. Typed decision = an answer of a fixed form, such as a choice or yes/no.
 
-Say: Jev, from the company TypeSafe AI, is a "System One" model: instead of writing text, it returns a typed decision with probabilities, in one pass. It is trained with reinforcement learning so that the probabilities are calibrated. There are already image versions; this paper does it for video.
+Say: Jev, from the company TypeSafe AI, is a "System One" model: instead of writing text, it returns a typed decision with probabilities, in one pass. It is trained with reinforcement learning so that the probabilities are calibrated. The name Jev refers to the economist Jevons: when decisions get cheaper, people use far more of them. There are already image versions; this paper does it for video.
 
 Point to the yellow box: the paper's premise. Structured judgments can support open-ended behaviour without generating open-ended text at every step.
 
@@ -89,9 +107,9 @@ Note: what we know about Jev comes from the vendor's blog, not from a peer-revie
 
 Bridge: Why is video harder than images?
 
-## 7. why video
+## 8. why video
 
-![slide 7](svg/07-why-video.svg)
+![slide 8](svg/08-why-video.svg)
 
 Terms: visual history = everything the camera has seen so far.
 
@@ -101,9 +119,9 @@ Two requirements follow. First, time: the answer is often a span, not a frame. S
 
 Bridge: Here is how VideoJev meets both. First the architecture.
 
-## 8. architecture
+## 9. architecture
 
-![slide 8](svg/08-architecture.svg)
+![slide 9](svg/09-architecture.svg)
 
 Terms: candidate = one possible answer (a time interval or an option). <|option_end|> and <|decide|> = two new special tokens. Readout = the hidden state at a token, used for prediction. Causal = each token only sees earlier tokens.
 
@@ -117,9 +135,9 @@ Point to the bottom right: the changes are small: two new tokens, no language-mo
 
 Bridge: What does the scorer compute?
 
-## 9. scorer
+## 10. scorer
 
-![slide 9](svg/09-scorer.svg)
+![slide 10](svg/10-scorer.svg)
 
 Terms: projection = a learned linear layer. Normalise = scale to length 1. Cosine similarity = dot product of two length-1 vectors. Sigmoid / softmax.
 
@@ -129,9 +147,9 @@ Point to the two purple boxes: the same head serves both tasks; only the output 
 
 Bridge: Grounding in more detail.
 
-## 10. grounding
+## 11. grounding
 
-![slide 10](svg/10-grounding.svg)
+![slide 11](svg/11-grounding.svg)
 
 Terms: frame pair = the backbone merges two frames into one visual unit, so each candidate interval covers two frames. BCE = binary cross-entropy. Soft IoU = a differentiable version of the overlap measure.
 
@@ -143,9 +161,9 @@ Point to the yellow line: soft IoU matters a lot; without it mean mIoU drops fro
 
 Bridge: How do the interval scores become one span?
 
-## 11. decoding
+## 12. decoding
 
-![slide 11](svg/11-decoding.svg)
+![slide 12](svg/12-decoding.svg)
 
 Terms: logit = score before the sigmoid. Threshold τ. Kadane's algorithm = finds the contiguous range with the largest sum in one pass.
 
@@ -157,9 +175,9 @@ Point to the last bar: its probability is only 0.33, but still above the thresho
 
 Bridge: QA is simpler.
 
-## 12. qa
+## 13. qa
 
-![slide 12](svg/12-qa.svg)
+![slide 13](svg/13-qa.svg)
 
 Terms: softmax, cross-entropy, position bias = a model learning that some option position (say A) is often right.
 
@@ -171,9 +189,9 @@ Point to the orange box: options are shuffled during training so the model canno
 
 Bridge: Now the second idea: reuse the video.
 
-## 13. inference
+## 14. inference
 
-![slide 13](svg/13-inference.svg)
+![slide 14](svg/14-inference.svg)
 
 Terms: prefill = processing the prompt once. KV cache = the stored result. Cached inference, Joint inference.
 
@@ -187,9 +205,9 @@ Point to the bottom box: generative baselines can reuse the video cache too, and
 
 Bridge: How is it trained?
 
-## 14. training
+## 15. training
 
-![slide 14](svg/14-training.svg)
+![slide 15](svg/15-training.svg)
 
 Terms: head alignment = train only the new head first. Learning rate (LR).
 
@@ -201,9 +219,9 @@ Why two stages? Like LLaVA's projector alignment: give the new head a stable fea
 
 Bridge: Results, starting with grounding.
 
-## 15. grounding results
+## 16. grounding results
 
-![slide 15](svg/15-grounding-results.svg)
+![slide 16](svg/16-grounding-results.svg)
 
 Terms: mIoU per benchmark, TimeLens-refined annotations = cleaned labels of the three benchmarks.
 
@@ -215,9 +233,9 @@ Point to the yellow box: the gains are largest at the strict overlap threshold, 
 
 Bridge: Now video QA.
 
-## 16. qa results
+## 17. qa results
 
-![slide 16](svg/16-qa-results.svg)
+![slide 17](svg/17-qa-results.svg)
 
 Terms: accuracy, M-Avg (MLVU's mean over its tasks), Instruct / Thinking.
 
@@ -229,9 +247,9 @@ Right box: against Thinking, the 4B model is 0.6 points behind and the 35B model
 
 Bridge: The same in one picture.
 
-## 17. quality vs latency
+## 18. quality vs latency
 
-![slide 17](svg/17-quality-vs-latency.svg)
+![slide 18](svg/18-quality-vs-latency.svg)
 
 Terms: log scale = each tick is a multiple, not a fixed step.
 
@@ -239,9 +257,9 @@ Say: Quality against latency; upper left is better. On the left, grounding: the 
 
 Bridge: So far one question at a time. What about many questions about the same video?
 
-## 18. many queries
+## 19. many queries
 
-![slide 18](svg/18-many-queries.svg)
+![slide 19](svg/19-many-queries.svg)
 
 Terms: Joint / Cached inference; Qwen Direct = the autoregressive model answering with exactly one option letter.
 
@@ -253,9 +271,9 @@ Point to the yellow line: with Joint inference, going from one to ten questions 
 
 Bridge: Are the gains from the architecture or just from the training data?
 
-## 19. architecture or data
+## 20. architecture or data
 
-![slide 19](svg/19-architecture-or-data.svg)
+![slide 20](svg/20-architecture-or-data.svg)
 
 Terms: autoregressive SFT = ordinary fine-tuning to generate the answer text. Single-stage = training everything at once.
 
@@ -267,9 +285,9 @@ Point to the orange box: but be honest about the size. Most of the improvement o
 
 Bridge: What else matters? The ablations.
 
-## 20. ablations
+## 21. ablations
 
-![slide 20](svg/20-ablations.svg)
+![slide 21](svg/21-ablations.svg)
 
 Terms: ablation = remove one part and measure the change.
 
@@ -281,9 +299,9 @@ Point to the last row: single-stage training is actually slightly better; they k
 
 Bridge: One more output: confidence.
 
-## 21. calibration
+## 22. calibration
 
-![slide 21](svg/21-calibration.svg)
+![slide 22](svg/22-calibration.svg)
 
 Terms: calibration = when the model says 90%, it is right 90% of the time. ECE = expected calibration error, the average gap.
 
@@ -293,9 +311,9 @@ Right: but the probabilities are too high on average, by about 8 points. Unlike 
 
 Bridge: Where would such a model be used?
 
-## 22. system two
+## 23. system two
 
-![slide 22](svg/22-system-two.svg)
+![slide 23](svg/23-system-two.svg)
 
 Terms: System 2 planner = an LLM agent or fixed procedure. Escalate = hand an uncertain case to slower reasoning.
 
@@ -305,9 +323,9 @@ This is a vision; it is not evaluated in the paper.
 
 Bridge: Time to be critical.
 
-## 23. critique
+## 24. critique
 
-![slide 23](svg/23-critique.svg)
+![slide 24](svg/24-critique.svg)
 
 Say: Strong: one simple head for two task types; a careful latency protocol where the generative baselines also reuse the video; the controlled comparison with autoregressive fine-tuning; and released models and code.
 
@@ -315,9 +333,9 @@ Weak or unclear: someone must supply the candidates, and grounding returns one c
 
 Bridge: To close, five takeaways.
 
-## 24. takeaways
+## 25. takeaways
 
-![slide 24](svg/24-takeaways.svg)
+![slide 25](svg/25-takeaways.svg)
 
 Say: One: if the answer is a span or a choice, score it, don't write it. Two: encode the video once; ten questions cost almost the same as one. Three: close to Thinking quality without thinking, at about one hundredth of the time. Four: training choices matter, soft IoU most of all. Five: confidence comes for free but is not yet reliable.
 

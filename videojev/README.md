@@ -9,22 +9,22 @@
 | What | Where |
 |---|---|
 | Clickable deck (arrow keys, `N` notes, `O` overview, `F` full screen) | [`slides/index.html`](slides/index.html) |
-| PDF (24 slides, 16:9) | [`slides/videojev.pdf`](slides/videojev.pdf) |
+| PDF (25 slides, 16:9) | [`slides/videojev.pdf`](slides/videojev.pdf) |
 | Speaker notes (six-sentence story first, then a script per slide) | [`slides/speaker-notes.md`](slides/speaker-notes.md) |
 | Editable Excalidraw file per slide | [`slides/excalidraw/`](slides/excalidraw), open on excalidraw.com (menu → Open) |
 | Every number used, with its table or section | [`references/digest.md`](references/digest.md) |
 
-## Outline (24 slides)
+## Outline (25 slides)
 
 1 Title · 2 The paper in one slide · 3 Glossary
-- **Part I, background:** 4 two tasks: When? and Which? · 5 today's MLLMs write their answers · 6 the System One
-  idea (Jev) · 7 why video is harder
-- **Part II, method:** 8 architecture · 9 the shared scorer · 10 grounding as many yes/no decisions · 11 decoding
-  one span (real README output) · 12 QA as option scoring · 13 Cached and Joint inference · 14 training recipe
-- **Part III, results:** 15 temporal grounding · 16 video QA vs Thinking · 17 quality against latency ·
-  18 ten questions about one video · 19 architecture or data? · 20 ablations · 21 confidence and calibration ·
-  22 System 2 asks, System 1 checks
-- **Part IV, discussion:** 23 strengths and weaknesses · 24 takeaways
+- **Part I, background:** 4 two tasks: When? and Which? · 5 today's MLLMs write their answers · 6 Thinking, Fast and Slow (Kahneman) · 7 the System One
+  idea (Jev) · 8 why video is harder
+- **Part II, method:** 9 architecture · 10 the shared scorer · 11 grounding as many yes/no decisions · 12 decoding
+  one span (real README output) · 13 QA as option scoring · 14 Cached and Joint inference · 15 training recipe
+- **Part III, results:** 16 temporal grounding · 17 video QA vs Thinking · 18 quality against latency ·
+  19 ten questions about one video · 20 architecture or data? · 21 ablations · 22 confidence and calibration ·
+  23 System 2 asks, System 1 checks
+- **Part IV, discussion:** 24 strengths and weaknesses · 25 takeaways
 
 All figures are redrawn in Excalidraw; the paper's own figures are not copied. Slide 11 uses the recorded output
 from the repository README.

@@ -162,6 +162,45 @@ def s_generate(n):
     return s
 
 
+def s_kahneman(n):
+    s = Slide("06-fast-and-slow", n)
+    s.title("Where the name comes from: Thinking, Fast and Slow", "Daniel Kahneman, 2011: two modes of thought",
+            part=PART1, pc="gray")
+    # a generic book, drawn
+    s.box(70, 170, 230, 310, None, "gray", fill="#ffffff", round_=False, sw=2)
+    s.box(70, 170, 26, 310, None, "gray", fill=P["gray"]["fill"], round_=False, sw=2)
+    s.text(198, 230, "Thinking,\nFast and\nSlow", 30, P["ink"], "c")
+    s.text(198, 400, "D. Kahneman\n2011", 18, P["muted"], "c")
+    # System 1
+    s.box(350, 170, 570, 310, None, "blue", fill=P["blue"]["soft"])
+    s.text(372, 186, "System 1 · fast", 28, P["blue"]["text"])
+    s.text(372, 232, "instinctive, emotional, automatic", 21, P["muted"])
+    s.box(400, 290, 200, 80, "2 + 2 = ?", "blue", 28)
+    harrow(s, 604, 650, 330)
+    s.box(655, 290, 110, 80, "4", "green", 30)
+    s.text(780, 315, "instantly,\nno effort", 20, P["ink"])
+    s.text(372, 400, "also: reading a face, a short word,\nnoticing a sudden sound", 19, P["muted"])
+    # System 2
+    s.box(960, 170, 570, 310, None, "orange", fill=P["orange"]["soft"])
+    s.text(982, 186, "System 2 · slow", 28, P["orange"]["text"])
+    s.text(982, 232, "deliberative, logical, effortful", 21, P["muted"])
+    s.box(1010, 290, 200, 80, "17 × 24 = ?", "orange", 28)
+    harrow(s, 1214, 1260, 330)
+    s.box(1265, 290, 110, 80, "408", "green", 30)
+    s.text(1390, 315, "step by\nstep", 20, P["ink"])
+    s.text(982, 400, "also: filling in a tax form,\nchecking a logical argument", 19, P["muted"])
+    # mapping to models
+    s.text(70, 520, "The same split in AI models", 25, P["ink"])
+    rows = [["System 1", "System One models (Jev, VideoJev): one forward pass → a typed decision with probabilities"],
+            ["System 2", "LLMs that write free text; 'Thinking' mode: reason step by step, then answer"]]
+    s.table(70, 565, [240, 1220], rows, fs=22, rh=58, hc="gray", aligns=["l", "l"],
+            colors=[[P["blue"]["text"], P["ink"]], [P["orange"]["text"], P["ink"]]])
+    s.takeaway("Kahneman: we use System 1 most of the time and call System 2 when it is needed. VideoJev aims for the same split.",
+               y=720, h=64, fs=22)
+    s.footer("D. Kahneman, Thinking, Fast and Slow (2011); 17 × 24 is Kahneman's own example. Book drawn generically, not the cover")
+    return s
+
+
 def s_system_one(n):
     s = Slide("06-system-one", n)
     s.title("The System One idea (Jev)", "Fast typed judgments instead of slow free text", part=PART1, pc="gray")
@@ -175,7 +214,7 @@ def s_system_one(n):
                      "with probabilities, in one pass", 22)
     s.text(70, 490, "Jev (TypeSafe AI)", 24, P["ink"])
     s.text(70, 530, "• typed probabilistic judgments that software can use directly\n"
-                    "• trained with RL for calibrated probabilities\n• named after Kahneman's System 1 and the economist Jevons\n"
+                    "• trained with RL for calibrated probabilities\n• 'Jev' after the economist Jevons: cheaper decisions → many more uses\n"
                     "• image versions: Visual Jev, PixelJev → this paper: video", 22)
     s.box(900, 490, 630, 220, None, "yellow")
     s.text(920, 508, "The paper's premise", 23)
@@ -270,7 +309,7 @@ def s_scorer(n):
     s.text(845, 575, "QA: softmax over the options", 23, P["purple"]["text"])
     s.text(845, 618, "pᵢ = softmax(s)ᵢ: which option is right?", 21)
     s.text(70, 720, "Projections start from small random weights (std 0.005), biases at zero. Why drop the final MLP? "
-                    "Pre-MLP features are\nknown to carry semantic similarity (FreeRet); the ablation on slide 20 shows no loss.",
+                    "Pre-MLP features are\nknown to carry semantic similarity (FreeRet); the ablation slide shows no loss.",
            19, P["muted"])
     s.footer(SRC + ", Eq. (1), §2.1 and §2.4")
     return s
@@ -683,7 +722,7 @@ def s_takeaways(n):
 
 
 SLIDES = [s_title, s_tldr, s_glossary,
-          s_tasks, s_generate, s_system_one, s_why_video,
+          s_tasks, s_generate, s_kahneman, s_system_one, s_why_video,
           s_architecture, s_scorer, s_grounding, s_decoding, s_qa, s_inference, s_training,
           s_grounding_results, s_qa_results, s_tradeoff, s_scaling, s_ar_control, s_ablations, s_calibration, s_system2,
           s_critique, s_takeaways]

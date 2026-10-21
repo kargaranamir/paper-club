@@ -54,11 +54,25 @@ Point to the orange box: that costs time per token, the text has to be parsed, t
 
 Point to the table: the numbers make it concrete. Qwen3.5-4B answers a long-video question in 1.4 seconds in Instruct mode and 145 seconds in Thinking mode. Thinking buys 8.6 accuracy points for about 107 times the time.
 
-Bridge: The System One idea is a different way out.""",
+Bridge: A detour through psychology explains the paper's name.""",
+
+    "fast-and-slow": """Terms: System 1 = fast, instinctive, emotional thinking. System 2 = slower, deliberative, logical thinking. Both from Daniel Kahneman's book Thinking, Fast and Slow (2011).
+
+Say: The name "System One model" comes from psychology. In Thinking, Fast and Slow, Daniel Kahneman, a Nobel laureate in economics, describes two modes of thought.
+
+Point to the blue panel: System 1 is fast, instinctive and emotional. Ask yourself 2 + 2: the answer arrives before you decide to think.
+
+Point to the orange panel: System 2 is slow, deliberative and logical. 17 times 24 (Kahneman's own example) needs effort, step by step: 408.
+
+Point to the table: the same split appears in AI. A chat LLM in Thinking mode is System 2: it reasons in text, then answers. A System One model like Jev or VideoJev is System 1: one forward pass, one decision with probabilities.
+
+Point to the yellow line: people use System 1 most of the time and call System 2 only when needed. The paper wants agents to work the same way: fast checks by default, slow reasoning when a check is uncertain.
+
+Bridge: Jev is the first model built on this idea.""",
 
     "system-one": """Terms: System 1 / System 2 = Kahneman's fast intuitive versus slow deliberate thinking. Typed decision = an answer of a fixed form, such as a choice or yes/no.
 
-Say: Jev, from the company TypeSafe AI, is a "System One" model: instead of writing text, it returns a typed decision with probabilities, in one pass. It is trained with reinforcement learning so that the probabilities are calibrated. There are already image versions; this paper does it for video.
+Say: Jev, from the company TypeSafe AI, is a "System One" model: instead of writing text, it returns a typed decision with probabilities, in one pass. It is trained with reinforcement learning so that the probabilities are calibrated. The name Jev refers to the economist Jevons: when decisions get cheaper, people use far more of them. There are already image versions; this paper does it for video.
 
 Point to the yellow box: the paper's premise. Structured judgments can support open-ended behaviour without generating open-ended text at every step.
 
