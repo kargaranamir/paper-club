@@ -22,7 +22,7 @@ area; two historical varieties in Hungary and Ukraine fall outside the crop.
 ```bash
 cd tools
 python3 build_figures.py            # figures/src/*.json → figures/excalidraw/*.excalidraw
-npm ci                              # playwright-core + Excalidraw for headless rendering
+npm install                         # playwright-core + Excalidraw for headless rendering
 CHROMIUM_PATH=/path/to/chrome node render_figures.mjs   # → figures/svg, figures/pdf
 python3 build_html.py               # embeds fonts, SVGs, map and QR → iranic-nlp-a0.html
 CHROMIUM_PATH=/path/to/chrome node print_poster.mjs     # → iranic-nlp-a0.pdf (A0)
