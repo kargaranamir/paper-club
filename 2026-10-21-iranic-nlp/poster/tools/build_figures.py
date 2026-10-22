@@ -92,7 +92,7 @@ for (name, col, langs), x in zip(BRANCHES, xs):
 s.write()
 
 # ------------------------------------------------------------------ 2. papers vs speakers (Figure 2 labels)
-ROWS = [('Persian', 394, 91), ('Kurdish', 93, 26), ('Pashto', 29, 51), ('Luri / Laki', 5, 5), ('Balochi', 4, 8),
+ROWS = [('Persian', 394, 91), ('Kurdish', 93, 26), ('Pashto', 29, 51), ('Luri / Laki', 5, 5), ('Balochi', 4, 9),
         ('Mazanderani / Gilaki', 4, 5)]
 s = Fig('papers-speakers', 1100, 560, '#FFFFFF')
 s.text(250, 0, 'PAPERS (2020–2026)', 22, LAPIS)

@@ -1,0 +1,57 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Noto Sans Arabic";src:url(/noto/arabic.woff2)}
+@font-face{font-family:"Noto Sans Devanagari";src:url(/noto/deva.woff2)}
+@font-face{font-family:"Noto Sans Ethiopic";src:url(/noto/ethi.woff2)}
+body{margin:0}
+</style>
+<script>window.EXCALIDRAW_ASSET_PATH = location.origin + "/";</script>
+<script src="/bundle.js"></script>
+<script>
+// deterministic seeds so rebuilding an unchanged slide produces an identical file (clean git diffs)
+function hash(str){ let h = 2166136261; for (const c of str) { h ^= c.codePointAt(0); h = Math.imul(h, 16777619); } return (h >>> 0) % 2147483647 || 1; }
+function stable(els){ return els.map(e => ({...e, seed: hash(e.id), versionNonce: hash(e.id + "#"), version: 1, updated: 1})); }
+function clean(skel){
+  return skel.filter(e => e.type !== "cameraUpdate" && e.type !== "delete" && e.type !== "restoreCheckpoint")
+    .map(e => { const c = {...e};
+      if (c.id === "slidebg") { c.strokeColor = "transparent"; c.roughness = 0; }
+      if (c.label && typeof c.label.text === "string") c.label = {...c.label};
+      return c; });
+}
+window.renderSlide = async (skel) => {
+  const L = window.ExcalidrawLib;
+  const appState = { exportBackground: true, viewBackgroundColor: "#ffffff" };
+  let els = L.convertToExcalidrawElements(clean(skel), { regenerateIds: false });
+  // first pass loads fonts into document
+  await L.exportToCanvas({ elements: els, appState, files: null, exportPadding: 0 });
+  await document.fonts.ready;
+  for (const f of ["Excalifont","Xiaolai","Comic Shanns","Noto Sans Arabic","Noto Sans Devanagari","Noto Sans Ethiopic"]) { try { await document.fonts.load(`20px "${f}"`, "abcمनአ中"); } catch(e){} }
+  els = stable(L.convertToExcalidrawElements(clean(skel), { regenerateIds: false }));
+  const svg = await L.exportToSvg({ elements: els, appState: {...appState, exportEmbedScene: false}, files: null, exportPadding: 0 });
+  svg.setAttribute("width", "1600"); svg.setAttribute("height", "900");
+  return { svg: svg.outerHTML, elements: els };
+};
+// export a whole standalone figure (LaTeX deck): tight bounds, small padding
+window.renderFigure = async (skel) => {
+  const L = window.ExcalidrawLib;
+  const appState = { exportBackground: true, viewBackgroundColor: "#ffffff" };
+  let els = L.convertToExcalidrawElements(clean(skel), { regenerateIds: false });
+  await L.exportToCanvas({ elements: els, appState, files: null, exportPadding: 0 });
+  await document.fonts.ready;
+  els = stable(L.convertToExcalidrawElements(clean(skel), { regenerateIds: false }));
+  const svg = await L.exportToSvg({ elements: els, appState: {...appState, exportEmbedScene: false}, files: null, exportPadding: 12 });
+  return { svg: svg.outerHTML, elements: els, w: +svg.getAttribute("width"), h: +svg.getAttribute("height") };
+};
+// export only the elements lying inside box {x,y,w,h} (used for standalone figures)
+window.renderCrop = async (skel, b) => {
+  const L = window.ExcalidrawLib;
+  const appState = { exportBackground: true, viewBackgroundColor: "#ffffff" };
+  let els = L.convertToExcalidrawElements(clean(skel), { regenerateIds: false });
+  await L.exportToCanvas({ elements: els, appState, files: null, exportPadding: 0 });
+  await document.fonts.ready;
+  els = stable(L.convertToExcalidrawElements(clean(skel), { regenerateIds: false }));
+  els = els.filter(e => e.id !== "slidebg" && e.x >= b.x - 2 && e.y >= b.y - 2 && e.x + e.width <= b.x + b.w + 2 && e.y + e.height <= b.y + b.h + 2);
+  const svg = await L.exportToSvg({ elements: els, appState: {...appState, exportEmbedScene: false}, files: null, exportPadding: 24 });
+  return { svg: svg.outerHTML, elements: els };
+};
+</script></head><body></body></html>
