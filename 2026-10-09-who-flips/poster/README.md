@@ -37,3 +37,14 @@ on the right. The subject-domain chart is stacked into two rows for the narrower
   `python tools/build_html.py betterposter-landscape` and `node tools/print_poster.mjs betterposter-landscape`.
 
 ![Landscape #betterposter preview](preview-betterposter-landscape.png)
+
+### Alternative landscape arrangement
+
+The same landscape poster with the key figure at the top of the right column and the experiment and subject
+panels under the main finding.
+
+- [Download the A0 landscape PDF (alternative)](who-flips-a0-betterposter-landscape-alt.pdf)
+- [Standalone HTML (alternative)](who-flips-a0-betterposter-landscape-alt.html)
+- Source: `poster.betterposter-landscape-alt.template.html` (build with the variant name `betterposter-landscape-alt`).
+
+![Alternative landscape preview](preview-betterposter-landscape-alt.png)
