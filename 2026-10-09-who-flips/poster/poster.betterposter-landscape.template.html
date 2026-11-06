@@ -60,7 +60,7 @@ h2{font-size:36pt;line-height:1.08;letter-spacing:-.025em;font-weight:800;margin
 .band .resources{width:160mm}.band .resources a{color:var(--card)}
 .resources{display:flex;justify-content:space-between;gap:6mm;text-align:center;align-items:start}
 .resources a{display:block;text-decoration:none;font:700 18pt/1.2 'Space Mono',monospace}.qr{display:block;padding:1.5mm;background:var(--card);border:.6mm solid var(--ink);box-shadow:1mm 1mm 0 var(--ink);margin-bottom:2mm;line-height:0}.qr svg{width:30mm;height:30mm}
-.hero{left:402mm;top:380mm;width:385mm;height:128mm;padding:9mm 10mm}
+.hero{left:402mm;top:672mm;width:385mm;height:128mm;padding:9mm 10mm}
 .hero h2{font-size:33pt;line-height:1.08;margin:0;text-align:center}
 .hero h2 em{font-style:normal;position:relative;display:inline-block;background:var(--yellow);padding:0 1.5mm;box-shadow:0 1.1mm 0 var(--ink)}
 .mechanism{width:100%;margin:5mm auto 0}
@@ -68,13 +68,13 @@ h2{font-size:36pt;line-height:1.08;letter-spacing:-.025em;font-weight:800;margin
 .metric{display:flex;align-items:center;gap:3mm;font-size:19pt;line-height:1.15;flex:none}.metric strong{font-size:24pt}
 .fraction{display:flex;flex-direction:column;align-items:center;font-size:16pt;text-align:center}.fraction span:first-child{border-bottom:.5mm solid var(--ink);padding:0 0 1.2mm}.fraction span:last-child{padding-top:1.2mm}
 .eligible{font-size:17.5pt;line-height:1.22;margin:0}
-.domains{left:402mm;top:528mm;width:385mm;height:272mm;padding:9mm 10mm}
+.domains{left:805mm;top:530mm;width:360mm;height:270mm;padding:9mm 10mm}
 .domains .lead strong{white-space:nowrap}
 .domains .chart{width:96%;margin:6mm auto 0}
 .length{left:24mm;top:182mm;width:360mm;height:240mm}
-.matrix{left:805mm;top:299mm;width:360mm;height:232mm}
-.keyfig{left:805mm;top:17mm;width:360mm;height:262mm}
-.eaep{left:805mm;top:551mm;width:360mm;height:249mm}
+.matrix{left:805mm;top:17mm;width:360mm;height:228mm}
+.keyfig{left:402mm;top:379mm;width:385mm;height:273mm}
+.eaep{left:805mm;top:265mm;width:360mm;height:245mm}
 .maxflip{left:24mm;top:442mm;width:360mm;height:358mm}
 .maxflip .chart.pool{margin-top:3mm}
 .footer-end{position:absolute;bottom:12mm;left:25mm;right:27mm;display:flex;justify-content:space-between;border-top:.45mm solid var(--ink);padding-top:3mm;padding-bottom:1mm;font:400 15pt/1.2 'Space Mono',monospace;color:var(--muted)}
@@ -118,7 +118,7 @@ h2{font-size:36pt;line-height:1.08;letter-spacing:-.025em;font-weight:800;margin
 </section>
 
 <section class="card domains" aria-labelledby="domain-title">
-<p class="tab pink">02 / SUBJECT DOMAINS</p>
+<p class="tab pink">06 / SUBJECT DOMAINS</p>
 <h2 id="domain-title">Domain matters.</h2>
 <p class="lead">Subject-level AFR spans <strong>20.9–80.8%</strong>: lowest in mathematics, highest in moral disputes and security studies.</p>
 <figure class="chart" aria-label="Three lowest and three highest subject-level AFRs, with reported 95% confidence intervals. Elementary mathematics 20.9%, high-school mathematics 25.8%, college mathematics 30.4%; moral disputes 80.8%, security studies 80.6%, professional law 74.7%. All three lowest subjects are STEM; the highest are humanities or social science subjects.">__SVG_DOMAINS_STACKED__</figure>
@@ -126,7 +126,7 @@ h2{font-size:36pt;line-height:1.08;letter-spacing:-.025em;font-weight:800;margin
 </section>
 
 <section class="card side length" aria-labelledby="length-title">
-<p class="tab pink">03 / ARGUMENT LENGTH</p>
+<p class="tab pink">02 / ARGUMENT LENGTH</p>
 <h2 id="length-title">Longer arguments are not always stronger.</h2>
 <p class="lead">Two Qwen models rise with longer arguments; GPT-5.1's decline is not statistically significant.</p>
 <figure class="chart" aria-label="Blind AFR by argument length for four selected models, with 95% confidence intervals.">__SVG_LENGTH__</figure>
@@ -134,7 +134,7 @@ h2{font-size:36pt;line-height:1.08;letter-spacing:-.025em;font-weight:800;margin
 </section>
 
 <section class="card side matrix" aria-labelledby="matrix-title">
-<p class="tab mint">05 / SOURCE → TARGET</p>
+<p class="tab mint">04 / SOURCE → TARGET</p>
 <h2 id="matrix-title">Arguing ≠ resisting.</h2>
 <p class="lead">A model can resist wrong arguments yet write arguments that flip other models.</p>
 <figure class="chart" aria-label="Source rows by target columns, showing rounded pairwise AFR percentages. Outlined diagonal cells are same-model sources.">__SVG_CROSS_MATRIX__</figure>
@@ -145,7 +145,7 @@ h2{font-size:36pt;line-height:1.08;letter-spacing:-.025em;font-weight:800;margin
 <figure class="chart" aria-label="Mean blind AFR and coverage for seven models, with 95% confidence intervals.">__SVG_BASELINE__</figure></section>
 
 <section class="card side eaep" aria-labelledby="eaep-title">
-<p class="tab blue">06 / TWO DIFFERENT ROLES</p>
+<p class="tab blue">05 / TWO DIFFERENT ROLES</p>
 <h2 id="eaep-title">Persuasive, yet hard to flip.</h2>
 <p class="lead"><strong>Epistemic porosity (EP):</strong> susceptibility as a target.<br><strong>Epistemic authority (EA):</strong> efficacy as a source.</p>
 <figure class="chart" aria-label="Epistemic Authority versus Epistemic Porosity for all seven models. GPT-5.1, Qwen3.5-35B and Gemma-4-26B are above the equal-rate diagonal; Llama-3.1-8B is far below it.">__SVG_EA_EP__</figure>
@@ -153,7 +153,7 @@ h2{font-size:36pt;line-height:1.08;letter-spacing:-.025em;font-weight:800;margin
 </section>
 
 <section class="card side maxflip" aria-labelledby="maxflip-title">
-<p class="tab">04 / STRONGER CHALLENGES</p>
+<p class="tab">03 / STRONGER CHALLENGES</p>
 <h2 id="maxflip-title">MaxFlip amplifies flips.</h2>
 <p class="lead">Pool arguments across sources, keep the most effective one: AFR rises by up to <strong>23.6 points.</strong></p>
 <figure class="chart" aria-label="MaxFlip AFR increases compared with same-model blind challenges, with 95% confidence intervals.">__SVG_MAXFLIP__</figure>
