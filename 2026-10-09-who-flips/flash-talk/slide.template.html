@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Who Flips? — MCML Flash Talk slide</title>
+<style>
+/* One 16:9 slide in the visual language of the Who Flips? poster. Fonts: SIL OFL (see ../poster/licenses). */
+__FONT_CSS__
+:root{--paper:#f6efe2;--card:#fffaf0;--ink:#16130f;--muted:#5b5347;--pink:#ff48b0;--yellow:#ffe14d;--blue:#0078bf;--mint:#d6f2df}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--paper)}
+body{font-family:'Bricolage Grotesque',Arial,sans-serif;color:var(--ink)}
+.slide{position:relative;width:1280px;height:720px;overflow:hidden;background-color:var(--paper);background-image:radial-gradient(#16130f15 .9px,transparent 1.2px);background-size:13px 13px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.slide::before{content:"";position:absolute;inset:14px;border:2px solid var(--ink);border-radius:7px;pointer-events:none}
+.head{position:absolute;left:44px;top:30px;right:44px;display:flex;align-items:flex-end;gap:26px}
+h1{margin:0;font-size:84px;line-height:.95;letter-spacing:-.05em;font-weight:800;white-space:nowrap}
+h1 span{display:inline-block;-webkit-text-stroke:4px var(--ink);paint-order:stroke fill;text-shadow:6px 7px 0 var(--ink);color:var(--pink);transform:rotate(-1.8deg)}
+h1 .last{color:var(--yellow);transform:rotate(1.4deg) translateY(3px)}
+.titles{padding-bottom:6px}
+.eyebrow{display:inline-block;margin:0 0 7px;padding:4px 13px;border:2px solid var(--ink);border-radius:40px;background:var(--card);font:400 14px/1.3 'Space Mono',monospace;letter-spacing:.045em;transform:rotate(-.7deg)}
+.subtitle{margin:0;font-size:25px;line-height:1.15;font-weight:700;letter-spacing:-.015em}
+.card{position:absolute;background:var(--card);border:3px solid var(--ink);border-radius:13px;box-shadow:8px 8px 0 var(--ink)}
+.tab{position:absolute;left:30px;top:-17px;margin:0;padding:4px 11px;border:2px solid var(--ink);background:var(--yellow);font:700 15px/1.15 'Space Mono',monospace;letter-spacing:.02em;transform:rotate(-.7deg);white-space:nowrap}
+.tab.blue{background:#b7ddf5}.tab.pink{background:#ffb9de;transform:rotate(.7deg)}
+.finding{left:44px;top:166px;width:660px;height:244px;background:var(--ink);color:var(--card);padding:26px 30px}
+.finding p{margin:0;font-size:37px;line-height:1.06;letter-spacing:-.03em;font-weight:800}
+.finding em{font-style:normal;color:var(--ink);background:var(--yellow);padding:0 5px;white-space:nowrap}
+.finding .pk{color:var(--pink)}
+.finding .sub{margin-top:14px;font-size:20px;line-height:1.25;font-weight:400;letter-spacing:0;color:#efe6d6}
+.finding .sub strong{color:var(--card)}
+.how{left:44px;top:434px;width:660px;height:150px;padding:24px 22px 12px}
+.how .chart{margin:0;line-height:0}.chart svg{display:block;width:100%;height:auto}
+.chart text{font-family:'Bricolage Grotesque',Arial,sans-serif!important}
+.how .afr{margin:9px 0 0;font-size:15px;line-height:1.25;color:var(--muted)}
+.key{left:740px;top:166px;width:496px;height:418px;padding:26px 22px 14px}
+.key h2{margin:0;font-size:26px;line-height:1.1;letter-spacing:-.02em;font-weight:800}
+.key .chart{margin-top:10px}
+.key .note{margin:10px 0 0;font-size:17px;line-height:1.25;color:var(--muted)}
+.bottom{position:absolute;left:44px;right:44px;top:604px;height:84px;display:flex;align-items:center;justify-content:space-between}
+.takeaway{position:relative;width:300px;height:90px;transform:rotate(-3deg);flex:none}
+.slogan-cloud{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.takeaway h3{position:absolute;left:22px;right:22px;top:21px;margin:0;font-size:19px;line-height:1.15;letter-spacing:-.02em;text-align:center;font-weight:800}
+.takeaway h3 em{font-style:normal;text-decoration:underline;text-decoration-color:var(--pink);text-decoration-thickness:4px;text-underline-offset:3px}
+.authors{flex:1;margin:0 26px;font-size:16px;line-height:1.35}
+.authors b{font-weight:800}.authors small{display:block;font-size:13px;color:var(--muted)}
+.qr{display:flex;align-items:center;gap:10px;font:700 13px/1.25 'Space Mono',monospace;flex:none}
+.qr span{display:block;width:78px;height:78px;padding:3px;background:var(--card);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);line-height:0}
+.qr svg{width:100%;height:100%}
+@page{size:1280px 720px;margin:0}
+</style>
+</head>
+<body>
+<div class="slide">
+<header class="head">
+<h1><span>Who</span> <span class="last">Flips?</span></h1>
+<div class="titles"><p class="eyebrow">7 MODELS · 57 MMLU SUBJECTS</p>
+<p class="subtitle">Self- and Cross-Model Counterarguments<br>Reveal Answer Instability in LLMs</p></div>
+</header>
+
+<section class="card finding">
+<p>One plausible counter&shy;argument <span class="pk">flips</span> <em>17.5–97.3%</em> of correct LLM answers, depending on the model.</p>
+<p class="sub">Flip rates also depend on the subject (<strong>20.9–80.8%</strong>) and on who wrote the argument.</p>
+</section>
+
+<section class="card how">
+<p class="tab">THE EXPERIMENT</p>
+<figure class="chart">__SVG_MECHANISM__</figure>
+<p class="afr"><b>Answer flip rate (AFR):</b> share of correct answers that end wrong after the challenge.</p>
+</section>
+
+<section class="card key">
+<p class="tab blue">KEY FIGURE</p>
+<h2>Answer stability varies across models.</h2>
+<figure class="chart">__SVG_BASELINE__</figure>
+<p class="note">Choosing the strongest argument across models (<b>MaxFlip</b>) raises flip rates by up to <b>23.6 points</b>.</p>
+</section>
+
+<div class="bottom">
+<div class="takeaway">
+__CLOUD__
+<h3>Evaluate <em>stability</em><br>alongside accuracy.</h3>
+</div>
+<p class="authors"><b>Nafiseh Nikeghbal</b> · Amir Hossein Kargaran · Shaghayegh Kolli · Jana Diesner
+<small>TU Munich · Munich Center for Machine Learning · Munich Data Science Institute · LMU Munich</small></p>
+<div class="qr"><span>__QR_PAPER__</span>Paper<br>arXiv<br>2606.16011</div>
+</div>
+</div>
+</body>
+</html>
