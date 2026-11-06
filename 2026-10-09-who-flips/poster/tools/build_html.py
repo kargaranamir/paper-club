@@ -14,7 +14,7 @@ for stem,family,weight in [('bricolage-grotesque-400','Bricolage Grotesque',400)
 source=source.replace('__FONT_CSS__','\n'.join(css))
 licenses={f.name:f.read_text() for f in (ROOT/'licenses').glob('*.txt')}
 source=source.replace('</head>','<script type="application/json" id="font-license-notices">'+json.dumps(licenses).replace('</','<\\/')+'</script>\n</head>')
-for name in ['mechanism','baseline','length','domains','maxflip','cross-matrix','ea-ep','pooling']:
+for name in ['mechanism','baseline','length','domains','domains-stacked','maxflip','cross-matrix','ea-ep','pooling']:
  svg=(ROOT/'figures/svg'/(name+'.svg')).read_text()
  svg=re.sub(r'<svg ',f'<svg role="img" aria-label="{name.replace("-"," ")} figure" ',svg,count=1)
  source=source.replace('__SVG_'+name.upper().replace('-','_')+'__',svg)
